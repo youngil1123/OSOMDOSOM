@@ -12,7 +12,7 @@ import lombok.ToString;
 @Getter
 @ToString
 
-public class member {
+public class member_tbl {
 	private int mem_no;
 	private String mem_id;
 	private String mem_pwd;
