@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shop.mapper.ItemMapper">
+
+	<insert id="insert" parameterType="Item">
+		INSERT INTO item VALUES (#{item_no},#{cate_no}
+		,#{item_name},#{item_price },#{item_explain},SYSDATE()) 	
+	</insert>
+	
+	<delete id="delete" parameterType="Integer">
+		DELETE FROM item WHERE item_no=#{item_no}
+	</delete>
+	
+	<update id="update" parameterType="Item">
+		UPDATE item SET cate_no=#{cate_no},  item_name=#{item_name}, item_price =#{item_price},
+		 item_explain=#{item_explain}, item_rdate = SYSDATE() WHERE item_no=#{item_no}
+	</update>
+	
+	<select id="select" parameterType="Integer" resultType="Item">
+		SELECT * FROM item WHERE item_no=#{item_no} 
+	</select>
+	
+	<select id="selectall" resultType="Item">
+		SELECT * FROM item
+	</select>
+	
+	
+	
+</mapper>

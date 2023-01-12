@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shop.mapper.ReviewMapper">
+	<insert id="insert" parameterType="Review">
+		INSERT INTO review
+		VALUES(rev_no,#{cust_no},#{item_no},#{review},NOW())
+	</insert>
+	<update id="update" parameterType="Review">
+		UPDATE review SET
+		review=#{review} WHERE rev_no=#{rev_no}
+	</update>
+	<delete id="delete" parameterType="Integer">
+		DELETE FROM review WHERE
+		rev_no=#{rev_no}
+	</delete>
+	<select id="select" parameterType="Integer" resultType="Review">
+		SELECT
+		re.rev_no, cu.name AS cust_name ,it.item_name AS item_name, re.review
+		AS review
+		FROM item it
+		INNER JOIN review re ON it.item_no = re.item_no
+		INNER JOIN customer cu ON re.cust_no=cu.cust_no
+		WHERE rev_no=#{rev_no}
+	</select>
+	<select id="selectall" resultType="Review">
+		SELECT * FROM review
+	</select>
+	<select id="searchItemReview" parameterType="Integer"
+		resultType="Review">
+		SELECT * FROM review WHERE item_no=#{item_no}
+	</select>
+</mapper>
