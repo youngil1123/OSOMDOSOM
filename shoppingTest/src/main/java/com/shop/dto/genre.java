@@ -15,5 +15,4 @@ public class genre {
 	private int gen_no;
 	private int gen_no2;
 	private String gen_name;
-	//
 }

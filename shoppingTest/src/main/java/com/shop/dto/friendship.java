@@ -13,7 +13,7 @@ import lombok.ToString;
 @ToString
 
 public class friendship {
-	private int like_no;
+	private int friend_no;
 	private int mem_no;
-	private int con_no;
+	private int mem_no2;
 }

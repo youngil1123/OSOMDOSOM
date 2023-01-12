@@ -19,8 +19,8 @@ public class member_tbl {
 	private String mem_name;
 	private String mem_tel;
 	private String mem_email;
-	private String mem_mbti;
-	private String mem_nickname;
+	private String mbti;
+	private String nickname;
 	private int mem_point;
 	private String mem_img;
 }
