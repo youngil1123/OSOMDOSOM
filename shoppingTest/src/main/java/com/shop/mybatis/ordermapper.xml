@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shop.mapper.OrderMapper">
+
+	<insert parameterType="Order" id="insert">
+	INSERT INTO order_tbl VALUES (#{order_no}, #{cust_no}, #{payment},now()) 
+	</insert>
+	
+	<delete id="delete">
+		DELETE FROM order_tbl where order_no=#{order_no}
+	 </delete>
+	 
+	 <update id="update" parameterType="Order">
+	 	UPDATE order_tbl SET payment = ${payment} where #{order_no}
+	 </update>
+	 
+	 <select id="select" parameterType="Integer" resultType="Order">
+		SELECT * FROM order_tbl WHERE order_no= #{order_no}
+	 </select>
+	 
+	 <select id="selectall" resultType="Order">
+	    SELECT or.order_no, odd.order_no AS order_dtail_no, or.rdate,
+	    or.payment, or.cust_no, FROM order_tbl or
+		INNER JOIN oder_detail odd ON or.order_no=or.order_no  
+	 </select>
+	 
+
+	</mapper>
+
+	
