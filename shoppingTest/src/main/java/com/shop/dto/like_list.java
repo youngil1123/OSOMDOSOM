@@ -17,4 +17,5 @@ public class like_list {
 	private int like_no;
 	private int mem_no;
 	private int con_no;
+	//
 }
