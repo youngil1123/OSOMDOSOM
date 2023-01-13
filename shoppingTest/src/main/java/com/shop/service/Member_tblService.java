@@ -11,7 +11,7 @@ import com.shop.frame.MyService;
 import com.shop.mapper.Member_tblMapper;
 
 @Service
-public class Member_tblService implements MyService<Integer, Member_tbl>{
+public class Member_tblService implements MyService<String, Member_tbl>{
 	
 	@Autowired
 	Member_tblMapper mapper;
@@ -22,7 +22,7 @@ public class Member_tblService implements MyService<Integer, Member_tbl>{
 	}
 
 	@Override
-	public void remove(Integer k) throws Exception {
+	public void remove(String k) throws Exception {
 		mapper.delete(k);
 	}
 
@@ -32,7 +32,7 @@ public class Member_tblService implements MyService<Integer, Member_tbl>{
 	}
 
 	@Override
-	public Member_tbl get(Integer k) throws Exception {
+	public Member_tbl get(String k) throws Exception {
 		return mapper.select(k);
 	}
 

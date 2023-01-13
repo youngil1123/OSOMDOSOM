@@ -9,6 +9,6 @@ import com.shop.frame.MyMapper;
 
 @Mapper
 @Repository
-public interface Member_tblMapper extends MyMapper<Integer,Member_tbl>{
+public interface Member_tblMapper extends MyMapper<String,Member_tbl>{
 
 }
