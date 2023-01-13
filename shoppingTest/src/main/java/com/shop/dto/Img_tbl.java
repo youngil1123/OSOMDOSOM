@@ -11,7 +11,8 @@ import lombok.ToString;
 @Setter
 @Getter
 @ToString
-public class point_order {
-	private int pro_no;
-	private int mem_no;
+public class Img_tbl {
+	private int img_no;
+	private int con_no;
+	private String con_img;
 }

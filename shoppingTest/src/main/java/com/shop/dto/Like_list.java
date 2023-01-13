@@ -1,5 +1,6 @@
 package com.shop.dto;
 
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,9 +12,9 @@ import lombok.ToString;
 @Setter
 @Getter
 @ToString
+public class Like_list {
 
-public class friendship {
-	private int friend_no;
+	private int like_no;
 	private int mem_no;
-	private int mem_no2;
+	private int con_no;
 }

@@ -8,13 +8,10 @@ import lombok.ToString;
 
 @AllArgsConstructor
 @NoArgsConstructor
-@Getter
 @Setter
+@Getter
 @ToString
-public class product {
+public class Point_order {
 	private int pro_no;
-	private String pro_name;
-	private int pro_price;
-	private String pro_img;
-	private int pro_cnt;
-};
+	private int mem_no;
+}

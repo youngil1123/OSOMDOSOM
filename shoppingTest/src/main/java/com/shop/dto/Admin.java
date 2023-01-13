@@ -12,7 +12,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class admin {
+public class Admin {
 	private int admin_no;
 	private String admin_id;
 	private String admin_pwd;

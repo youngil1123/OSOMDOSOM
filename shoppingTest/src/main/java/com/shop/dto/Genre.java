@@ -11,7 +11,7 @@ import lombok.ToString;
 @Setter
 @Getter
 @ToString
-public class genre {
+public class Genre {
 	private int gen_no;
 	private int gen_no2;
 	private String gen_name;

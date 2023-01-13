@@ -10,17 +10,19 @@ import lombok.ToString;
 
 @AllArgsConstructor
 @NoArgsConstructor
-@Setter
 @Getter
+@Setter
 @ToString
-public class board {
-	private int board_no;
-	private int board_no2;
+public class Content {
 	private int con_no;
-	private int mem_no;
+	private int no3;
+	private String con_name;
+	private String con_content;
+	private String runningtime;
+	private String character;
 	private Date writedate;
-	private String review;
-	private String partner;
-	private String secret_memo;
-	private int star_rate;
+	private String location;
+	private String bo_author;
+	private String bo_publisher;
+	private int bo_price;
 }
