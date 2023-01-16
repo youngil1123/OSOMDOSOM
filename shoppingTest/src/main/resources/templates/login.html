@@ -28,7 +28,6 @@
 <script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script>
 	$(document).ready(function() {
-
 		$('#login_form > a').click(function() {
 			$('#login_form').attr({
 				'method' : 'post',
@@ -37,16 +36,21 @@
 			$('#login_form').submit();
 		});
 	});
+	$("#login_form").keypress(function(e){
+		if(e.keyCode==13){
+			Login();
+		}
+	});
 </script>
 </head>
 <body>
 <header th:replace="top.html :: navigation-bar"></header>
 	<div id="login_form_style">
 	<h1>&nbsp;&nbsp;Login Page</h1>
-	<form id="login_form">
+	<form action="" id="login_form">
 		&nbsp;&nbsp;&nbsp;ID&nbsp;&nbsp;&nbsp;<input type="text" name="mem_id"><span id="id_span"></span><br>
 		PWD<input type="password" name="mem_pwd"><span id="pwd_span"></span><br>
-		<a href="#">LOGIN</a>
+		<button class="btn btn-md btn-primary btn-block" id="login-btn" onclick="Login()">LOGIN</a>
 	</form>
 	<a th:href="@{/register}">register</a>
 	</div>
@@ -54,3 +58,4 @@
 </html>
 
 
+//
