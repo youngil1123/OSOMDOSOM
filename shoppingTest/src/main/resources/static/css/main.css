@@ -49,8 +49,6 @@ h6 {
 section {
   padding: 40px 0;
   overflow: hidden;
-<<<<<<< HEAD
- 
 }
 
 .section-header {
@@ -1310,8 +1308,7 @@ section {
 
 .footer .credits a {
   color: var(--color-white);
-=======
- 
+
 }
 
 section > #top_aside{
@@ -2576,5 +2573,4 @@ section {
 
 .footer .credits a {
   color: var(--color-white);
->>>>>>> branch 'main' of https://github.com/youngil1123/OSOMDOSOM.git
 }
