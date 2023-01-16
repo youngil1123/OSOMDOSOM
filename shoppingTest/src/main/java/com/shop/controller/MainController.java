@@ -16,11 +16,13 @@ public class MainController {
 	
 	@RequestMapping("/")
     public String main() {
-        return "main";
+        return "index";
     }
+	
 	@RequestMapping("/login")
-	public String login() {
-		return "login";
+	public String login(Model model) {
+		model.addAttribute("top", "login");
+		return "index";
 	}
 	@RequestMapping("/loginimpl")
 	public String loginimpl(String mem_id,String mem_pwd,Model model) {
@@ -33,7 +35,6 @@ public class MainController {
 				result = "loginok";
 			}
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
