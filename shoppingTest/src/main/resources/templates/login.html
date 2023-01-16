@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="top.html :: head">
+<head>
 <meta charset="UTF-8">
 <link href="/img/favicon.png" rel="icon">
 <link href="/img/apple-touch-icon.png" rel="apple-touch-icon">
@@ -40,15 +40,16 @@
 </script>
 </head>
 <body>
-
-	
-	<h1>Login Page</h1>
+<header th:replace="top.html :: navigation-bar"></header>
+	<div id="login_form_style">
+	<h1>&nbsp;&nbsp;Login Page</h1>
 	<form id="login_form">
-		ID<input type="text" name="mem_id"><span id="id_span"></span><br>
+		&nbsp;&nbsp;&nbsp;ID&nbsp;&nbsp;&nbsp;<input type="text" name="mem_id"><span id="id_span"></span><br>
 		PWD<input type="password" name="mem_pwd"><span id="pwd_span"></span><br>
 		<a href="#">LOGIN</a>
 	</form>
 	<a th:href="@{/register}">register</a>
+	</div>
 </body>
 </html>
 
