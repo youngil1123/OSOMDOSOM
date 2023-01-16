@@ -22,7 +22,7 @@ public class MainController {
 	@RequestMapping("/login")
 	public String login(Model model) {
 		model.addAttribute("top", "login");
-		return "index";
+		return "login";
 	}
 	@RequestMapping("/loginimpl")
 	public String loginimpl(String mem_id,String mem_pwd,Model model) {
