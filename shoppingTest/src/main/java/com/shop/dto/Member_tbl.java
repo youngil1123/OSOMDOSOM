@@ -1,5 +1,6 @@
 package com.shop.dto;
 
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,8 +12,8 @@ import lombok.ToString;
 @Setter
 @Getter
 @ToString
-
 public class Member_tbl {
+	
 	private int mem_no;
 	private String mem_id;
 	private String mem_pwd;

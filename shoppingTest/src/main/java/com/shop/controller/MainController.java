@@ -25,14 +25,14 @@ public class MainController {
 		return "login";
 	}
 	@RequestMapping("/loginimpl")
-	public String loginimpl(String mem_id,String mem_pwd,Model model) {
+	public String loginimpl(String mem_id, String mem_pwd, Model model) {
 		Member_tbl member = null;
-		String result = "loginfail";
+		String result = "로그인 실패";
 		try {
 			member = mservice.get(mem_id);
 			if(member.getMem_pwd().equals(mem_pwd)) {
 				//로그인성공
-				result = "loginok";
+				result = "로그인 성공";
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -40,4 +40,11 @@ public class MainController {
 
 		return result;
 	}
+	
+	@RequestMapping("/register")
+	public String register(Model model) {
+		model.addAttribute("top", "register");
+		return "register";
+	}
+	
 }
