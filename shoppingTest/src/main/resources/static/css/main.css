@@ -52,6 +52,11 @@ section {
  
 }
 
+section > #top_aside{
+	float:left;
+}
+
+
 .section-header {
   border-bottom: 2px solid var(--color-black);
 }
