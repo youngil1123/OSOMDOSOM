@@ -54,6 +54,10 @@ section {
 
 section > #top_aside{
 	float:left;
+	width: 798px;
+	height: 598px;
+	background: white;
+	border: 1px solid blue;
 }
 
 
@@ -69,6 +73,8 @@ section > #top_aside{
 .section-header p {
   margin-bottom: 0;
 }
+
+
 
 /*--------------------------------------------------------------
 # Scroll top button
