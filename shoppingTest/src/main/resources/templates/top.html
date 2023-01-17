@@ -17,15 +17,15 @@
 
 			<nav id="navbar" class="navbar">
 				<ul>
-					<li class="dropdown"><a href="index.html"><span>미디어</span>
+					<li class="dropdown"><a th:href="@{/mediamain}"><span>미디어</span>
 							<i class="bi bi-chevron-down dropdown-indicator"></i></a>
 						<ul>
 							<li><a href="search-result.html"></a></li>
-							<li><a href="#">영화</a></li>
-							<li><a href="#">드라마</a></li>
-							<li><a href="#">책</a></li>
-							<li><a href="#">뮤지컬</a></li>
-							<li><a href="#">연극</a></li>
+							<li><a th:href="@{/movie}">Movie</a></li>
+							<li><a th:href="@{/drama}">Drama</a></li>
+							<li><a th:href="@{/book}">Book</a></li>
+							<li><a th:href="@{/musical}">Musical</a></li>
+							<li><a th:href="@{/theater}">Theater</a></li>
 
 						</ul></li>
 					<li class="dropdown"><a href="category.html"><span>MBTI</span>
