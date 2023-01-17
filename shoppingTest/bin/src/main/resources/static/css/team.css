@@ -1,0 +1,16 @@
+@charset "UTF-8";
+
+ .position-relative > ul > li {
+  float :left;
+  list-style:none;
+  margin : 10px;
+}
+#login_form_style{
+	margin-top:100px;
+	text-align: center;
+	position:static;
+	
+}
+#login_form_style input{
+	margin:5px;
+}
