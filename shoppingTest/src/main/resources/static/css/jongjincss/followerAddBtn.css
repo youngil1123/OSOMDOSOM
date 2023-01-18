@@ -35,7 +35,8 @@ button {
   background: transparent;
   cursor: pointer;
   transition: all 0.3s ease;
-  position: relative;
+  position: absolute;
+  top:30px;
   display: inline-block;
 }
 
@@ -82,4 +83,10 @@ button {
   border-color: #000;
   height: 100%;
   width: 100%;
+}
+
+.section-title > h4{
+	position: absolute;
+	top:80px;
+	float:left;
 }

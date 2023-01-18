@@ -39,8 +39,11 @@ you can use the generic selector below, but it's slower:
 	-webkit-font-smoothing: antialiased;
 }
 
-.icon_heart_alt:before {
-	content: "\e030";
+.icon_lookbook:before {
+	content: "\book";
+}
+.icon_delete:before {
+	content: "\X";
 }
 
 
