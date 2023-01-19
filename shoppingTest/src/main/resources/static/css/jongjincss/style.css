@@ -1184,9 +1184,9 @@ ol {
 	background: #111111;
 }
 
-.product__item__pic .label.stockblue {
+/* .product__item__pic .label.stockblue {
 	background: #0066bd !important;
-}
+} */
 
 .product__item__pic .label.sale {
 	background: #ca1515;
