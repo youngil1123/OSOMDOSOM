@@ -47,4 +47,9 @@ public class MainController {
 		return "register";
 	}
 	
+	@RequestMapping("/about")
+    public String about() {
+        return "about";
+    }
+	
 }

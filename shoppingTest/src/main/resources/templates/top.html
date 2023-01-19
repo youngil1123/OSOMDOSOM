@@ -4,9 +4,14 @@
 <meta charset="UTF-8">
 <link th:href="@{/css/main.css}" rel="stylesheet">
 <link th:href="@{/css/team.css}" rel="stylesheet">
+
+
+	<!-- Template Main JS File -->
+	<script src="/js/main.js"></script>
 </head>
 <body>
 <header id="header" class="header d-flex align-items-center fixed-top" th:fragment="navigation-bar">
+
 		<div
 			class="container-fluid container-xl d-flex align-items-center justify-content-between">
 
@@ -69,9 +74,9 @@
 
 			<div class="position-relative">
 				<ul>
-					<li><a th:href="@{/login}">Login</a></li>
-					<li><a th:href="@{/logout}">Logout</a></li>
-					<li><a th:href="@{/register}">Register</a></li>
+					<li><a th:href="@{/login}">SIGN IN/SIGN UP</a></li>
+					
+					
 				
 				<a href="#" class="mx-2 js-search-open"><span class="bi-search"></span></a>
 				<i class="bi bi-list mobile-nav-toggle"></i>
@@ -87,11 +92,26 @@
 					</form>
 				</div>
 				<!-- End Search Form -->
+<a href="#"
+		class="scroll-top d-flex align-items-center justify-content-center"><i
+		class="bi bi-arrow-up-short"></i></a>
+
+	<!-- Vendor JS Files -->
+	<script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<script src="/vendor/swiper/swiper-bundle.min.js"></script>
+	<script src="/vendor/glightbox/js/glightbox.min.js"></script>
+	<script src="/vendor/aos/aos.js"></script>
+	<script src="/vendor/php-email-form/validate.js"></script>
+
+	<!-- Template Main JS File -->
+	<script src="/js/main.js"></script>
 
 			</div>
 
 		</div>
 
+	
 	</header>
+	
 </body>
 </html>

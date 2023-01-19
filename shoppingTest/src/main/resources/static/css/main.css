@@ -413,7 +413,7 @@ section {
     display: block;
   }
 
-  .mobile-nav-toggle {
+	.mobile-nav-toggle {
     display: inline-block;
     color: var(--color-secondary);
     font-size: 28px;
@@ -448,7 +448,7 @@ section {
 
   .mobile-nav-active .navbar>ul {
     display: block;
-  }
+  } 
 }
 
 /*--------------------------------------------------------------
