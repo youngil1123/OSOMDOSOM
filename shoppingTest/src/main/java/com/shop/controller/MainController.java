@@ -32,7 +32,7 @@ public class MainController {
 			member = mservice.get(mem_id);
 			if(member.getMem_pwd().equals(mem_pwd)) {
 				//로그인성공
-				result = "로그인 성공";
+				return "index";
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

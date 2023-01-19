@@ -5,7 +5,7 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 <mapper namespace="com.shop.mapper.Member_tblMapper">
 
 	<insert id="insert" parameterType="Member_tbl">
-		
+		INSERT INTO member_tbl VALUES (#{mem_id},#{mem_pwd},#{mem_email},#{mbti},#{nickname})
 	</insert>
 
 	<select id="select" parameterType="String" resultType="Member_tbl">
