@@ -7,6 +7,13 @@
   font-family: Raleway, sans-serif;
 }
 
+#id_span{
+	color:white;
+	font-family:Arial;
+	font-weight:bold;
+	font-size: 15px;
+}
+
 body {
   background: linear-gradient(90deg, #C7C5F4, #776BCC);   
 }
@@ -21,7 +28,7 @@ body {
 .login > img{
 	position:absolute;
 	top:50px;
-	width:170px;
+	width:200px;
 	border-radius :50%;
 }
 

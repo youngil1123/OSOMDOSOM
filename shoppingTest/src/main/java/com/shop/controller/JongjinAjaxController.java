@@ -10,25 +10,28 @@ import com.shop.dto.Member_tbl;
 import com.shop.service.Member_tblService;
 
 
-@Controller
-public class JongjinController {
+@RestController
+public class JongjinAjaxController {
 	
 	@Autowired
 	Member_tblService mservice;
 	
-	@RequestMapping("/follower")
-    public String follower() {
-        return "follower/follower";
-    }
-	
-	@RequestMapping("/follower/addFollower")
-    public String addFollower() {
-        return "follower/addFollower";
-    }
-	
-	@RequestMapping("/follower/checkFollower")
-    public String checkFollower() {
-        return "follower/checkFollower";
-    }
-	
+	@RequestMapping("/checkid")
+	public Object checkid(String cid) {
+		int result = 0;
+		Member_tbl member =null;
+		
+		try {
+			member = mservice.get(cid);
+			if(member == null) {
+				result= 1;
+			}else {
+				result =0;
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return result;
+	}
 }
