@@ -14,10 +14,10 @@ public class DasomController {
 	@Autowired
 	Member_tblService mservice;
 	
-	@RequestMapping("/findpwd")
-    public String findpwd() {
+	@RequestMapping("/find_pwd")
+    public String find_pwd() {
 		
-        return "findpwd";
+        return "find_pwd";
     }
 	
 }
