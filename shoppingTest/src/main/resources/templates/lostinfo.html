@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<link href="/css/lostinfo.css" rel="stylesheet">
+<link
+	href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500&family=Inter:wght@400;500&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+	rel="stylesheet">
+
+
+<Script>
+$(document).ready(function(){
+	$('#findidbtn').click(function(){
+		var mem_name = $('#mem_name').val();
+		var mem_email = $('#mem_email').val();
+		var tag="<hr style='width:606px'><li>";
+		if(mem_name==""){
+			alert("이름을 입력해주세요");
+			$('#mem_name').focus();
+			return false;
+		}
+		if( mem_email==""){
+			alert("이메일을 입력해주세요");
+			$('#mem_email').focus();
+			return false;
+		}
+		
+		$.ajax({
+			data:{
+				"mem_name":mem_name, 
+				"mem_email":mem_email
+			},
+			url:'[[@{/findemail}]]',
+			success:function(data){
+				if(data==""){
+					alert("등록되지 않은 회원입니다. 이름과 연락처를 올바르게 입력했는지 확인하세요");
+					location.href = '[[@{/lostinfo}]]';
+				}else {
+					tag += "회원님의 가입 이메일은 <b>";
+					tag += data;
+					tag += "</b>입니다 </li>";
+					$('#emailresult').append(tag);
+				}
+			},error:function(){
+				alert("error");
+			}
+		});
+	});
+	
+	
+	
+	$('#findpwdbtn').click(function(){
+		var mem_email = $('#mem_email').val();
+		var tag="<hr style='width:357px'><li>";
+		if(mem_email==""){
+			alert("이메일을 입력해주세요");
+			$('#mem_email').focus();
+			return false;
+		}
+		$.ajax({
+			data:{
+				"mem_email":mem_email
+			},
+			url:'[[@{/findpwd}]]',
+			success:function(data){
+				if(data==""){
+					alert("등록되지 않은 회원입니다. 이메일을 올바르게 입력했는지 확인하세요");
+					location.href = '[[@{/lostinfo}]]';
+				}else {
+					tag += "회원님의 비밀번호는 <b>";
+					tag += data;
+					tag += "</b>입니다 </li>";
+					$('#pwdresult').append(tag);
+				}
+			},error:function(){
+				alert("error");
+			}
+		});
+	});
+});
+</script>
+
+        <h1>DOIT BOOK</h1>
+        <br>
+		<section class="page-section" id="lostinfo">
+            <div id="lostid">
+                <h4>아이디 찾기</h4>
+                <ul>
+                   이름 <li><input type="text" name="mem_name" id="mem_name"/></li>
+                   이메일 <li><input type="text" name="mem_email" id="mem_email"/></li><br>
+                    <div class="btn2">
+                    <button id="findidbtn" onclick="findemail()">아이디 찾기</button>
+                    </div>
+                      <div id="emailresult"></div>
+                </ul>
+            </div>
+            <br>
+            <br>
+            <div id="lostpwd">
+                <h4>비밀번호 찾기</h4>
+                <ul>
+                    <div>
+                        이메일<li><input type="text" name="useremail" id="mem_email" size=15></li><br>
+                        <div class="btn2">
+                        <button id="findpwdbtn" onclick="findpwd()">비밀번호 찾기</button><br>
+                        </div>
+                        <div id="pwdresult"></div>
+                    </div>
+                </ul>
+            </div>
+        </section>

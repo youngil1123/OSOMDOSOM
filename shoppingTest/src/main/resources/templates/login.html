@@ -80,29 +80,31 @@ function join() {
       <input type="email" placeholder="Email" />
       <input type="password" placeholder="Password" />
        -->
+ 
    	 <input type="text" placeholder="Id" name="mem_id" />
 	 <input type="password" placeholder="password" name="mem_pwd" />
 	 <input type="password" placeholder="verify password" name="mem_pwd" />
 	 <input type="password" placeholder="E-Mail" name="mem_email" />
 	 <input type="text" placeholder="MBTI(선택)" name="mbti" />	
 	 <input type="text" placeholder="Nickname" name="nickname" />
-			
-				
-   		
+	 
       <button>Sign Up</button> 
     </form>  
   </div>
   
 
   <div class="form-container sign-in-container">
-    <form action="#" method="post" id="login_form" name="formname" >
+    <form action="#" method="post" id="login_form" name="formname"/>
       <h1>SIGN IN</h1>
       <span>다솜이짱</span>
-    	<input type="text" placeholder="Id" name="mem_id"/>
-       <input type="password" placeholder="Password" name="mem_pwd" />
+      
+       <input type="text" placeholder="Id" name="mem_id" />
+       <input type="password" placeholder="Password" name="mem_pwd"/>
+      
 <!--        <a th:href="@{/findpwd} onclick"window.open.href, '_blank">Forgot your password?</a> -->
+	  
        <a href="#" onclick="window.open
-       ('find_pwd','new','scrollbars=yes,resizable=no width=500 height=800, left=150,top=200');return login">Forgot your password?</a>
+       ('lostinfo','new','scrollbars=yes,resizable=no width=500 height=750, left=600,top=200');return login">Forgot your password?</a>
      
 		<div id="signbtn">
     	<a><button>Sign In</button></a>

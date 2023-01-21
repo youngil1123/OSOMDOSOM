@@ -15,17 +15,17 @@ import com.shop.service.Member_tblService;
 
 @Controller
 
-public class UserController {
+public class MemberController {
 	
 	@Autowired
 	Member_tblService mservice;
-	
-	
-	
-	@RequestMapping("/find_pwd")
-    public String find_pwd() {
 		
-        return "find_pwd";
-    }
+	
+	 @RequestMapping("/lostinfo")
+	 public String lostinfo(){
+		 return "lostinfo";
+	 }
+	 
+	
 	
 }
