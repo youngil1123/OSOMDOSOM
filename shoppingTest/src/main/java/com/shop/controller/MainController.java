@@ -41,10 +41,10 @@ public class MainController {
 		return result;
 	}
 	
-	@RequestMapping("/newboardwrite")
+	@RequestMapping("/register")
 	public String register(Model model) {
-		model.addAttribute("top", "newboardwrite");
-		return "/board/newboardwrite";
+		model.addAttribute("top", "register");
+		return "register";
 	}
 	
 	@RequestMapping("/about")
