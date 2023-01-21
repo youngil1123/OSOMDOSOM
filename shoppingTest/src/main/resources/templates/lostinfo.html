@@ -17,7 +17,7 @@ $(document).ready(function(){
 			alert("이름을 입력해주세요");
 			$('#mem_name').focus();
 			return false;
-		}
+		} 
 		if( mem_email==""){
 			alert("이메일을 입력해주세요");
 			$('#mem_email').focus();
@@ -29,13 +29,13 @@ $(document).ready(function(){
 				"mem_name":mem_name, 
 				"mem_email":mem_email
 			},
-			url:'[[@{/findemail}]]',
+			url:'[[@{/findid}]]',
 			success:function(data){
 				if(data==""){
 					alert("등록되지 않은 회원입니다. 이름과 연락처를 올바르게 입력했는지 확인하세요");
 					location.href = '[[@{/lostinfo}]]';
 				}else {
-					tag += "회원님의 가입 이메일은 <b>";
+					tag += "회원님의 가입 아이디는 <b>";
 					tag += data;
 					tag += "</b>입니다 </li>";
 					$('#emailresult').append(tag);
@@ -88,7 +88,7 @@ $(document).ready(function(){
                    이름 <li><input type="text" name="mem_name" id="mem_name"/></li>
                    이메일 <li><input type="text" name="mem_email" id="mem_email"/></li><br>
                     <div class="btn2">
-                    <button id="findidbtn" onclick="findemail()">아이디 찾기</button>
+                    <button id="findidbtn" onclick="findid()">아이디 찾기</button>
                     </div>
                       <div id="emailresult"></div>
                 </ul>

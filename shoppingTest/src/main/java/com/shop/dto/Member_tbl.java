@@ -24,8 +24,9 @@ public class Member_tbl {
 	private String nickname;
 	private int mem_point;
 	private String mem_img;
-
-
+	
+	
+	  
 
 // 이메일 찾기
 	Member_tbl(String mem_name, String mem_email) {

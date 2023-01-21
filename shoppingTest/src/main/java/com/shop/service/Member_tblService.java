@@ -40,4 +40,12 @@ public class Member_tblService implements MyService<String, Member_tbl>{
 	public List<Member_tbl> get() throws Exception {
 		return mapper.selectall();
 	}
+
+	public String findid(String mem_name, String mem_email) {
+		return "mem_id";
+	}
+
+	public String findpwd(String mem_email) {
+		return "mem_pwd";
+	}
 }
