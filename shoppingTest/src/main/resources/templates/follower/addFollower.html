@@ -61,10 +61,11 @@
     		url:'[[@{/checkid}]]',
     		data:{"cid":id},
     		success:function(data){
-    			if(data == 0){
-    				$('#id_span').text("usable id");
-    			}else{
-    				$('#id_span').text("do not exist");
+    			if(data != null && data != "no_memberImg"){
+    				document.getElementById("fw_img").src="/img/jongjinimg/follower/"+data;
+    			}
+    			else if(data =="no_memberImg" || data==null){
+    				document.getElementById("fw_img").src="/img/jongjinimg/follower/follow.png";
     			}
     		}
     	});
@@ -91,7 +92,7 @@
   <div class="screen">
     <div class="screen__content">
       <form class="login">
-      	<img th:src="@{/img/jongjinimg/follower/follow.png}">
+      	<img id= "fw_img" style="margin-left:60px;" src="/img/jongjinimg/follower/follow.png">
       	<br><br><br><br><br>
         <div class="login__field">
           <i class="login__icon fas fa-user"></i>

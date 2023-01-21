@@ -1,6 +1,8 @@
 package com.shop.dto;
 
 
+import org.springframework.web.multipart.MultipartFile;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -24,10 +26,13 @@ public class Member_tbl {
 	private String nickname;
 	private int mem_point;
 	private String mem_img;
+	
+	// 팔로워추가페이지 이미지출력
+	private MultipartFile img;
+	
 
 
-
-// 이메일 찾기
+// 아이디 찾기
 	Member_tbl(String mem_name, String mem_email) {
 		super();
 		this.mem_name=mem_name;
