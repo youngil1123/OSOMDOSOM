@@ -1,5 +1,8 @@
 package com.shop.controller;
 
+import java.io.Console;
+
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,15 +21,16 @@ public class JongjinAjaxController {
 	
 	@RequestMapping("/checkid")
 	public Object checkid(String cid) {
-		int result = 0;
+		String result = null;
 		Member_tbl member =null;
 		
 		try {
 			member = mservice.get(cid);
+			String imgname = member.getMem_img();
 			if(member == null) {
-				result= 1;
+				result = "no_memberImg";
 			}else {
-				result =0;
+				result = imgname;
 			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
