@@ -31,7 +31,7 @@ public class MemberController {
 	
 	@PostMapping("/member/new")
 	public String create(MemberForm form) {
-		//post로 넘어온 input 데이터 (name)은 매게변수로 입력한 MemberForm에 있는 id에 자동으로 setName 이 됨
+		//post로 넘어온 input 데이터를 매게변수로 입력한 MemberForm에 있는 id에 자동으로 setName 이 됨
 	Member_tbl member= new Member_tbl(); 
 		member.setMem_name(form.getMem_Name());
 		member.setMem_id(form.getMem_Id());
@@ -49,6 +49,4 @@ public class MemberController {
 		 return "lostinfo";
 	 }
 	 
-	
-	
 }

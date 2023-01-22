@@ -32,7 +32,16 @@ public class DasomAjaxController {
             e.printStackTrace();
         }
         return mem_pwd;
+    
+/*
+ * @RequestMapping(value = "/checkSignup", method = RequestMethod.POST)
+ * public @ResponseBody String AjaxView(
+ * 
+ * @RequestParam("id") String id){ String str = ""; int idcheck =
+ * dbPro.idCheck(id); if(idcheck==1){ //이미 존재하는 계정 str = "NO"; }else{ //사용 가능한
+ * 계정 str = "YES"; } return str; } }
+ */
+
     }
+    
 }
-
-

@@ -52,11 +52,6 @@ public class Member_tblService implements MyService<String, Member_tbl> {
 		
 	}
 
-	public static Member_tblService findOne(Long savedId) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 	public String findid(String mem_name, String mem_email) {
 		// TODO Auto-generated method stub
 		return null;

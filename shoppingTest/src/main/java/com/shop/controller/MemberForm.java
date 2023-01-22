@@ -14,7 +14,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.shop.dto.Member_tbl;
 import com.shop.service.Member_tblService;
 
-@Controller
+
 
 public class MemberForm {
 	
@@ -49,9 +49,29 @@ public class MemberForm {
 	}
 	
 	
+	public String getMem_Name(String mem_name) {
+		return mem_name=getMem_Name();
+	}
+	
+	
 	public void setMem_Id(String mem_id) {
 		this.mem_id=getMem_Id();
 	}
 	
+	public void setMem_Pwd(String mem_pwd) {
+		this.mem_pwd=getMem_Pwd();
+	}
+	
+	public void setMem_emil(String mem_email) {
+		this.mem_pwd=getMem_Email();
+	}
+	
+	public void setMMbti(String mbti) {
+		this.mem_pwd=getMbti();
+	}
+	
+	public void setNickname(String nickname) {
+		this.mem_pwd=getNickname();
+	}
 	
 }

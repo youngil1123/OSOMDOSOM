@@ -49,23 +49,34 @@
 }
 </script>
 
+<!-- 
+<script>
 
-
-<!-- <script>
-
-	
-function join() {
-		alert("가입하겠습니까?");
-		document.getElmentById("mem_id").style.display = "none";
-		document.getElmentById("mem_pwd").style.display = "none";
-		document.getElmentById("mem_pwd").style.display = "none";
-		document.getElmentById("mem_tel").style.display = "none";
-		document.getElmentById("mbti").style.display = "none";
-		document.getElmentById("nickname").style.display = "none";
-
-	}
-	
+//아이디 중복체크
+    $('#mem_id').blur(function(){
+        $.ajax({
+	     type:"POST",
+	     url:"checkSignup",
+	     data:{
+	            "mem_id":$('#mem_id').val()
+	     },
+	     success:function(data){	//data : checkSignup에서 넘겨준 결과값
+	            if($.trim(data)=="YES"){
+	               if($('#mem_id').val()!=''){ 
+	               	alert("사용가능한 아이디입니다.");
+	               }
+	           	}else{
+	               if($('#mem_id').val()!=''){
+	                  alert("중복된 아이디입니다.");
+	                  $('#mem_id').val('');
+	                  $('#mem_id').focus();
+	               }
+	            }
+	         }
+	    }) 
+});
 </script> -->
+
 
 </head>
 <body>
@@ -74,21 +85,22 @@ function join() {
 <div class="container" id="container">
 <div class="form-container sign-up-container">
    <form action="/member/new" method="post">
-      <h1>Create Account</h1>
+      <h2>Create Account</h2>
       <span>to have wonderful experience!</span>
     
      <!--  <input type="text" placeholder="Name" />
       <input type="email" placeholder="Email" />
       <input type="password" placeholder="Password" />
        -->
+
      <input type="text" placeholder="Name" name="mem_name" />
    	 <input type="text" placeholder="Id" name="mem_id" />
-	 <input type="password" placeholder="password" name="mem_pwd" />
-	 <input type="password" placeholder="verify password" name="mem_pwd" />
+	 <input type="password" placeholder="password" name="mem_pwd2" />
+	 <input type="password" placeholder="verify password" name="mem_pwd3"/>
 	 <input type="password" placeholder="E-Mail" name="mem_email" />
 	 <input type="text" placeholder="MBTI(선택)" name="mbti" />	
 	 <input type="text" placeholder="Nickname" name="nickname" />
-	 
+
       <button type="submit">Sign Up</button> 
     </form>  
   </div>
@@ -96,17 +108,17 @@ function join() {
 
   <div class="form-container sign-in-container">
     <form action="#" method="post" id="login_form" name="formname"/>
-      <h1>SIGN IN</h1>
+      <h2>SIGN IN</h2>
       <span>다솜이짱</span>
       
        <input type="text" placeholder="Id" name="mem_id" />
        <input type="password" placeholder="Password" name="mem_pwd"/>
       
 <!--        <a th:href="@{/findpwd} onclick"window.open.href, '_blank">Forgot your password?</a> -->
-	  
+	 
        <a href="#" onclick="window.open
        ('lostinfo','new','scrollbars=yes,resizable=no width=500 height=750, left=600,top=200');return login">Forgot your password?</a>
-     
+     	<br>
 		<div id="signbtn">
     	<a><button>Sign In</button></a>
     	</div>
@@ -115,7 +127,7 @@ function join() {
   <div class="overlay-container">
     <div class="overlay">
       <div class="overlay-panel overlay-left">
-        <h1>Welcome Back!</h1>
+        <h1 >Welcome Back!</h1>
         <p>To keep connected with us please login with your personal info</p>
         <button class="ghost" id="signIn">Sign In</button>
       </div>
@@ -143,6 +155,54 @@ signInButton.addEventListener('click', () => {
   container.classList.remove("right-panel-active");
 });
 </script>
+
+<!-- <script>
+        function check_pw(){
+ 
+            var pw = document.getElementById('mem_pwd').value;
+            var SC = ["!","@","#","$","%"];
+            var check_SC = 0;
+ 
+            if(pw.length < 6 || pw.length>16){
+                window.alert('비밀번호는 6글자 이상, 16글자 이하만 이용 가능합니다.');
+                document.getElementById('pw').value='';
+            }
+            for(var i=0;i<SC.length;i++){
+                if(pw.indexOf(SC[i]) != -1){
+                    check_SC = 1;
+                }
+            }
+            if(check_SC == 0){
+                window.alert('!,@,#,$,% 의 특수문자가 들어가 있지 않습니다.')
+                document.getElementById('mem_pwd').value='';
+            }
+            if(document.getElementById('mem_pwd').value !='' && document.getElementById('mem_pwd2').value!=''){
+                if(document.getElementById('mem_pwd').value==document.getElementById('mem_pwd2').value){
+                    document.getElementById('check').innerHTML='비밀번호가 일치합니다.'
+                    document.getElementById('check').style.color='blue';
+                }
+                else{
+                    document.getElementById('check').innerHTML='비밀번호가 일치하지 않습니다.';
+                    document.getElementById('check').style.color='red';
+                }
+            }
+        }
+    </script> -->
+<!-- <script>
+
+	
+function join() {
+		alert("가입하겠습니까?");
+		document.getElmentById("mem_id").style.display = "none";
+		document.getElmentById("mem_pwd").style.display = "none";
+		document.getElmentById("mem_pwd").style.display = "none";
+		document.getElmentById("mem_tel").style.display = "none";
+		document.getElmentById("mbti").style.display = "none";
+		document.getElmentById("nickname").style.display = "none";
+
+	}
+	
+</script> -->
 
 
 </html>
