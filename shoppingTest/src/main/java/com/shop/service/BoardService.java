@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.shop.dto.Board;
+import com.shop.dto.Member_tbl;
 import com.shop.frame.MyService;
 import com.shop.mapper.BoardMapper;
 
@@ -38,6 +39,12 @@ public class BoardService implements MyService<Integer, Board>{
 	@Override
 	public List<Board> get() throws Exception {
 		return mapper.selectall();
+	}
+
+	@Override
+	public void join(Member_tbl member) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }	

@@ -73,14 +73,15 @@ function join() {
 
 <div class="container" id="container">
 <div class="form-container sign-up-container">
-   <form action="#">
+   <form action="/member/new" method="post">
       <h1>Create Account</h1>
       <span>to have wonderful experience!</span>
+    
      <!--  <input type="text" placeholder="Name" />
       <input type="email" placeholder="Email" />
       <input type="password" placeholder="Password" />
        -->
- 
+     <input type="text" placeholder="Name" name="mem_name" />
    	 <input type="text" placeholder="Id" name="mem_id" />
 	 <input type="password" placeholder="password" name="mem_pwd" />
 	 <input type="password" placeholder="verify password" name="mem_pwd" />
@@ -88,7 +89,7 @@ function join() {
 	 <input type="text" placeholder="MBTI(선택)" name="mbti" />	
 	 <input type="text" placeholder="Nickname" name="nickname" />
 	 
-      <button>Sign Up</button> 
+      <button type="submit">Sign Up</button> 
     </form>  
   </div>
   

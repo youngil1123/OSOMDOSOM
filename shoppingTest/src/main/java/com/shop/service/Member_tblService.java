@@ -11,9 +11,10 @@ import com.shop.frame.MyService;
 import com.shop.mapper.Member_tblMapper;
 
 @Service
-public class Member_tblService implements MyService<String, Member_tbl>{
-	
+public class Member_tblService implements MyService<String, Member_tbl> {
+
 	@Autowired
+	
 	Member_tblMapper mapper;
 
 	@Override
@@ -40,12 +41,34 @@ public class Member_tblService implements MyService<String, Member_tbl>{
 	public List<Member_tbl> get() throws Exception {
 		return mapper.selectall();
 	}
+	
+	public void join(Member_tbl member) {
+		try {
+			mapper.insert(member);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+
+	public static Member_tblService findOne(Long savedId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 	public String findid(String mem_name, String mem_email) {
-		return "mem_id";
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	public String findpwd(String mem_email) {
-		return "mem_pwd";
+		// TODO Auto-generated method stub
+		return null;
 	}
+
+	
 }
+
+	
+

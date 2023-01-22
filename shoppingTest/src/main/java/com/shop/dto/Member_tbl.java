@@ -28,15 +28,23 @@ public class Member_tbl {
 	private String mem_img;
 	
 
-	
-	  
 
 // 이메일 찾기
 
 	// 팔로워추가페이지 이미지출력
 	private MultipartFile img;
 	
-
+//회원가입
+	public Member_tbl(String mem_name,String mem_id, String mem_pwd,String mem_email, String mbti, String nickname) {
+		super();	
+		this.mem_name=mem_name;
+		this.mem_id=mem_id;
+		this.mem_pwd=mem_pwd;
+		this.mem_email=mem_email;
+		this.mbti=mbti;
+		this.nickname=nickname;
+	}
+	
 
 // 아이디 찾기
 
@@ -49,6 +57,8 @@ public class Member_tbl {
 	Member_tbl(String mem_email) {
 		super();
 		this.mem_email=mem_email;
+		
+		
 	
     }
 }
