@@ -26,6 +26,20 @@ public class MediaController {
 		model.addAttribute("top", "boardwrite");
         return "/board/boardwrite";
 	}
+	
+	@RequestMapping("/newboardwrite")
+    public String newboardwrite(Model model) {
+		
+		model.addAttribute("top", "newboardwrite");
+        return "/board/newboardwrite";
+	}
+	
+	@RequestMapping("/myboard")
+    public String myboard(Model model) {
+		
+		model.addAttribute("top", "myboard");
+        return "/board/myboard";
+	}
 	@RequestMapping("/movie")
     public String movie(Model model) {
 		
