@@ -49,6 +49,78 @@
 }
 </script>
 
+
+<!-- 비밀번호 중복체크 -->
+<script>
+
+ var compare_result = false;
+
+function fn_compare_pwd(){
+	var pwd1=$('#member_pwd1').val();
+	var pwd2=$('#member_pwd2').val();
+	var s_result=$('#s_result');
+	
+
+	if(pwd1 == pwd2){
+		
+		compare_result=true;
+		$('#s_result').text('비밀번호가 일치합니다.');
+	}else{
+		compare_result=false;
+		$('#s_result').text('비밀번호가 일치하지 않습니다.');	
+	}
+}
+ 
+</script>
+
+
+<!-- 아이디중복체크 -->
+<script>
+$('.id_input').on("propertychange change keyup paste input", function(){
+	var memberId = $('#mem_id').val();			// .id_input에 입력되는 값
+	var data = {mem_id : memb_id}				// '컨트롤에 넘길 데이터 이름' : '데이터(.id_input에 입력되는 값)'
+	
+	$.ajax({
+		type : "post",
+		url : "3666",
+		data : data,
+		success : function(result){
+    	 console.log("성공 여부" + result);
+		
+		}// success 종료
+	}); // ajax 종료	
+
+});
+</script>
+<!-- <script th:inline="javascript">
+	const idDuplcate= () =>{
+		const id=document.getElementById("mem_id").value;
+		const checkResult=document.getElementById("id-dup-result");
+		$.ajax({
+			type:"post",
+			url:"/idCheck",
+			dataType:"text",
+			data:{
+				"mem_id":memid
+			},
+			success:function(result){
+				if(result=="ok"){
+					checkResult.innerHTML="사용가능합니다.";
+					checkResult.style.color="green";
+				}else{
+					checkResult.innerHTML="이미 사용 중인 아이디 입니다."
+					checkResult.style.color="green";
+				}
+			},
+			error:function(){
+				alert("ajax실패");
+			
+			}
+	     })
+	}
+
+</script>
+ -->
 <!-- 
 <script>
 
@@ -92,11 +164,13 @@
       <input type="email" placeholder="Email" />
       <input type="password" placeholder="Password" />
        -->
-
+	 <input type="text" placeholder="Id" name="mem_id" id="mem_id" onblur="idDuplcate()"/>
+     <span id="id_input1">사용가능한 아이디입니다.</span>
+     <span id="id_input2">아이디가 이미 존재합니다.</span>
      <input type="text" placeholder="Name" name="mem_name" />
-   	 <input type="text" placeholder="Id" name="mem_id" />
-	 <input type="password" placeholder="password" name="mem_pwd2" />
-	 <input type="password" placeholder="verify password" name="mem_pwd3"/>
+	 <input type="password" placeholder="password" name="mem_pwd" id="member_pwd1"/>
+	 <input type="password" placeholder="verify password" name="mem_pwd2" id="member_pwd2" onkeyUp="fn_compare_pwd()">
+	 <span style="color:red;" id="s_result"></span>
 	 <input type="password" placeholder="E-Mail" name="mem_email" />
 	 <input type="text" placeholder="MBTI(선택)" name="mbti" />	
 	 <input type="text" placeholder="Nickname" name="nickname" />
@@ -104,7 +178,7 @@
       <button type="submit">Sign Up</button> 
     </form>  
   </div>
-  
+
 
   <div class="form-container sign-in-container">
     <form action="#" method="post" id="login_form" name="formname"/>
@@ -206,5 +280,3 @@ function join() {
 
 
 </html>
-
-

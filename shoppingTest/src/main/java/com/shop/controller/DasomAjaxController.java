@@ -1,6 +1,7 @@
 package com.shop.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -11,6 +12,9 @@ public class DasomAjaxController {
 	@Autowired
 	Member_tblService mservice;
 	
+	
+	
+	//아이디찾기
 	@RequestMapping("/findid")
     public Object findid(String mem_name, String mem_email ) {
 		
@@ -22,6 +26,9 @@ public class DasomAjaxController {
         }
         return mem_id;
     }
+	
+	
+	//비밀버호찾기
     @RequestMapping("/findpwd")
     public Object findpwd(String mem_email) {
         String mem_pwd = null;
@@ -32,6 +39,11 @@ public class DasomAjaxController {
             e.printStackTrace();
         }
         return mem_pwd;
+    
+   //아이디 중복체크
+        
+          
+        
     
 /*
  * @RequestMapping(value = "/checkSignup", method = RequestMethod.POST)

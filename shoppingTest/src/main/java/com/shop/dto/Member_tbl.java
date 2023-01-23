@@ -58,7 +58,8 @@ public class Member_tbl {
 		super();
 		this.mem_email=mem_email;
 		
-		
+		   }
+
+
 	
-    }
 }

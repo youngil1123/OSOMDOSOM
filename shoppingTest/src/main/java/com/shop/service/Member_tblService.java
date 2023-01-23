@@ -62,7 +62,11 @@ public class Member_tblService implements MyService<String, Member_tbl> {
 		return null;
 	}
 
-	
+	@Override
+	public int idCheck(String mem_id) throws Exception {
+		
+		return mapper.idCheck(mem_id);
+	}
 }
 
 	

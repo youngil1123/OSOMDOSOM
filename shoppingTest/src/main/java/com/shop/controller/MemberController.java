@@ -1,5 +1,8 @@
 package com.shop.controller;
 
+
+import java.util.logging.Logger;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -9,6 +12,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.shop.dto.Member_tbl;
@@ -29,6 +35,8 @@ public class MemberController {
 		return"login";
 	}
 	
+	
+	//회원가입 데이터 연동
 	@PostMapping("/member/new")
 	public String create(MemberForm form) {
 		//post로 넘어온 input 데이터를 매게변수로 입력한 MemberForm에 있는 id에 자동으로 setName 이 됨
@@ -44,9 +52,30 @@ public class MemberController {
 	}
 	
 	
-	 @RequestMapping("/lostinfo")
+	//비밀번호찾기 페이지 이동
+	@RequestMapping("/lostinfo")
 	 public String lostinfo(){
 		 return "lostinfo";
 	 }
 	 
+	// 아이디 중복 검사
+		@RequestMapping(value = "/memberIdChk", method = RequestMethod.POST)
+		@ResponseBody
+		public String memberIdChkPOST(String memberId) throws Exception{
+			
+			int result = mservice.idCheck(memberId);
+			
+			
+			
+			if(result != 0) {
+				
+				return "fail";	// 중복 아이디가 존재
+				
+			} else {
+				
+				return "success";	// 중복 아이디 x
+				
+			}	
+	
+		} // memberIdChkPOST() 종료	
 }

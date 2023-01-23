@@ -47,4 +47,10 @@ public class BoardService implements MyService<Integer, Board>{
 		
 	}
 
+	@Override
+	public int idCheck(String mem_id) throws Exception {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 }	
