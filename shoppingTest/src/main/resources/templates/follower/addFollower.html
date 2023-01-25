@@ -76,14 +76,27 @@
     		var id = $(this).val();
     		getdata(id);
     	});
-    	$('.button login__submit').click(function(){ // 버튼을 클릭하면 1. 해당 아이디의 회원번호와 로그인한 나의 회원번호를 팔로워테이블에 등록
-    												 // 2. 해당 아이디의 회원정보중 일부(회원 이미지, 아이디, MBTI) 를 가지고 팔로워 페이지에 뿌리기
-    		$('#login').attr({
-    			'method':'post',
-    			'action':'[[@{/follower/addFollowerTbl}]]'
+    	/* $('.button login__submit').click(function(){ // 버튼을 클릭하면 1. 해당 아이디의 회원번호와 로그인한 나의 회원번호를 팔로워테이블에 등록
+    		var c = confirm("추가 하시겠습니까?");
+    		if(c==true){									 // 2. 해당 아이디의 회원정보중 일부(회원 이미지, 아이디, MBTI) 를 가지고 팔로워 페이지에 뿌리기
+	    		$('.login').attr({
+	    			'method':'post',
+	    			'action':'[[@{/follower/addFollowerTbl}]]'
+	    		});
+	    		$('.login').submit();
+    		}	
+    	}) */
+    	$('.button login__submit').click(function(){
+    		
+    		$.ajax({
+    			type:"POST",
+    			url:'[[@{/follower/addFollowerTbl}]]',
+    			data:{"id":$(".login__input").val()},
+    			success:function(data){
+    				alert(myid_no+"가 "+fwid_no+"를 팔로우 합니다.")
+    			}
     		});
-    		$('#login').submit();
-    	})
+    	});
     });
     
     
@@ -105,10 +118,10 @@
         </div>       
         <span id="id_span" style="position:absolute; right:30px; top:340px; "></span>
                   
-          <a href="#" class="button login__submit" >
+          <button class="button login__submit">
       <span class="button__text">Add Follower Now</span>
           <i class="button__icon fas fa-chevron-right"></i>
-        </a>       
+        </button>       
         
       </form>
       
