@@ -49,11 +49,6 @@ public class FriendshipService implements MyService<Integer, Friendship>{
 		return mapper.selectall();
 	}
 
-	@Override
-	public void join(Member_tbl member) {
-		// TODO Auto-generated method stub
-		
-	}
 
 	
 }	

@@ -41,10 +41,6 @@ public class BoardService implements MyService<Integer, Board>{
 		return mapper.selectall();
 	}
 
-	@Override
-	public void join(Member_tbl member) {
-		// TODO Auto-generated method stub
-		
-	}
+
 
 }	

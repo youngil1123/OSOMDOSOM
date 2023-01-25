@@ -21,7 +21,7 @@ class CreateMemberTests {
         Member_tbl obj = new Member_tbl("dh1","djkd","111111","dsf111@naver.com","enft","dkseshl");
 
         try {
-            service.join(obj);
+            service.register(obj);
             System.out.println("OK");
         } catch (Exception e) {
             System.out.println("FAILED");

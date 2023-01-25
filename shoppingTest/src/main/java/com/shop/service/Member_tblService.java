@@ -42,15 +42,7 @@ public class Member_tblService implements MyService<String, Member_tbl> {
 		return mapper.selectall();
 	}
 	
-	public void join(Member_tbl member_tbl) {
-		try {
-			mapper.insert(member_tbl);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-	}
+
 
 	public String findid(String mem_name, String mem_email) {
 		// TODO Auto-generated method stub
@@ -67,7 +59,7 @@ public class Member_tblService implements MyService<String, Member_tbl> {
 		return mapper.findmem_no(mem_id);
 	}
 
-	 
+
 }
 
 	

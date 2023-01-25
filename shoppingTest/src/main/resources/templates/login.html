@@ -134,7 +134,7 @@ function fn_compare_pwd(){
  $("#joinbtn").click(function() {
 
                 $.ajax({
-                    url: "/member/btn",
+                    url: "/member/new",
                     type: "POST",
                     data: {
                         "id": $("#mem_id").val(),
@@ -169,7 +169,7 @@ function fn_compare_pwd(){
 
 <div class="container" id="container">
 <div class="form-container sign-up-container">
-   <form action="http://localhost:90/member/new" method="post">
+   <form action="/member/new" method="post">
       <h2>Create Account</h2>
       <span>to have wonderful experience!</span>
     
