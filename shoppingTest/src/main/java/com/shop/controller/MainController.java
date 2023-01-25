@@ -55,5 +55,9 @@ public class MainController {
     }
 	
 	
-	
+	@RequestMapping("/lostinfo")
+	 public String lostinfo(){
+		 return "lostinfo";
+	 }
+	 
 }
