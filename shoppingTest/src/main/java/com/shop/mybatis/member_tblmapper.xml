@@ -28,10 +28,4 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 		
 	</select>
 	
-	
-	<select id="idCheck" resultType="int">
-  	
-  		select count(*) from mem_tbl where mem_id = #{mem_id}
-  	
-  	</select>
 </mapper>

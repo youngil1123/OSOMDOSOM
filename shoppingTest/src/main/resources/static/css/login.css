@@ -95,16 +95,8 @@ input {
   height: 45px;
 }
 
-/* 중복아이디 존재하지 않는경우 */
-	.id_input1{
-		color : green;
-		display : none;
-	}
-	/* 중복아이디 존재하는 경우 */
-	.id_input2{
-		color : red;
-		display : none;
-	}
+
+
 
 .container {
    height:600px;

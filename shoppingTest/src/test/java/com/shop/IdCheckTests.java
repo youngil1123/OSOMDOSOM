@@ -19,7 +19,10 @@ class IdCheckTests {
 	public void memberIdChk() throws Exception{
 		String id = "admin";	// 존재하는 아이디
 		String id2 = "test123";	// 존재하지 않는 아이디
-		service.idCheck(id);
-		service.idCheck(id2);
+		
+		/*
+		 * service. overlappedID (id); service. overlappedID (id2);
+		 */
+		
 	}
 }

@@ -1,10 +1,13 @@
 package com.shop.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.shop.dto.Member_tbl;
 import com.shop.service.Member_tblService;
 
 @RestController
@@ -39,21 +42,10 @@ public class DasomAjaxController {
             e.printStackTrace();
         }
         return mem_pwd;
-    
-   //아이디 중복체크
-        
-          
-        
-    
-/*
- * @RequestMapping(value = "/checkSignup", method = RequestMethod.POST)
- * public @ResponseBody String AjaxView(
- * 
- * @RequestParam("id") String id){ String str = ""; int idcheck =
- * dbPro.idCheck(id); if(idcheck==1){ //이미 존재하는 계정 str = "NO"; }else{ //사용 가능한
- * 계정 str = "YES"; } return str; } }
- */
-
     }
     
+  
+        
+    
+
 }

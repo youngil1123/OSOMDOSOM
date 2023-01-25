@@ -52,11 +52,6 @@ public class FriendshipService implements MyService<Integer, Friendship>{
 		
 	}
 
-	@Override
-	public int idCheck(String mem_id) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
-	}
 
 
 	

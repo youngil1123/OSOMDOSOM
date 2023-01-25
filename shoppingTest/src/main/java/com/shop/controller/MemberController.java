@@ -58,24 +58,5 @@ public class MemberController {
 		 return "lostinfo";
 	 }
 	 
-	// 아이디 중복 검사
-		@RequestMapping(value = "/memberIdChk", method = RequestMethod.POST)
-		@ResponseBody
-		public String memberIdChkPOST(String memberId) throws Exception{
-			
-			int result = mservice.idCheck(memberId);
-			
-			
-			
-			if(result != 0) {
-				
-				return "fail";	// 중복 아이디가 존재
-				
-			} else {
-				
-				return "success";	// 중복 아이디 x
-				
-			}	
-	
-		} // memberIdChkPOST() 종료	
+
 }

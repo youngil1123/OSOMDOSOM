@@ -18,7 +18,7 @@ class CreateMemberTests {
     @Test
     void contextLoads() {
 
-        Member_tbl obj = new Member_tbl("다솜","dasom","111111","chungwoon83@naver.com","infj","다토리");
+        Member_tbl obj = new Member_tbl("박하","mint","111111","moa8417@naver.com","enft","깜찍이");
 
         try {
             service.register(obj);
