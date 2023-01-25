@@ -134,7 +134,7 @@ function fn_compare_pwd(){
  $("#joinbtn").click(function() {
 
                 $.ajax({
-                    url: "/member/new",
+                    url: "/btn",
                     type: "POST",
                     data: {
                         "id": $("#mem_id").val(),
@@ -154,15 +154,18 @@ function fn_compare_pwd(){
                             // location.href="login.html";
                         } else {
                             alert("가입되지 않았습니다!");
-                            $("#userid").val("");
-                            $("#pwd").val("");
-                            $("#name").val("");
-                            $("#email").val("");
+                            $("mem_id").val("");
+                            $("#mem_name").val("");
+                            $("#mem_pwd").val("");
+                            $("#mem_email").val("");
+                            $("#nickname").val("");
                         }
                     }
                 });
             });
 </script>
+
+
 </head>
 <body>
 <header th:replace="top.html :: navigation-bar"></header>

@@ -1,5 +1,7 @@
 package com.shop.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,13 +27,13 @@ public class MainController {
 		return "login";
 	}
 	@RequestMapping("/loginimpl")
-	public String loginimpl(String mem_id, String mem_pwd, Model model) {
+	public String loginimpl(String mem_id, String mem_pwd, Model model,HttpSession session) {
 		Member_tbl member = null;
 		String result = "로그인 실패";
 		try {
 			member = mservice.get(mem_id);
 			if(member.getMem_pwd().equals(mem_pwd)) {
-				//로그인성공
+				session.setAttribute("member", member);
 				return "index";
 			}
 		} catch (Exception e) {
