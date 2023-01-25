@@ -53,13 +53,12 @@ public class Member_tbl {
 		this.mem_name=mem_name;
 		this.mem_email=mem_email;
 	}
-// 비밀번호 찾기
-	Member_tbl(String mem_email) {
-		super();
-		this.mem_email=mem_email;
-		
-		   }
-
+	/*
+	 * // 비밀번호 찾기 Member_tbl(String mem_id,String mem_email) { super();
+	 * this.mem_email=mem_email;
+	 * 
+	 * }
+	 */
 
 	
 }

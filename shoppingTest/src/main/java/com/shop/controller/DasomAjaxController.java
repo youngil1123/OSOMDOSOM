@@ -33,10 +33,10 @@ public class DasomAjaxController {
 	
 	//비밀버호찾기
     @RequestMapping("/findpwd")
-    public Object findpwd(String mem_email) {
+    public Object findpwd(String mem_id, String mem_email) {
         String mem_pwd = null;
         try {
-            mem_pwd = mservice.findpwd(mem_email);
+            mem_pwd = mservice.findpwd(mem_id, mem_email);
             System.out.println(mem_pwd);
         } catch (Exception e) {
             e.printStackTrace();

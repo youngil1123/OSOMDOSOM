@@ -43,15 +43,13 @@ public class Member_tblService implements MyService<String, Member_tbl> {
 	}
 	
 
-
+	/* 아이디찾기 */
 	public String findid(String mem_name, String mem_email) {
-		// TODO Auto-generated method stub
-		return null;
+		return mapper.findid(mem_name, mem_email);
 	}
 
-	public String findpwd(String mem_email) {
-		// TODO Auto-generated method stub
-		return null;
+	public String findpwd(String mem_id, String mem_email) {
+		return mapper.findpwd(mem_id, mem_email);
 	}
 	
 	public Integer findmem_no(String mem_id) {
