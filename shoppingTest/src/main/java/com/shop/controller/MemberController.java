@@ -30,7 +30,7 @@ public class MemberController {
 	Member_tblService mservice;
 		
 	//회원가입완료 클릭 후 넘어가는 페이지
-	@GetMapping("/member/new") 
+	@GetMapping("/member/btn") 
 	public String loginForm() {
 		return"login";
 	}

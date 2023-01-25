@@ -10,6 +10,6 @@ public interface MyService<K,V> {
 	
 	public V get(K k) throws Exception;
 	public List<V> get() throws Exception;
-	void join(Member_tbl member);
+	void join(Member_tbl member_tbl);
 
 }

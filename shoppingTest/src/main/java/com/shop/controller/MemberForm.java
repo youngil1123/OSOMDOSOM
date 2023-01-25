@@ -35,6 +35,9 @@ public class MemberForm {
 	public String getMem_Pwd() {
 		return mem_pwd;
 	}
+	public String getMem_Pwd2() {
+		return mem_pwd;
+	}
 	
 	public String getMem_Email() {
 		return mem_email;
@@ -61,17 +64,18 @@ public class MemberForm {
 	public void setMem_Pwd(String mem_pwd) {
 		this.mem_pwd=getMem_Pwd();
 	}
+
 	
 	public void setMem_emil(String mem_email) {
-		this.mem_pwd=getMem_Email();
+		this.mem_email=getMem_Email();
 	}
 	
 	public void setMMbti(String mbti) {
-		this.mem_pwd=getMbti();
+		this.mbti=getMbti();
 	}
 	
 	public void setNickname(String nickname) {
-		this.mem_pwd=getNickname();
+		this.nickname=getNickname();
 	}
 	
 }

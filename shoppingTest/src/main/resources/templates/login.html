@@ -50,7 +50,7 @@
 </script>
 
 
-<!-- 비밀번호 중복체크 -->
+<!-- <!-- 비밀번호 중복체크 -->
 <script>
 
  var compare_result = false;
@@ -72,7 +72,6 @@ function fn_compare_pwd(){
 }
  
 </script>
-
 
 
 <!-- <script th:inline="javascript">
@@ -131,15 +130,46 @@ function fn_compare_pwd(){
 	    }) 
 });
 </script> -->
+<script>
+ $("#joinbtn").click(function() {
 
+                $.ajax({
+                    url: "/member/btn",
+                    type: "POST",
+                    data: {
+                        "id": $("#mem_id").val(),
+                        "name": $("#mem_name").val(),
+                        "pwd": $("#mem_pwd").val(),
+                        "email": $("#email").val(),
+                        "mbti": $("#mem_mbti").val(),
+                        "nickname": $("#nickname").val(),
+                        "auth": 1
+                    },
 
+                    // 마찬가지로 리턴받은 메시지(res)의 결과에 따라 처리해준다.
+                    success: function(res) {
+                        if(res.trim() == 'ok') {
+                            console.log(res);
+                            alert("가입되었습니다!");
+                            // location.href="login.html";
+                        } else {
+                            alert("가입되지 않았습니다!");
+                            $("#userid").val("");
+                            $("#pwd").val("");
+                            $("#name").val("");
+                            $("#email").val("");
+                        }
+                    }
+                });
+            });
+</script>
 </head>
 <body>
 <header th:replace="top.html :: navigation-bar"></header>
 
 <div class="container" id="container">
 <div class="form-container sign-up-container">
-   <form action="/member/new" method="post">
+   <form action="http://localhost:90/member/new" method="post">
       <h2>Create Account</h2>
       <span>to have wonderful experience!</span>
     
@@ -154,11 +184,11 @@ function fn_compare_pwd(){
 	 <input type="password" placeholder="password" name="mem_pwd" id="member_pwd1"/>
 	 <input type="password" placeholder="verify password" name="mem_pwd2" id="member_pwd2" onkeyUp="fn_compare_pwd()">
 	 <span style="color:red;" id="s_result"></span>
-	 <input type="password" placeholder="E-Mail" name="mem_email" />
+	 <input type="text" placeholder="E-Mail" name="mem_email" />
 	 <input type="text" placeholder="MBTI(선택)" name="mbti" />	
 	 <input type="text" placeholder="Nickname" name="nickname" />
 
-      <button type="submit">Sign Up</button> 
+      <button type="submit" id="joinbtn">Sign Up</button> 
     </form>  
   </div>
 

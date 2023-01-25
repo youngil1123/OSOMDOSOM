@@ -42,9 +42,9 @@ public class Member_tblService implements MyService<String, Member_tbl> {
 		return mapper.selectall();
 	}
 	
-	public void join(Member_tbl member) {
+	public void join(Member_tbl member_tbl) {
 		try {
-			mapper.insert(member);
+			mapper.insert(member_tbl);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

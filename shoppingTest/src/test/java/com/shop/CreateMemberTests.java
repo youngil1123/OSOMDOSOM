@@ -18,10 +18,10 @@ class CreateMemberTests {
     @Test
     void contextLoads() {
 
-        Member_tbl obj = new Member_tbl("박하","mint","111111","moa8417@naver.com","enft","깜찍이");
+        Member_tbl obj = new Member_tbl("dh1","djkd","111111","dsf111@naver.com","enft","dkseshl");
 
         try {
-            service.register(obj);
+            service.join(obj);
             System.out.println("OK");
         } catch (Exception e) {
             System.out.println("FAILED");
