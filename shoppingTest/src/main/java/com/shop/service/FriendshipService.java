@@ -18,32 +18,35 @@ public class FriendshipService implements MyService<Integer, Friendship>{
 
 	@Override
 	public void register(Friendship v) throws Exception {
-		// TODO Auto-generated method stub
+		mapper.insert(v);
 		
 	}
 
 	@Override
 	public void remove(Integer k) throws Exception {
-		// TODO Auto-generated method stub
+		mapper.delete(k);
 		
 	}
 
 	@Override
 	public void modify(Friendship v) throws Exception {
-		// TODO Auto-generated method stub
+		mapper.update(v);
 		
 	}
 
 	@Override
 	public Friendship get(Integer k) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		return mapper.select(k);
 	}
 
 	@Override
 	public List<Friendship> get() throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		return mapper.selectall();
+	}
+	
+	public List<Friendship> addfollower(String mem_id, String mem_id2) throws Exception {
+		
+		return mapper.selectall();
 	}
 
 	@Override
@@ -51,8 +54,6 @@ public class FriendshipService implements MyService<Integer, Friendship>{
 		// TODO Auto-generated method stub
 		
 	}
-
-
 
 	
 }	

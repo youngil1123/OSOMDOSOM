@@ -61,6 +61,11 @@ public class Member_tblService implements MyService<String, Member_tbl> {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	public Integer findmem_no(String mem_id) {
+		
+		return mapper.findmem_no(mem_id);
+	}
 
 	 
 }
