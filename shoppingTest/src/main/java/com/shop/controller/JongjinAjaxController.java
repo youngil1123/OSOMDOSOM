@@ -41,7 +41,7 @@ public class JongjinAjaxController {
 	}
 	// 팔로워 아이디를 통해 회원번호를 받아와서 Friendship table에 넣는다.
 	// 이때 자기의 회원번호는 session을 통해서 받아온다. 
-	@RequestMapping("/addFollower")
+	@RequestMapping("/addFollowerTbl")
 	public Object addFollower(String fwid) {
 		
 		
