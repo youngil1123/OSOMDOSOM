@@ -11,22 +11,23 @@ import com.shop.service.Member_tblService;
 
 
 @Controller
+@RequestMapping("/follower")
 public class JongjinController {
 	
 	@Autowired
 	Member_tblService mservice;
 	
-	@RequestMapping("/follower")
+	@RequestMapping("")
     public String follower() {
         return "follower/follower";
     }
 	
-	@RequestMapping("/follower/addFollower")
+	@RequestMapping("/addFollower")
     public String addFollower() {
         return "follower/addFollower";
     }
 	
-	@RequestMapping("/follower/checkFollower")
+	@RequestMapping("/checkFollower")
     public String checkFollower() {
         return "follower/checkFollower";
     }

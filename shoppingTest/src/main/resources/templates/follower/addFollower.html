@@ -58,7 +58,7 @@
     
     function getdata(id){
     	$.ajax({
-    		url:'[[@{/checkid}]]',
+    		url:'[[@{/follower/checkid}]]',
     		data:{"cid":id},
     		success:function(data){
     			if(data != null && data != "no_memberImg"){
@@ -76,8 +76,13 @@
     		var id = $(this).val();
     		getdata(id);
     	});
-    	$('.button login__submit').click(function(){
-    		var id = $(this).val();
+    	$('.button login__submit').click(function(){ // 버튼을 클릭하면 1. 해당 아이디의 회원번호와 로그인한 나의 회원번호를 팔로워테이블에 등록
+    												 // 2. 해당 아이디의 회원정보중 일부(회원 이미지, 아이디, MBTI) 를 가지고 팔로워 페이지에 뿌리기
+    		$('#login').attr({
+    			'method':'post',
+    			'action':'[[@{/follower/addFollower}]]'
+    		});
+    		$('#login').submit();
     	})
     });
     
@@ -100,8 +105,7 @@
         </div>       
         <span id="id_span" style="position:absolute; right:30px; top:340px; "></span>
                   
-          <a href="#" class="button login__submit" onclick="window.open
-       ('checkFollower','new','scrollbars=yes,resizable=no width=400, height=590, left=700,top=200');return login">
+          <a href="#" class="button login__submit" >
       <span class="button__text">Add Follower Now</span>
           <i class="button__icon fas fa-chevron-right"></i>
         </a>       
