@@ -16,4 +16,11 @@ public class Friendship {
 	private int friend_no;
 	private int mem_no;
 	private int mem_no2;
+	
+	Friendship(int mem_no, int mem_no2){
+		super();
+		this.mem_no =mem_no;
+		this.mem_no2 = mem_no2;
+		
+	}
 }

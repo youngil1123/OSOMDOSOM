@@ -6,9 +6,10 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
     
     <!-- 팔로워 추가 -->
 	<insert id="insert" parameterType="Friendship">
-		INSERT INTO member_tbl (mem_name, mem_id, mem_pwd, mem_email, mbti, nickname) 
-		VALUES (#{mem_name},#{mem_id},#{mem_pwd},#{mem_email},#{mbti},#{nickname})
+		INSERT INTO Friendship (mem_no, mem_no2) 
+		VALUES (#{mem_no},#{mem_no2})
 	</insert>
+	
 
 	<!-- 로그인 -->
 	<select id="select" >
@@ -18,7 +19,7 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 	<update id="update">
 		
 	</update>
-
+	<!--  팔로워 삭제 -->
 	<delete id="delete">
 		
 	</delete>

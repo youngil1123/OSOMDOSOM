@@ -28,4 +28,8 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 		
 	</select>
 	
+	<select id="findmem_no" resultType="Integer" parameterType="String">
+		SELECT mem_no FROM member_tbl WHERE mem_id=#{mem_id}
+	</select>
+	
 </mapper>

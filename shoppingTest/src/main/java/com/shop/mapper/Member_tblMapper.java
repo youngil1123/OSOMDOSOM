@@ -10,7 +10,7 @@ import com.shop.frame.MyMapper;
 @Mapper
 @Repository
 public interface Member_tblMapper extends MyMapper<String,Member_tbl>{
-
+	public Integer findmem_no(String mem_id);
 
 
 }
