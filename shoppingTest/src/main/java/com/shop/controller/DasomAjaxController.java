@@ -1,9 +1,15 @@
 package com.shop.controller;
 
+import java.io.IOException;
+
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -44,8 +50,14 @@ public class DasomAjaxController {
         return mem_pwd;
     }
     
-  
-        
-    
-
+  //아이디 중복체크
+  		@PostMapping("/idCheck")
+  		@ResponseBody
+  		public int idCheck(@RequestParam("mem_id") String id) {
+  			
+			int cnt = mservice.idCheck(id);
+  			return cnt;
+  			
+  		}
+  		
 }

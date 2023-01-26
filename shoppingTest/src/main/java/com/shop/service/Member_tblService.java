@@ -2,6 +2,8 @@ package com.shop.service;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,7 +18,8 @@ public class Member_tblService implements MyService<String, Member_tbl> {
 	@Autowired
 	
 	Member_tblMapper mapper;
-
+	
+	//회원가입
 	@Override
 	public void register(Member_tbl v) throws Exception {
 		mapper.insert(v);
@@ -35,6 +38,7 @@ public class Member_tblService implements MyService<String, Member_tbl> {
 	@Override
 	public Member_tbl get(String k) throws Exception {
 		return mapper.select(k);
+		
 	}
 
 	@Override
@@ -42,6 +46,14 @@ public class Member_tblService implements MyService<String, Member_tbl> {
 		return mapper.selectall();
 	}
 	
+	
+	@Override
+	public int idCheck(String mem_id) {
+		int cnt = mapper.idCheck(mem_id);
+		System.out.println("cnt: " + cnt);
+		return cnt;
+	}	
+
 
 	/* 아이디찾기 */
 	public String findid(String mem_name, String mem_email) {
@@ -58,7 +70,12 @@ public class Member_tblService implements MyService<String, Member_tbl> {
 	}
 
 
+
+
+		
 }
+
+
 
 	
 

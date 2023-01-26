@@ -42,6 +42,16 @@ public class BoardService implements MyService<Integer, Board>{
 		return mapper.selectall();
 	}
 	
-	
+	public List<Board> list() throws Exception {
+		return mapper.list();
+	}
+  
+
+	@Override
+	public int idCheck(String mem_id) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 
 }	

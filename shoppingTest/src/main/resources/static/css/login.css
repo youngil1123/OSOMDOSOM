@@ -86,6 +86,10 @@ form {
   text-align: center;
 }
 
+.idck{
+	width:300px;
+}
+
 input {
   background-color: #eee;
   border: none;
@@ -94,7 +98,6 @@ input {
   width: 300px;
   height: 45px;
 }
-
 
 
 
