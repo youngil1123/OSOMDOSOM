@@ -42,9 +42,6 @@ public class BoardService implements MyService<Integer, Board>{
 		return mapper.selectall();
 	}
 	
-	public List<Board> list() throws Exception {
-		return mapper.list();
-	}
-  
+	
 
 }	
