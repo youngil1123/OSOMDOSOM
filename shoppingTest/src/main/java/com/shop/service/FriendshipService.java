@@ -49,10 +49,15 @@ public class FriendshipService implements MyService<Integer, Friendship>{
 		return mapper.selectall();
 	}
 
+
 	@Override
 	public int idCheck(String mem_id) {
 		// TODO Auto-generated method stub
-		return 0;
+		return 0;}
+
+	public Integer get(Friendship f) {
+		return mapper.check(f);
+
 	}
 
 

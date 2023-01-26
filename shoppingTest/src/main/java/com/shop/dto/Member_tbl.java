@@ -31,8 +31,6 @@ public class Member_tbl {
 
 // 이메일 찾기
 
-	// 팔로워추가페이지 이미지출력
-	private MultipartFile img;
 	
 //회원가입
 	public Member_tbl(String mem_name,String mem_id, String mem_pwd,String mem_email, String mbti, String nickname) {
