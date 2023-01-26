@@ -51,11 +51,10 @@ public class DasomAjaxController {
     }
     
   //아이디 중복체크
-  		@PostMapping("/idCheck")
-  		@ResponseBody
-  		public int idCheck(@RequestParam("mem_id") String id) {
-  			
-			int cnt = mservice.idCheck(id);
+    @RequestMapping("/idCheck")
+  		public int idCheck(String mem_id) {
+			int cnt = mservice.idCheck(mem_id);
+			System.out.println(cnt);
   			return cnt;
   			
   		}

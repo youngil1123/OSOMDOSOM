@@ -41,62 +41,73 @@
 			});
 			$('#login_form').submit();
 		});
+
+		$("#idck_btn").click(function() {
+			 var mem_id = $('input[name="id"]').val();
+		          $.ajax({
+		              url:'[[@{/idCheck}]]', //Controller에서 요청 받을 주소
+		              type: "POST",
+		              data: {mem_id:mem_id},
+		              success:function(cnt){ //컨트롤러에서 넘어온 cnt값을 받는다 
+		                  if(cnt == 0){ //cnt가 1이 아니면(=0일 경우) -> 사용 가능한 아이디 
+		                  	alert("이 아이디는 사용 가능합니다.");
+		                  } else { // cnt가 1일 경우 -> 이미 존재하는 아이디
+		                  	alert("이 아이디는 사용  불가능합니다.");
+		                  }
+		              },
+		              error:function(request, error){
+		  				alert("fail");
+		  				alert("code: "+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+		              
+		              }
+		          });
+		      });	
 	});
 	function press(){
 		if(window.event.keyCode == 13){
 			formname.submit();
-		}
-}
-</script>
-
-
-<!-- <!-- 비밀번호 중복체크 -->
-<!-- <script>
-
- var compare_result = false;
-
-function fn_compare_pwd(){
-	var pwd1=$('#member_pwd1').val();
-	var pwd2=$('#member_pwd2').val();
-	var s_result=$('#s_result');
+		}		
+	}
 	
-
-	if(pwd1 == pwd2){
-		
-		compare_result=true;
-		$('#s_result').text('비밀번호가 일치합니다.');
-	}else{
-		compare_result=false;
-		$('#s_result').text('비밀번호가 일치하지 않습니다.');	
-	}
-}
- 
-</script> -->
-
-<!-- <script type="text/javascript">
-	/* 자바 스크립트 함수 선언(비밀번호 확인) */
-
-	function passConfirm() {
-	/* 비밀번호, 비밀번호 확인 입력창에 입력된 값을 비교해서 같다면 비밀번호 일치, 그렇지 않으면 불일치 라는 텍스트 출력.*/
-	/* document : 현재 문서를 의미함. 작성되고 있는 문서를 뜻함. */
-	/* getElementByID('아이디') : 아이디에 적힌 값을 가진 id의 value를 get을 해서 password 변수 넣기 */
-		var password = document.getElementById('#member_pwd1');					//비밀번호 
-		var passwordConfirm = document.getElementById('#member_pwd2');	//비밀번호 확인 값
-		var confrimMsg = document.getElementById('#s_result');				//확인 메세지
-		var correctColor = "#00ff00";	//맞았을 때 출력되는 색깔.
-		var wrongColor ="#ff0000";	//틀렸을 때 출력되는 색깔
-		
-		if(password.value == passwordConfirm.value){//password 변수의 값과 passwordConfirm 변수의 값과 동일하다.
-			confirmMsg.style.color = correctColor;/* span 태그의 ID(confirmMsg) 사용  */
-			confirmMsg.innerHTML ="비밀번호 일치";/* innerHTML : HTML 내부에 추가적인 내용을 넣을 때 사용하는 것. */
-		}else{
-			confirmMsg.style.color = wrongColor;
-			confirmMsg.innerHTML ="비밀번호 불일치";
-		}
-	}
 </script>
 
 <script>
+function check_pw(){
+	 
+    var pw = document.getElementById('member_pwd1').value;
+    var SC = ["!","@","#","$","%"];
+    var check_SC = 0;
+    if(pw.length < 6 || pw.length>16){
+        window.alert('비밀번호는 6글자 이상, 16글자 이하만 이용 가능합니다.');
+        document.getElementById('member_pwd1').value='';
+    }
+    for(var i=0;i<SC.length;i++){
+        if(pw.indexOf(SC[i]) != -1){
+            check_SC = 1;
+        }
+    }
+    if(check_SC == 0){
+        window.alert('!,@,#,$,% 의 특수문자가 들어가 있지 않습니다.')
+        document.getElementById('member_pwd1').value='';
+    }
+    if(document.getElementById('member_pwd1').value !='' && document.getElementById('member_pwd2').value!=''){
+        if(document.getElementById('member_pwd1').value==document.getElementById('member_pwd2').value){
+            document.getElementById('check').innerHTML='비밀번호가 일치합니다.'
+            document.getElementById('check').style.color='blue';
+        }
+        else{
+            document.getElementById('check').innerHTML='비밀번호가 일치하지 않습니다.';
+            document.getElementById('check').style.color='red';
+        }
+    }
+}
+
+</script>
+
+
+
+
+<!-- <script>
  $("#joinbtn").click(function() {
 
                 $.ajax({
@@ -129,49 +140,7 @@ function fn_compare_pwd(){
                     }
                 });
             });
-</script> -->
-<script>
- $("#idck_btn").click(function() {
-		 var id = $('#mem_id').val();
-                $.ajax({
-                    url: '/idCheck', //Controller에서 요청 받을 주소
-                    type: "POST",
-                    data: {mem_id:mem_id},
-                    success:function(cnt){ //컨트롤러에서 넘어온 cnt값을 받는다 
-                        if(cnt == 0){ //cnt가 1이 아니면(=0일 경우) -> 사용 가능한 아이디 
-                        	alert("이 아이디는 사용 가능합니다.");
-                        } else { // cnt가 1일 경우 -> 이미 존재하는 아이디
-                        	alert("이 아이디는 사용  불가능합니다.");
-                        }
-                    },
-                    error:function(){
-                        alert("에러입니다");
-                        
-                    }
-                });
-            });
-</script>
-<!-- <script>
-$("#idck_btn").click(function(){
-    var id = $('#mem_id').val(); //id값이 "id"인 입력란의 값을 저장
-    $.ajax({
-        url:'./idCheck', //Controller에서 요청 받을 주소
-        type:'post', //POST 방식으로 전달
-        data:{mem_id:mem_id},
-        success:function(cnt){ //컨트롤러에서 넘어온 cnt값을 받는다 
-            if(cnt == 0){ //cnt가 1이 아니면(=0일 경우) -> 사용 가능한 아이디 
-            	alert("이 아이디는 사용 가능합니다.");
-            } else { // cnt가 1일 경우 -> 이미 존재하는 아이디
-            	alert("이 아이디는 사용  불가능합니다.");
-            }
-        },
-        error:function(){
-            alert("에러입니다");
-        }
-    });
-    
-}
-</script> -->
+</script>  -->
 
 
 </head>
@@ -192,13 +161,15 @@ $("#idck_btn").click(function(){
 	 
 	<!--  <input type="text" placeholder="Id" name="mem_id" id="mem_id" /> -->
 	 <div class="idck">
-	 <input type="text"  id="mem_id" name="id" placeholder="id 입력" style= "width: 190px; display: block; float:left; "> 
+	 <input type="text"  id="mem_id" name="mem_id" placeholder="id 입력" style= "width: 190px; display: block; float:left; "> 
 	 <input type="button" id="idck_btn" value="중복확인" style= "width: 90px; display: block; float:right;"/>
 	</div>
      <input type="text" placeholder="Name" name="mem_name" />
-	 <input type="password" placeholder="password" name="mem_pwd" id="member_pwd1"/>
-	 <input type="password" placeholder="verify password" name="mem_pwd2" id="member_pwd2">
-	 <span style="color:red;" id="s_result"></span>
+     <div class="passConfirm">
+	 <input type="password" placeholder="password" name="mem_pwd" id="member_pwd1" onchange="check_pw()"/>
+	 <input type="password" placeholder="verify password" name="mem_pwd2" id="member_pwd2" onchange="check_pw()">
+	 <span id="check"></span>
+	 </div>
 	 <input type="text" placeholder="E-Mail" name="mem_email" />
 	 <input type="text" placeholder="MBTI(선택)" name="mbti" />	
 	 <input type="text" placeholder="Nickname" name="nickname" />
@@ -214,7 +185,7 @@ $("#idck_btn").click(function(){
       <span>다솜이짱</span>
       
        <input type="text" placeholder="Id" name="mem_id" />
-       <input type="password" placeholder="Password" name="mem_pwd"/>
+       <input type="password" placeholder="Password" id="member_pwd" name="mem_pwd"/>
       
        <!-- <a th:href="@{/findpwd} onclick"window.open.href, '_blank">Forgot your password?</a>  -->
 	 
