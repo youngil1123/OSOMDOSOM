@@ -42,14 +42,6 @@
  	<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500&display=swap" rel="stylesheet">
 
     <!-- Css Styles -->
-    <link rel="stylesheet" href="css/jongjincss/bootstrap.min.css" type="text/css">
-    <link rel="stylesheet" href="css/jongjincss/font-awesome.min.css" type="text/css">
-    <link rel="stylesheet" href="css/jongjincss/elegant-icons.css" type="text/css">
-    <link rel="stylesheet" href="css/jongjincss/jquery-ui.min.css" type="text/css">
-    <link rel="stylesheet" href="css/jongjincss/magnific-popup.css" type="text/css">
-    <link rel="stylesheet" href="css/jongjincss/owl.carousel.min.css" type="text/css">
-    <link rel="stylesheet" href="css/jongjincss/slicknav.min.css" type="text/css">
-    <link rel="stylesheet" href="css/jongjincss/style.css" type="text/css">
     <link rel="stylesheet" href="/css/jongjincss/addFollower.css" type="text/css">
     
     <script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
@@ -71,31 +63,33 @@
     	});
     };
     
+    function followerAdd(id){
+    	$.ajax({
+			url:'[[@{/follower/AddFwTbl}]]',
+			data:{"fwid":id},
+			success:function(data){
+				if(data=="false"){
+					alert("이미 팔로우 중입니다.");
+				}else{
+					alert(data+" 님을 팔로우 합니다.");
+				}
+				
+			}
+			,error:function(request, error){
+				alert("fail");
+				alert("code: "+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+			} 
+		});
+    }
+    
     $(document).ready(function(){
     	$('input[name="id"]').keyup(function(){
     		var id = $(this).val();
     		getdata(id);
     	});
-    	/* $('.button login__submit').click(function(){ // 버튼을 클릭하면 1. 해당 아이디의 회원번호와 로그인한 나의 회원번호를 팔로워테이블에 등록
-    		var c = confirm("추가 하시겠습니까?");
-    		if(c==true){									 // 2. 해당 아이디의 회원정보중 일부(회원 이미지, 아이디, MBTI) 를 가지고 팔로워 페이지에 뿌리기
-	    		$('.login').attr({
-	    			'method':'post',
-	    			'action':'[[@{/follower/addFollowerTbl}]]'
-	    		});
-	    		$('.login').submit();
-    		}	
-    	}) */
-    	$('.button login__submit').click(function(){
-    		
-    		$.ajax({
-    			type:"POST",
-    			url:'[[@{/follower/addFollowerTbl}]]',
-    			data:{"id":$(".login__input").val()},
-    			success:function(data){
-    				alert(myid_no+"가 "+fwid_no+"를 팔로우 합니다.")
-    			}
-    		});
+    	$('#addBtn').click(function(){
+    			var id = $('input[name="id"]').val();
+    			followerAdd(id);	
     	});
     });
     
@@ -117,13 +111,13 @@
           <input type="text" class="login__input" name="id" placeholder="User name / Nickname">
         </div>       
         <span id="id_span" style="position:absolute; right:30px; top:340px; "></span>
-                  
-          <button class="button login__submit">
-      <span class="button__text">Add Follower Now</span>
+		<a href="#" id="addBtn" class="button login__submit">
+      	<span class="button__text">Add Follower Now</span>
           <i class="button__icon fas fa-chevron-right"></i>
-        </button>       
-        
+        </a> 
+		
       </form>
+       
       
     </div>
     <div class="screen__background">

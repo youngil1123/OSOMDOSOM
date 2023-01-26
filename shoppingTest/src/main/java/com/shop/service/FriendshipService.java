@@ -49,6 +49,10 @@ public class FriendshipService implements MyService<Integer, Friendship>{
 		return mapper.selectall();
 	}
 
+	public Integer get(Friendship f) {
+		return mapper.check(f);
+	}
+
 
 	
 }	

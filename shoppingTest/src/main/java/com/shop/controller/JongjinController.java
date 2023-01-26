@@ -36,10 +36,7 @@ public class JongjinController {
         return "follower/addFollower";
     }
 	
-	@RequestMapping("/checkFollower")
-    public String checkFollower() {
-        return "follower/checkFollower";
-    }
+
 	
 
 	

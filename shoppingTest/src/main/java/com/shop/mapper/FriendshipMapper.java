@@ -10,4 +10,6 @@ import com.shop.frame.MyMapper;
 @Repository
 public interface FriendshipMapper extends MyMapper<Integer,Friendship>{
 
+	Integer check(Friendship f);
+
 }
