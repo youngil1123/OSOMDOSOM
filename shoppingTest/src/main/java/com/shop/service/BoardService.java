@@ -6,10 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.shop.dto.Board;
-import com.shop.dto.Member_tbl;
 import com.shop.frame.MyService;
 import com.shop.mapper.BoardMapper;
 
+import lombok.AllArgsConstructor;
+@AllArgsConstructor
 @Service
 public class BoardService implements MyService<Integer, Board>{
 	
@@ -40,7 +41,10 @@ public class BoardService implements MyService<Integer, Board>{
 	public List<Board> get() throws Exception {
 		return mapper.selectall();
 	}
-
-
+	
+	public List<Board> list() throws Exception {
+		return mapper.list();
+	}
+  
 
 }	

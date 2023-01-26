@@ -106,15 +106,15 @@ a:hover {
 				<th>글제목</th>
 				<th>작성자</th>
 				<th>작성날짜</th>
-				<th>조회수</th>
+				<th>별점</th>
 			</tr>
 			<c:forEach var="posting" items="${list}">
 				<tr>
-					<td>${posting.num }</td>
-					<td>${posting.title }</td>
-					<td>${posting.name }</td>
-					<td>${posting.writeDate }</td>
-					<td>${posting.readCount }</td>
+					<td>${list.board_no}</td>
+					<td>${list.review }</td>
+					<td>${list.mem_no }</td>
+					<td>${list.writedate }</td>
+					<td>${list.star_rate }</td>
 				</tr>
 				<tr>
 					<td>1</td>
