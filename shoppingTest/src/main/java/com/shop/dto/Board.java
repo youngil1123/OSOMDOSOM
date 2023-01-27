@@ -17,7 +17,6 @@ import lombok.ToString;
 @Data
 public class Board {
 	private int board_no;
-	private int board_no2;
 	private int con_no;
 	private int mem_no;
 	private Date writedate;
@@ -26,5 +25,8 @@ public class Board {
 	private String secret_memo;
 	private int star_rate;
 	
+<<<<<<< HEAD
 		
+=======
+>>>>>>> branch 'main' of https://github.com/youngil1123/OSOMDOSOM.git
 }
