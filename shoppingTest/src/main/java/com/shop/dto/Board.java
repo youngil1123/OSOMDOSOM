@@ -15,7 +15,6 @@ import lombok.ToString;
 @ToString
 public class Board {
 	private int board_no;
-	private int board_no2;
 	private int con_no;
 	private int mem_no;
 	private Date writedate;
@@ -23,14 +22,5 @@ public class Board {
 	private String partner;
 	private String secret_memo;
 	private int star_rate;
-	
-	@Override
-	public String toString() {
-		return "Board [board_no=" + board_no + ", board_no2=" + board_no2 + ", con_no=" + con_no + ", mem_no=" + mem_no
-				+ ", writedate=" + writedate + ", review=" + review + ", partner=" + partner + ", secret_memo="
-				+ secret_memo + ", star_rate=" + star_rate + "]";
-	}
-	
-	
 	
 }

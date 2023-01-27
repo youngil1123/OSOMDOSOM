@@ -1,0 +1,52 @@
+package com.shop.service;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.shop.dto.MovieInfo;
+import com.shop.frame.MyService;
+import com.shop.mapper.MovieMapper;
+@Service
+public class MovieService implements MyService<String, MovieInfo>{
+
+	@Autowired
+	MovieMapper moviemapper;
+	@Override
+	public void register(MovieInfo v) throws Exception {
+	
+		moviemapper.insert(v);
+	}
+
+	@Override
+	public void remove(String k) throws Exception {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void modify(MovieInfo v) throws Exception {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public MovieInfo get(String k) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<MovieInfo> get() throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	public List<String> getmoviecd() throws Exception{
+		return moviemapper.getmoviecd();
+	}
+	public void updateconno(MovieInfo m) throws Exception{
+		moviemapper.updateconno(m);
+	}
+
+}

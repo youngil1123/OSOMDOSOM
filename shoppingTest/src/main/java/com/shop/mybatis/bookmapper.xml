@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shop.mapper.BookMapper">
+	<insert id="insert" parameterType="BookInfo">
+		INSERT INTO bookinfo VALUES (#{book_no},#{bookname},#{authors},#{publisher},#{publication_year},#{isbn13},#{vol},#{class_nm},#{bookImageURL})
+	</insert>
+	<select id="getbookno" resultType="Integer">
+		SELECT book_no FROM bookinfo
+	</select>
+	<update id="updatebookcd" parameterType="BookInfo">
+		UPDATE bookinfo SET con_no = #{con_no} WHERE book_no = #{book_no}
+	</update>
+</mapper>
