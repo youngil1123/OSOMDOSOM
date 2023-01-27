@@ -26,23 +26,33 @@ public class MainController {
 		model.addAttribute("top", "login");
 		return "login";
 	}
+
 	@RequestMapping("/loginimpl")
-	public String loginimpl(String mem_id, String mem_pwd, Model model,HttpSession session) {
+	public String loginimpl(HttpSession session, String mem_id, String mem_pwd, Model model) {
 		Member_tbl member = null;
-		String result = "로그인 실패";
+		String result = "loginfail";
 		try {
 			member = mservice.get(mem_id);
+			if (member != null) {
 			if(member.getMem_pwd().equals(mem_pwd)) {
-				session.setAttribute("member", member);
-				return "index";
+					// 성공
+					// 성공시에만 이걸로 바뀜. 디폴트는 로그인 fail.
+					session.setAttribute("logincust", member);
+				}
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
-		return result;
-	}
+		return "index";
+	};
 	
+	@RequestMapping("/logout")
+	public String logout(HttpSession session, Model model) {
+		session.invalidate();
+		model.addAttribute("session", session);
+		return "index";
+	}
+
 	@RequestMapping("/register")
 	public String register(Model model) {
 		model.addAttribute("top", "register");

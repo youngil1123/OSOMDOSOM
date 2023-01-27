@@ -14,5 +14,4 @@ public interface Member_tblMapper extends MyMapper<String,Member_tbl>{
 	public String findid(String mem_name, String mem_email);
 	public String findpwd(String mem_id, String mem_email);
 	public Integer idCheck(String mem_id);
-
 }
