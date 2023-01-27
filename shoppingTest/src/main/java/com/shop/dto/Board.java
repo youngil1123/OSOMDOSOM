@@ -3,6 +3,7 @@ package com.shop.dto;
 import java.util.Date;
 
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -13,6 +14,7 @@ import lombok.ToString;
 @Setter
 @Getter
 @ToString
+@Data
 public class Board {
 	private int board_no;
 	private int con_no;
