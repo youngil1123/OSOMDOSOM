@@ -41,7 +41,8 @@
 			});
 			$('#login_form').submit();
 		});
-
+		
+		
 		$("#idck_btn").click(function() {
 			 var mem_id = $('input[name="id"]').val();
 		          $.ajax({
@@ -108,38 +109,7 @@ function check_pw(){
 
 
 <!-- <script>
- $("#joinbtn").click(function() {
-
-                $.ajax({
-                    url: "/btn",
-                    type: "POST",
-                    data: {
-                        "id": $("#mem_id").val(),
-                        "name": $("#mem_name").val(),
-                        "pwd": $("#mem_pwd").val(),
-                        "email": $("#email").val(),
-                        "mbti": $("#mem_mbti").val(),
-                        "nickname": $("#nickname").val(),
-                        "auth": 1
-                    },
-
-                    // 마찬가지로 리턴받은 메시지(res)의 결과에 따라 처리해준다.
-                    success: function(res) {
-                        if(res.trim() == 'ok') {
-                            console.log(res);
-                            alert("가입되었습니다!");
-                            // location.href="login.html";
-                        } else {
-                            alert("가입되지 않았습니다!");
-                            $("mem_id").val("");
-                            $("#mem_name").val("");
-                            $("#mem_pwd").val("");
-                            $("#mem_email").val("");
-                            $("#nickname").val("");
-                        }
-                    }
-                });
-            });
+ 
 </script>  -->
 
 

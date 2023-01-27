@@ -69,5 +69,5 @@ public class MainController {
 	 public String lostinfo(){
 		 return "lostinfo";
 	 }
-	 
+
 }
