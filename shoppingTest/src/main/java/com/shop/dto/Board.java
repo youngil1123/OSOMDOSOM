@@ -25,8 +25,4 @@ public class Board {
 	private String secret_memo;
 	private int star_rate;
 	
-<<<<<<< HEAD
-		
-=======
->>>>>>> branch 'main' of https://github.com/youngil1123/OSOMDOSOM.git
 }

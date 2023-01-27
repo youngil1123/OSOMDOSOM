@@ -37,9 +37,13 @@ public class BoardService implements MyService<Integer, Board>{
 		return mapper.select(k);
 	}
 
+	public List<Board> searchmylist(String mem_id) throws Exception {
+		return mapper.searchmylist(mem_id);
+	}
+
 	@Override
 	public List<Board> get() throws Exception {
-		return mapper.selectall();
+		return null;
 	}
 
 

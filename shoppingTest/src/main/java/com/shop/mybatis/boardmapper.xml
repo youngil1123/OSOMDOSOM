@@ -22,9 +22,11 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 	</delete>
 	
 	<select id="selectall" resultType="Board">
-		select (#{board_no},#{review},#{mem_no},#{writedate},#{star_rate}) from board
+		
 	</select>
-	
+	<select id="searchmylist" resultType="Board" parameterType="String">
+	select (#{board_no},#{review},#{writedate},#{star_rate}) from board where mem_id=#{mem_id}
+	</select>
 	
 	
 
