@@ -21,9 +21,8 @@ public class FriendshipService implements MyService<Integer, Friendship>{
 		
 	}
 
-	@Override
-	public void remove(Integer k) throws Exception {
-		mapper.delete(k);
+	public void remove(Friendship k) throws Exception {
+		mapper.fwdelete(k);
 		
 	}
 
@@ -55,6 +54,11 @@ public class FriendshipService implements MyService<Integer, Friendship>{
 
 	}
 
+	@Override
+	public void remove(Integer k) throws Exception {
+		// TODO Auto-generated method stub
+
+	}
 
 	
 }	

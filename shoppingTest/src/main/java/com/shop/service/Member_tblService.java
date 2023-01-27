@@ -43,6 +43,9 @@ public class Member_tblService implements MyService<String, Member_tbl> {
 		return mapper.selectall();
 	}
 	
+	public List<Member_tbl> getfollower(Integer myNo) throws Exception {
+		return mapper.selectallfollower(myNo);
+	}
 	
 	public int idCheck(String mem_id) {
 		int cnt = mapper.idCheck(mem_id);
