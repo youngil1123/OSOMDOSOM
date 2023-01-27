@@ -1,14 +1,9 @@
 package com.shop.controller;
 
-import java.io.Console;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -36,10 +31,11 @@ public class JongjinAjaxController {
 		try {
 			member = mservice.get(cid);
 			String imgname = member.getMem_img();
-			if(member == null) {
-				result = "no_memberImg";
-			}else {
+			if (member != null) {
 				result = imgname;
+				if (result == null || result == "") {
+					result = "follow.png";
+				}
 			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -57,7 +53,7 @@ public class JongjinAjaxController {
 	  Friendship friendship = new Friendship();
 	 
 	  HttpSession session = request.getSession();
-	  Member_tbl member =(Member_tbl)session.getAttribute("member");
+		Member_tbl member = (Member_tbl) session.getAttribute("logincust");
 	  System.out.println(member);
 	  
 	  int myid_no = mservice.findmem_no(member.getMem_id()); 

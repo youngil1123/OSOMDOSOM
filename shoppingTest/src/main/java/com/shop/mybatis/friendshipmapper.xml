@@ -6,7 +6,7 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
     
     <!-- 팔로워 추가 -->
 	<insert id="insert" parameterType="Friendship">
-		INSERT INTO Friendship (mem_no, mem_no2) 
+		INSERT INTO friendship (mem_no, mem_no2) 
 		VALUES (#{mem_no},#{mem_no2})
 	</insert>
 	
