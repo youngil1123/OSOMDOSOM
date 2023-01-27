@@ -4,8 +4,9 @@
 <meta charset="UTF-8">
 <link th:href="@{/css/main.css}" rel="stylesheet">
 <link th:href="@{/css/team.css}" rel="stylesheet">
+<script>
 
-
+</script>
 	<!-- Template Main JS File -->
 	<script src="/js/main.js"></script>
 </head>
@@ -73,14 +74,20 @@
 			<!-- .navbar -->
 
 			<div class="position-relative">
-				<ul>
-					<li><a th:href="@{/login}">SIGN IN/SIGN UP</a></li>
-					
-					
 				
-				<a href="#" class="mx-2 js-search-open"><span class="bi-search"></span></a>
-				<i class="bi bi-list mobile-nav-toggle"></i>
-				</ul>
+					<div th:if ="${session.logincust == null}"> <!-- -->
+						<a th:href="@{/login}" >Login</a></li>
+					</div>
+					<div th:if="${session.logincust != null}">
+						<a th:href="@{/logout}">
+						<span th:text="${session.logincust.nickname} + '님 로그인 하셨습니다.' "></span>
+					</a>
+					</div>
+					<div>	
+						<a href="#" class="mx-2 js-search-open" style="display:block; float:left"><span class="bi-search"></span></a>
+						<i class="bi bi-list mobile-nav-toggle"></i>
+					</div>
+					
 				<!-- ======= Search Form ======= -->
 				<div class="search-form-wrap js-search-form-wrap">
 					<form action="search-result.html" class="search-form">
