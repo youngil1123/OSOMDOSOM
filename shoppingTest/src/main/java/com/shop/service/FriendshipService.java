@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.shop.dto.Friendship;
-import com.shop.dto.Member_tbl;
 import com.shop.frame.MyService;
 import com.shop.mapper.FriendshipMapper;
 
@@ -50,10 +49,6 @@ public class FriendshipService implements MyService<Integer, Friendship>{
 	}
 
 
-	@Override
-	public int idCheck(String mem_id) {
-		// TODO Auto-generated method stub
-		return 0;}
 
 	public Integer get(Friendship f) {
 		return mapper.check(f);
