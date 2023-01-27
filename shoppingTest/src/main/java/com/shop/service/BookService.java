@@ -51,4 +51,9 @@ public class BookService implements MyService<Integer, BookInfo>{
 	public void updatebookcd(BookInfo b) throws Exception{
 		bookmapper.updatebookcd(b);
 	}
+	@Override
+	public List<BookInfo> getsearchCheck(BookInfo bookinfo) throws Exception{
+		retrun bookinfo.s
+	}
+	
 }
