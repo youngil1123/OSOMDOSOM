@@ -74,18 +74,20 @@
 			<!-- .navbar -->
 
 			<div class="position-relative">
-				<div class="suger">
-					<ul th:if ="${session.logincust == null}"> <!-- -->
-						<li><a th:href="@{/login}">Login</a></li>
-					</ul>
-					<ul th:if="${session.logincust != null}">
-						<li><a th:href="@{/logout}">Logout</a></li>
-					</ul>
-					<ul>	
-						<a href="#" class="mx-2 js-search-open"><span class="bi-search"></span></a>
+				
+					<div th:if ="${session.logincust == null}"> <!-- -->
+						<a th:href="@{/login}" >Login</a></li>
+					</div>
+					<div th:if="${session.logincust != null}">
+						<a th:href="@{/logout}">
+						<span th:text="${session.logincust.nickname} + '님 로그인 하셨습니다.' "></span>
+					</a>
+					</div>
+					<div>	
+						<a href="#" class="mx-2 js-search-open" style="display:block; float:left"><span class="bi-search"></span></a>
 						<i class="bi bi-list mobile-nav-toggle"></i>
-					</ul>
-				</div>
+					</div>
+					
 				<!-- ======= Search Form ======= -->
 				<div class="search-form-wrap js-search-form-wrap">
 					<form action="search-result.html" class="search-form">
