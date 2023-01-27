@@ -48,4 +48,7 @@ public class TheaterService implements MyService<String, TheaterInfo>{
 	public void updateconno(TheaterInfo t) throws Exception{
 		theatermapper.updateconno(t);
 	}
+	public List<TheaterInfo> searchtheaterlist(String searchType,String keyword){
+		return theatermapper.searchtheaterlist(searchType, keyword);
+	}
 }

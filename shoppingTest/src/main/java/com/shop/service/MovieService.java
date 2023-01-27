@@ -48,5 +48,7 @@ public class MovieService implements MyService<String, MovieInfo>{
 	public void updateconno(MovieInfo m) throws Exception{
 		moviemapper.updateconno(m);
 	}
-
+	public List<MovieInfo> searchmovielist(String keyword) throws Exception{
+		return moviemapper.searchmovielist(keyword);
+	}
 }
