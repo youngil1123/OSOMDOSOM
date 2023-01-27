@@ -1,9 +1,6 @@
 package com.shop.frame;
 import java.util.List;
 
-import com.shop.dto.Board;
-import com.shop.dto.Member_tbl;
-
 public interface MyService<K,V> {
 	public void register(V v) throws Exception;
 	public void remove(K k) throws Exception;
@@ -11,6 +8,6 @@ public interface MyService<K,V> {
 	
 	public V get(K k) throws Exception;
 	public List<V> get() throws Exception;
-	int idCheck(String mem_id);
+
 
 }
