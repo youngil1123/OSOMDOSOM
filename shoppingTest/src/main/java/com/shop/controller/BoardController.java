@@ -22,7 +22,7 @@ public class BoardController {
 	@RequestMapping(value="/myboard", method=RequestMethod.GET)
 	public void list(Model model) throws Exception{
 		List<Board> list = null;
-		list = boardservice.list();
+		list = boardservice.get();
 		
 		model.addAttribute("list", list);
 		
