@@ -39,9 +39,13 @@
 				'method' : 'post',
 				'action' : '[[@{/loginimpl}]]'
 			});
+			
 			$('#login_form').submit();
-		});
 
+			
+		});
+		
+		
 		$("#idck_btn").click(function() {
 			 var mem_id = $('input[name="id"]').val();
 		          $.ajax({
@@ -62,6 +66,8 @@
 		              }
 		          });
 		      });	
+		
+	
 	});
 	
 	
@@ -73,8 +79,103 @@
 	
 </script>
 
+ <script>
+ $("mem_Form").submit(function(){
+	function checkAll() {
+  	if (!checkUserId(form.mem_id.value)) {
+      	return false;
+  	} else if (!checkName(form.mem_name.value)) {
+     	    return false;
+  	} else if (!checkMail(form.mem_email.value)) {
+     		return false;
+	}
+	}
+	
+	 // 공백확인 함수
+    function checkExistData(value, dataName) {
+        if (value == "") {
+            alert(dataName + " 입력해주세요!");
+            return false;
+        }
+        return true;
+    }
+  
+  function checkUserId() {
+      //Id가 입력되었는지 확인하기
+      if (!checkExistData(mem_id, "아이디를"))
+          return false;
+
+      var idRegExp = /^[a-zA-z0-9]{4,12}$/; //아이디 유효성 검사
+      if (!idRegExp.test(mem_id)) {
+          alert("아이디는 영문 대소문자와 숫자 4~12자리로 입력해야합니다!");
+          form.mem_id.value = "";
+          form.mem_id.focus();
+          return false;
+      }
+      return true; //확인이 완료되었을 때
+  }
+  
+  function checkName(mem_name) {
+      if (!checkExistData(mem_name, "이름을"))
+          return false;
+
+      var nameRegExp = /^[가-힣]{2,4}$/;
+      if (!nameRegExp.test(mem_name)) {
+          alert("이름이 올바르지 않습니다.");
+          return false;
+      }
+      return true; //확인이 완료되었을 때
+  }
+  
+  function checkMail(mem_email) {
+      //mail이 입력되었는지 확인하기
+      if (!checkExistData(mem_email, "이메일을"))
+          return false;
+
+      var emailRegExp = /^[A-Za-z0-9_]+[A-Za-z0-9]*[@]{1}[A-Za-z0-9]+[A-Za-z0-9]*[.]{1}[A-Za-z]{1,3}$/;
+      if (!emailRegExp.test(mem_email)) {
+          alert("이메일 형식이 올바르지 않습니다!");
+          form.mem_email.value = "";
+          form.mem_mail.focus();
+          return false;
+      }
+      return true; //확인이 완료되었을 때
+  }
+  
+ 
+  })
+  </script>
+
+<!-- <script>
+
+//회원가입의 유효성검사         
+	$("#mem_form").submit(function(){             
+		//아이디 첫번째문자 영어여야 한다.             
+		//      영대소문자, 숫자, 만 가능하다.             
+		//      길이는 8자리에서 15자리까지 허용한다.                          
+		//정규표현식                
+		//  ^ : 처음부터 문자를 검색         
+		//$ : 끝까지 검색            
+		//var reg = /^[A-Za-z]{1}[A-Za-z0-9]{7,14}$/                
+		var reg = /^[A-Za-z]{1}\w{7,14}$/    
+		// \w  : 영대소문자,숫자,            
+		if( !reg.test($("#mem_id").val())){// 맞으면 true, 틀리면 false                 
+			alert("아이디를 잘못입력하였습니다.\n아이디는 첫번째 영어, 영대소문자, 숫자, 가능, 길이는 8~15글자 가능");                
+		return false;
+		}                          
+		                        
+	     //이름은 한글로 2~7글자까지 허용한다.             
+	     reg = /^[가-힣]{2,7}$/;             
+	     if(!reg.test($("#mem_name").val())){                 
+	     alert("이름은 한글 2-7자까지 허용합니다."); 
+			}
+		}
+	
+	
+</script>
+	 -->
 <script>
-function check_pw(){
+	function check_pw(){
 	 
     var pw = document.getElementById('member_pwd1').value;
     var SC = ["!","@","#","$","%","?","^","*","."];
@@ -106,53 +207,14 @@ function check_pw(){
 
 </script>
 
-
-
-
-<!-- <script>
- $("#joinbtn").click(function() {
-
-                $.ajax({
-                    url: "/btn",
-                    type: "POST",
-                    data: {
-                        "id": $("#mem_id").val(),
-                        "name": $("#mem_name").val(),
-                        "pwd": $("#mem_pwd").val(),
-                        "email": $("#email").val(),
-                        "mbti": $("#mem_mbti").val(),
-                        "nickname": $("#nickname").val(),
-                        "auth": 1
-                    },
-
-                    // 마찬가지로 리턴받은 메시지(res)의 결과에 따라 처리해준다.
-                    success: function(res) {
-                        if(res.trim() == 'ok') {
-                            console.log(res);
-                            alert("가입되었습니다!");
-                            // location.href="login.html";
-                        } else {
-                            alert("가입되지 않았습니다!");
-                            $("mem_id").val("");
-                            $("#mem_name").val("");
-                            $("#mem_pwd").val("");
-                            $("#mem_email").val("");
-                            $("#nickname").val("");
-                        }
-                    }
-                });
-            });
-</script>  -->
-
-
 </head>
 <body>
+
 <header th:replace="top.html :: navigation-bar"></header>
 
 <div class="container" id="container">
 <div class="form-container sign-up-container">
-   <form action="/member/new" method="post">
-      <h2>Create Account</h2>
+   <form action="/member/new" method="post" id="mem_form" onsubmit="return checkAll()">
       <span>to have wonderful experience!</span>
     
      <!--  <input type="text" placeholder="Name" />
@@ -163,20 +225,21 @@ function check_pw(){
 	 
 	<!--  <input type="text" placeholder="Id" name="mem_id" id="mem_id" /> -->
 	 <div class="idck">
-	 <input type="text"  id="mem_id" name="mem_id" placeholder="id 입력" style= "width: 190px; display: block; float:left; "> 
+	 <input type="text"  id="mem_id" name="mem_id" placeholder="id 입력" class="checkUserId" style= "width: 190px; display: block; float:left;" > 
 	 <input type="button" id="idck_btn" value="중복확인" style= "width: 90px; display: block; float:right;"/>
 	</div>
-     <input type="text" placeholder="Name" name="mem_name" />
+     <input type="text" placeholder="Name" name="mem_name"  class="checkName"/>
      <div class="passConfirm">
-	 <input type="password" placeholder="password" name="mem_pwd" id="member_pwd1" onchange="check_pw()"/>
+	 <input type="password" placeholder="password" name="mem_pwd" id="member_pwd1" onchange="check_pw()">
 	 <input type="password" placeholder="verify password" name="mem_pwd2" id="member_pwd2" onchange="check_pw()">
 	 <span id="check"></span>
 	 </div>
-	 <input type="text" placeholder="E-Mail" name="mem_email" />
+	 <input type="text" placeholder="E-Mail" name="mem_email" class="checkMail"/>
 	 <input type="text" placeholder="MBTI(선택)" name="mbti" />	
 	 <input type="text" placeholder="Nickname" name="nickname" />
-
-      <button type="submit" id="joinbtn">Sign Up</button> 
+	 
+        <button type="submit" id="joinbtn">Sign Up</button> 
+   
     </form>  
   </div>
 
@@ -195,7 +258,7 @@ function check_pw(){
        ('lostinfo','new','scrollbars=yes,resizable=no width=500 height=750, left=600,top=200'); return login">Forgot your password?</a>
      	<br>
 		<div id="signbtn">
-    	<a><button >Sign In</button></a>
+    	<a><button type="submit" id="loginbtn" >Sign In</button></a>
     	</div>
     </form>
   </div>

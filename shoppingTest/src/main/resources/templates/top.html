@@ -76,11 +76,13 @@
 			<div class="position-relative">
 				
 					<div th:if ="${session.logincust == null}"> <!-- -->
-						<a th:href="@{/login}" >Login</a></li>
+						<a th:href="@{/login}" >Login</a>
+			
 					</div>
 					<div th:if="${session.logincust != null}">
 						<a th:href="@{/logout}">
-						<span th:text="${session.logincust.nickname} + '님 로그인 하셨습니다.' "></span>
+						<span th:text="${session.logincust.nickname} + '님 <로그아웃>' "></h2>
+
 					</a>
 					</div>
 					<div>	

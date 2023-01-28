@@ -35,9 +35,10 @@ public class MainController {
 			member = mservice.get(mem_id);
 			if (member != null) {
 			if(member.getMem_pwd().equals(mem_pwd)) {
-					// 성공
+
 					// 성공시에만 이걸로 바뀜. 디폴트는 로그인 fail.
 					session.setAttribute("logincust", member);
+
 				}
 			}
 		} catch (Exception e) {
@@ -69,5 +70,5 @@ public class MainController {
 	 public String lostinfo(){
 		 return "lostinfo";
 	 }
-	 
+
 }
