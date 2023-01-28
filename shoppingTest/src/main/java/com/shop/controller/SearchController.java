@@ -59,7 +59,7 @@ public class SearchController {
 	    public List<BookInfo> searchbooklist(String keyword, Model model) throws Exception {
 			
 			List<BookInfo> objs = bookmapper.searchbooklist(keyword);
-			
+			model.addAttribute("objs", "objs");
 	        return objs;
 	    }
 }
