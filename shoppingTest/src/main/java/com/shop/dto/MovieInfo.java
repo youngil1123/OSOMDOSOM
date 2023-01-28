@@ -20,4 +20,9 @@ public class MovieInfo {
 	private String peopleNm; // 감독명
 	private String showTm; // 상영시간
 	private int con_no;
+	
+
+	
+
+	
 }

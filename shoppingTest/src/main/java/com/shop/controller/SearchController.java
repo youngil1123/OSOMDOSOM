@@ -6,11 +6,11 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.shop.dto.BookInfo;
+import com.shop.mapper.BookMapper;
 import com.shop.service.BookService;
 import com.shop.service.ContentsService;
 import com.shop.service.MovieService;
@@ -18,6 +18,9 @@ import com.shop.service.TheaterService;
 
 @Controller
 public class SearchController {
+	
+	@Autowired
+	private BookMapper bookmapper;
 	
 	@Autowired
 	BookService bookService;
@@ -51,12 +54,11 @@ public class SearchController {
 		}
 		
 		
-		@GetMapping("/searchbooklist")
+		@RequestMapping(value="/searchbooklist")
 		@ResponseBody
 	    public List<BookInfo> searchbooklist(String keyword, Model model) throws Exception {
 			
-			List<BookInfo> objs = new ArrayList<BookInfo>();
-			objs = bookService.searchbooklist(keyword);
+			List<BookInfo> objs = bookmapper.searchbooklist(keyword);
 			
 	        return objs;
 	    }
