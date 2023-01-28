@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.shop.dto.BookInfo;
 import com.shop.dto.MovieInfo;
 import com.shop.frame.MyService;
 import com.shop.mapper.MovieMapper;
@@ -51,4 +52,6 @@ public class MovieService implements MyService<String, MovieInfo>{
 	public List<MovieInfo> searchmovielist(String keyword) throws Exception{
 		return moviemapper.searchmovielist(keyword);
 	}
+
+
 }

@@ -3,6 +3,7 @@ package com.shop.mapper;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import com.shop.dto.BookInfo;
@@ -13,4 +14,6 @@ public interface BookMapper extends MyMapper<Integer, BookInfo> {
 	public List<Integer> getbookno();
 	public void updatebookcd(BookInfo b);
 	public List<BookInfo> searchbooklist(String keyword);
+	
+	
 }

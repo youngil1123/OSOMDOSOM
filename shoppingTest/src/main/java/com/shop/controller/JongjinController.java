@@ -1,9 +1,16 @@
 package com.shop.controller;
 
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
+import com.shop.dto.Member_tbl;
 import com.shop.service.FriendshipService;
 import com.shop.service.Member_tblService;
 
@@ -18,26 +25,35 @@ public class JongjinController {
 	@Autowired
 	FriendshipService fservice;
 	
-//	@RequestMapping("")
-//	public ModelAndView follower(HttpServletRequest request) {
-//
-//		ModelAndView mv = new ModelAndView();
-//		HttpSession session = request.getSession();
-//		String myid = session.getId(); // 로그인한 아이디
-//
-//		int my_no = mservice.findmem_no(myid); // 내 회원번호 //내 회원번호가 mem_no 와 일치하는 컬럼들의 mem_no2의 모든 데이터를 리스트로 가져온다.
-//		fservice 
-//
-//		mv.setViewName("follower/follower");
-//
-//		return mv;
-//	}
-//	 
-	
 	@RequestMapping("")
-	public String Follower() {
-		return "follower/follower";
+	public ModelAndView follower(HttpServletRequest request) {
+
+		ModelAndView mv = new ModelAndView();
+		HttpSession session = request.getSession();
+		Member_tbl member = (Member_tbl) session.getAttribute("logincust");
+
+		String myid = member.getMem_id(); // 로그인한 아이디
+		System.out.println(myid);
+		int myNo = mservice.findmem_no(myid); // 로그인 아이디의 회원번호
+		System.out.println(myNo);
+
+		try {
+			List<Member_tbl> list = mservice.getfollower(myNo); // 해당 회원번호가 팔로우중인 사람들의 정보를 리스트에 담음.
+			System.out.println(list);
+			mv.setViewName("/follower/follower");
+			mv.addObject("followerinfo", list);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return mv;
 	}
+	 
+	
+//	@RequestMapping("")
+//	public String Follower() {
+//		return "follower/follower";
+//	}
 	
 	
 	@RequestMapping("/addFollower")
