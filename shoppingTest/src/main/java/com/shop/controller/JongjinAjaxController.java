@@ -124,11 +124,13 @@ public class JongjinAjaxController {
 		HttpSession session = request.getSession();
 		Member_tbl member = (Member_tbl) session.getAttribute("logincust");
 
-		Integer myid_no = member.getMem_no();
-		System.out.println(myid_no);
+		String myid = "";
 
-		if (myid_no != null) {
-			mv.setViewName("/follower/follower");
+		if (member != null) {
+			myid = member.getMem_id();
+			System.out.println(myid);
+
+			mv.setViewName("/follower/deleteFollower");
 		} else {
 			mv.setViewName("/login");
 		}
