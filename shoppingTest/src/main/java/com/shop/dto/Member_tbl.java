@@ -1,8 +1,6 @@
 package com.shop.dto;
 
 
-import org.springframework.web.multipart.MultipartFile;
-
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -16,7 +14,7 @@ import lombok.ToString;
 @ToString
 public class Member_tbl {
 	
-	private int mem_no;
+	private Integer mem_no;
 	private String mem_id;
 	private String mem_pwd;
 	private String mem_name;

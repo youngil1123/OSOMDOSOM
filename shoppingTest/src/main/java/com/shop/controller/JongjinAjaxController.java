@@ -6,6 +6,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.shop.dto.Friendship;
 import com.shop.dto.Member_tbl;
@@ -78,7 +79,9 @@ public class JongjinAjaxController {
 	}
 
 	@RequestMapping("/DeleteFw")
-	public Integer DeleteFw(String dfwid, HttpServletRequest request) throws Exception {
+	public ModelAndView DeleteFw(String dfwid, HttpServletRequest request) throws Exception {
+
+		ModelAndView mv = new ModelAndView();
 
 		Friendship friendship = new Friendship();
 
@@ -100,11 +103,37 @@ public class JongjinAjaxController {
 
 		if (chk != null) {
 			fservice.remove(friendship);
-			result = 1;
-			return result;
+
+			mv.setViewName("/follower/deleteFollower");
+			mv.addObject("dfwid", dfwid);
+
+			return mv;
 		} else {
-			return result;
+			mv.setViewName("/follower/deleteFollower");
+			mv.addObject("dfwid", dfwid);
+
+			return mv;
 		}
+	}
+
+	@RequestMapping("/FollowerPage")
+	public ModelAndView FollowerPage(HttpServletRequest request) {
+
+		ModelAndView mv = new ModelAndView();
+
+		HttpSession session = request.getSession();
+		Member_tbl member = (Member_tbl) session.getAttribute("logincust");
+
+		Integer myid_no = member.getMem_no();
+		System.out.println(myid_no);
+
+		if (myid_no != null) {
+			mv.setViewName("/follower/follower");
+		} else {
+			mv.setViewName("/login");
+		}
+
+			return mv;
 	}
 
 }
