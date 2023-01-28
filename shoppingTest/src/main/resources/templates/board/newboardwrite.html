@@ -103,13 +103,14 @@
 	 
 	 function searchbooklist(){
 	  		$.ajax({
-	  			url:"${cpath}/searchbooklist",
+	  			url:"[[@{${cpath}/searchbooklist}]]",
 	  			type:"get",
+	  			data : $("form[name=searchForm]").serialize(),
 	  			dataType:"json",
 	  			success: ajaxHtml,
-	  			error:function(){
-	  				alert("error");
-	  				}
+	  			error:function(request, status, error){
+	  				alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+	  			}
 	  		});
 	  	}
 	 
@@ -126,7 +127,7 @@
 	  		
 	  		
 	  		
-	 $.each(data, (BookInfo, obj)=>{ 
+	 $.each(data, function(BookInfo, obj){ 
 			html+="<tr>";
 	  		html+="<td>"+obj.bookno+"</td>";
 	  		html+="<td>"+obj.bookname+"</td>";
@@ -211,16 +212,15 @@
 						<td>연도</td>
 						<td>권수</td>
 					</tr>
-					<c:forEach var="vo" items="${list}">
-						<tr>
-							<td>${vo.bookno}</td>
-							<td>${vo.bookname}</td>
-							<td>${vo.authors}</td>
-							<td>${vo.publisher}</td>
-							<td>${vo.publication_year}</td>
-							<td>${vo.vol}</td>
-						</tr>
-					</c:forEach>
+					<tr th:each = "vo : ${objs}">
+						<td th:text="${vo.book_no}">${vo.bookno}</td>
+						<td th:text="${vo.bookname}">${vo.bookname}</td>
+						<td th:text="${vo.authors}">${vo.authors}</td>
+						<td th:text="${vo.publisher}">${vo.publisher}</td>
+						<td th:text="${vo.publication_year}">${vo.publication_year}</td>
+						<td th:text="${vo.vol}">${vo.vol}</td>
+					</tr>
+
 				</thead>
 			</table>
 		</div>
