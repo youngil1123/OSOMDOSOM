@@ -98,7 +98,7 @@
         return true;
     }
   
-  function checkUserId() {
+  function checkUserId(mem_id) {
       //Id가 입력되었는지 확인하기
       if (!checkExistData(mem_id, "아이디를"))
           return false;
@@ -113,7 +113,19 @@
       return true; //확인이 완료되었을 때
   }
   
-  function checkMail() {
+  function checkName(mem_name) {
+      if (!checkExistData(mem_name, "이름을"))
+          return false;
+
+      var nameRegExp = /^[가-힣]{2,4}$/;
+      if (!nameRegExp.test(mem_name)) {
+          alert("이름이 올바르지 않습니다.");
+          return false;
+      }
+      return true; //확인이 완료되었을 때
+  }
+  
+  function checkMail(mem_email) {
       //mail이 입력되었는지 확인하기
       if (!checkExistData(mem_email, "이메일을"))
           return false;
@@ -128,17 +140,7 @@
       return true; //확인이 완료되었을 때
   }
   
-  function checkName() {
-      if (!checkExistData(mem_name, "이름을"))
-          return false;
-
-      var nameRegExp = /^[가-힣]{2,4}$/;
-      if (!nameRegExp.test(mem_name)) {
-          alert("이름이 올바르지 않습니다.");
-          return false;
-      }
-      return true; //확인이 완료되었을 때
-  }
+ 
   })
   </script>
 
