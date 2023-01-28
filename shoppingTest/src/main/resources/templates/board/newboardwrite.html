@@ -51,7 +51,6 @@
 <!-- Loading third party fonts -->
 <link href="http://fonts.googleapis.com/css?family=Roboto:300,400,700|"
 	rel="stylesheet" type="text/css">
-<link href="fonts/font-awesome.min.css" rel="stylesheet" type="text/css">
 <!-- Loading main css file -->
 <link rel="stylesheet" th:href="@{/css/style.css}">
 
@@ -96,26 +95,77 @@
   }
 </style>
 
-<script>
-	function getSearchList() {
-		$.ajax({
-			type : 'GET',
-			url : "/getSearchList",
-			data : $("form[name=con_name]").serialize(),
-			success : function(result) {
-
-			}
-		})
-
-	}
-	
+<script>		
 	 const drawStar = (target) => {
 		    document.querySelector(`.star span`).style.width = `${target.value * 10}%`;
 		  }
-</script>
-
+	 
+	 
+	 function searchbooklist(){
+	  		$.ajax({
+	  			url:"${cpath}/searchbooklist",
+	  			type:"get",
+	  			dataType:"json",
+	  			success: ajaxHtml,
+	  			error:function(){alert("error");}
+	  		});
+	  	}
+	 
+	 function ajaxHtml(data){
+	  		var html="<table class='table'>";
+	  		html+="<tr>";
+	  		html+="<td>번호</td>";
+	  		html+="<td>제목</td>";
+	  		html+="<td>작가</td>";
+	  		html+="<td>출판사</td>";
+	  		html+="<td>ISBN</td>";
+	  		html+="<td>보유도서수</td>";  		
+	  		html+="</tr>";
+	  		
+	  		
+	  		
+	 $.each(data, (BookInfo, obj)=>{ 
+			html+="<tr>";
+	  		html+="<td>"+obj.bookno+"</td>";
+	  		html+="<td>"+obj.bookname+"</td>";
+	  		html+="<td>"+obj.author+"</td>";
+	  		html+="<td>"+obj.authors+"</td>";
+	  		html+="<td>"+obj.publication_year+"</td>";
+	  		html+="<td>"+obj.vol+"</td>";
+	  		html+="</tr>";
+		})
+		html+="</table>";
+		
+	 $("#ajaxBookList").html(html);
+	 }
+		</script>		
+		
+<!-- 		
+		/* function searchbooklist(){
+			$.ajax({
+				type: 'GET',
+				url : "/searchbooklist",
+				data : $("form[name=searchForm]").serialize(),
+				success : function(result){
+					//테이블 초기화
+					$('#boardtable > tbody').empty();
+					if(result.length>=1){
+						result.forEach(function(item){
+							str='<tr>'
+							str += "<td>"+item.bookno+"</td>";
+							str += "<td>"+item.bookname+"</td>";
+							str+="<td>"+item.authors+"</td>";
+							str+="<td><a href = '/board/detail?idx=" + item.idx + "'>" + item.title + "</a></td>";
+							str+="<td>"+item.vol+"</td>";
+							str+="</tr>"
+							$('#boardtable').append(str);
+		        		})				 
+					}
+				}
+			})
+		} */ -->
+	 
 </head>
-
 
 <body>
 	<header th:replace="top.html :: navigation-bar"></header>
@@ -123,24 +173,56 @@
 	<div class="container" style="margin-top: 100px;">
 
 		<div class="search_box">
-			<form id="searchForm" onsubmit="return false;" autocomplete="off">
+			<form id="searchForm" name="searchForm"  autocomplete="off">
 				<div class="sch_group fl">
 					<select id="searchType" name="searchType" title="검색 유형 선택">
-						<option value="">미디어</option>
+						<option value="">항목 선택</option>
 						<option value="movie">Movie</option>
 						<option value="drama">Drama</option>
 						<option value="book">Book</option>
 						<option value="musical">Musical</option>
 						<option value="theater">Theater</option>
-					</select> <input type="text" id="keyword" name="keyword"
-						placeholder="제목을 입력해 주세요." title="제목 입력" />
-					<button type="button" class="bt_search" onclick="getSearchList()">
+					</select> 
+					<input type="text" id="keyword" name="keyword"
+						placeholder="필수 기입" title="제목 입력" />
+					<button class="bt_search" onclick="searchbooklist()">
 						<i class="fas fa-search"></i><span class="skip_info">검색</span>
 					</button>
 				</div>
 			</form>
 		</div>
-
+	<div id="ajaxbooklist" >
+  <table class="list_1" width="100%" cellspacing="0" summary="">
+      <caption></caption>
+          <colgroup>
+          <col/>
+          <col/>
+          <col/>
+          <col/>
+          <col/>
+      </colgroup>
+      <thead id="addTable">
+          <tr>
+              <td>번호</td>
+              <td>도서명</td>
+              <td>작가명</td>
+              <td>출판사</td>
+              <td>연도</td>
+              <td>권수</td>
+          </tr>
+          <c:forEach var="vo" items="${list}">
+    	  <tr>
+    	    <td>${vo.bookno}</td>    	 
+    	    <td>${vo.bookname}</td>
+    	    <td>${vo.authors}</td>
+    	    <td>${vo.publisher}</td>
+    	    <td>${vo.publication_year}</td>
+    	    <td>${vo.vol}</td>
+    	  </tr>   
+    	    </c:forEach> 	  
+      </thead>
+  </table>
+</div>
 		<h2>게시판 글쓰기</h2>
 		<form action="write.jsp" method="post">
 			<div class="form-group">
@@ -189,13 +271,6 @@
 	<footer th:replace="footer.html :: footer"></footer>
 	</div>
 	<!-- Default snippet for navigation -->
-
-
-
-	<script src="js/jquery-1.11.1.min.js"></script>
-	<script src="js/plugins.js"></script>
-	<script src="js/app.js"></script>
-
 </body>
 
 </html>

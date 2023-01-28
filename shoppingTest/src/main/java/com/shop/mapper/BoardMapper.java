@@ -12,5 +12,9 @@ import com.shop.frame.MyMapper;
 @Mapper
 @Repository
 public interface BoardMapper extends MyMapper<Integer,Board>{
-	public List<Board> list() throws Exception;
+	public List<Board> searchmylist(String mem_id);
+
+	public List<Board> list(); 
+	
+	
 }

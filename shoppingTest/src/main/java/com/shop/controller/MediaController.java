@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class MediaController {
 	
 
+
 	@RequestMapping("/mediamain")
     public String mediamain(Model model) {
 		
@@ -20,19 +21,7 @@ public class MediaController {
 		model.addAttribute("top", "moviedetail");
         return "/board/moviedetail";
 	}
-	@RequestMapping("/boardwrite")
-    public String boardwrite(Model model) {
-		
-		model.addAttribute("top", "boardwrite");
-        return "/board/boardwrite";
-	}
-	
-	@RequestMapping("/newboardwrite")
-    public String newboardwrite(Model model) {
-		
-		model.addAttribute("top", "newboardwrite");
-        return "/board/newboardwrite";
-	}
+
 	
 	@RequestMapping("/myboard")
     public String myboard(Model model) {
@@ -70,6 +59,11 @@ public class MediaController {
 		model.addAttribute("top", "theater");
         return "/board/theater";
     }
+	
+
+	
+
+
 	
 	
 }

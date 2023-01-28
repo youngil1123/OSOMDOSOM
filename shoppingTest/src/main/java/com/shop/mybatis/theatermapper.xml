@@ -12,4 +12,7 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 	<update id="updateconno" parameterType="TheaterInfo">
 		UPDATE theaterinfo SET con_no=#{con_no} WHERE mt20id =#{mt20id}		
 	</update>
+	<select id="searchtheaterlist" parameterType="String" resultType="TheaterInfo">
+		SELECT * FROM theaterinfo WHERE genrenm=#{searchType} and prfnm LIKE CONCAT('%',#{keyword},'%')
+	</select>
 </mapper>

@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.shop.dto.BookInfo;
 import com.shop.dto.Member_tbl;
 import com.shop.frame.MyService;
 import com.shop.mapper.Member_tblMapper;
@@ -64,6 +65,9 @@ public class Member_tblService implements MyService<String, Member_tbl> {
 		
 		return mapper.findmem_no(mem_id);
 	}
+
+	
+
 
 
 

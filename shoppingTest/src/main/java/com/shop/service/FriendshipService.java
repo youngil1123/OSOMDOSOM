@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.shop.dto.BookInfo;
 import com.shop.dto.Friendship;
 import com.shop.frame.MyService;
 import com.shop.mapper.FriendshipMapper;
@@ -54,6 +55,8 @@ public class FriendshipService implements MyService<Integer, Friendship>{
 		return mapper.check(f);
 
 	}
+
+
 
 
 	
