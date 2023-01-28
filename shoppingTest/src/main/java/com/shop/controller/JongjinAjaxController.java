@@ -126,7 +126,7 @@ public class JongjinAjaxController {
 
 		String myid = "";
 
-		if (member != null) {
+		if (member != null) { // 로그인이 되어있는 경우
 			myid = member.getMem_id();
 			System.out.println(myid);
 
@@ -135,8 +135,7 @@ public class JongjinAjaxController {
 			mv.setViewName("/login");
 		}
 
-			return mv;
+		return mv;
 	}
-
 }
 
