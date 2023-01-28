@@ -23,24 +23,14 @@ public class MediaController {
 	}
 
 	
-	@RequestMapping("/myboard")
-    public String myboard(Model model) {
-		
-		model.addAttribute("top", "myboard");
-        return "/board/myboard";
-	}
+
 	@RequestMapping("/movie")
     public String movie(Model model) {
 		
 		model.addAttribute("top", "movie");
         return "/board/movie";
     }
-	@RequestMapping("/drama")
-    public String drama(Model model) {
-		
-		model.addAttribute("top", "drama");
-        return "/board/drama";
-    }
+
 	@RequestMapping("/musical")
     public String musical(Model model) {
 		

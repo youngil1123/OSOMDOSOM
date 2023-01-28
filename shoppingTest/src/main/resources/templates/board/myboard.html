@@ -64,20 +64,53 @@
 		background:#ddd;
 		line-height:50px;
 		margin-top:100px;
+		
+		
 	}
 	.head-info>div:last-child{
 		text-align:right;
 	}
+	#table{
+		width:100%;
+		margin-bottom:50px;
+	}
 	
-	.board-list>li{
+	.board-list>td{
 		float:left;
-		width:10%;
+		width:15%;
 		height:40px;
 		line-height:40px;
 		border-bottom:1px solid #ddd;
+		list-style:none;
+		text-align:center;
+
 	}
-	.board-list>li:nth-child(6n+3){
-		width:50%;
+	.list>td{
+		float:left;
+		width:15%;
+		height:40px;
+		line-height:40px;
+		border-bottom:1px solid #ddd;
+		list-style:none;
+		text-align:center;
+		
+	}
+	.board-list>td:nth-child(6n+3){
+		width:35%;
+		
+	}	
+		.list>td:nth-child(6n+3){
+		width:35%;
+		
+	}	
+	
+	.board-list>td:nth-child(6n+4){
+		width:20%;
+		
+	}	
+		.list>td:nth-child(6n+4){
+		width:20%;
+		
 	}	
 </style>
 <script>
@@ -88,7 +121,7 @@
 			//  $("h1").attr("title","연습"); 
 			//  $("#bb").prop("checked", true);//값바꾸기    $("#bb").prop("checked"); //구하기
 			//  $(this) : 이벤트가 발생한 객체
-			$(".board-list input[type=checkbox]").prop("checked", $(this).prop("checked"));
+			$("input[type=checkbox]").prop("checked", $(this).prop("checked"));
 		});
 		
 		//선택삭제 버튼 클릭시
@@ -112,9 +145,7 @@
 			}			
 		});////
 		
-		$(function(){
-			
-		});
+	
 	});
 </script>
 </head>
@@ -122,6 +153,7 @@
 <header th:replace="top.html :: navigation-bar"></header>
 	<div class="container">
 	<h1>게시판 목록</h1>
+	<table id="table">
 	<div class="head-info">
 		<div>총레코드수 : ${totalRecord}개</div>
 		<div>
@@ -133,35 +165,27 @@
 		</div>
 	</div>
 	<form method="post" action="/webMVC/board/boardMultiDel.do" id="delForm">
-		<ul class="board-list">
-			<li><input type="checkbox" id="allCheck">전체선택</li>
-			<li>번호</li>
-			<li>제목</li>
-			<li>작성자</li>
-			<li>조회수</li>
-			<li>등록일</li>
-			
-			<c:forEach  var="dto" items="${list}">
-				<li>
-					<c:if test="${dto.mem_id == logId }">
-						<input type="checkbox" name="no" value="${dto.board_no}"/>
-					</c:if>	
-					<c:if test="${dto.mem_id != logId }">
-						<input type="checkbox" disabled/>
-					</c:if>			
-				</li>
-				<li >${dto.board_no}</li>
-				<li class="word-cut"><a href="/webMVC/board/boardView.do?no=${dto.board_no}">${dto.review}</a></li>
-				<li>${dto.mem_id }</li>
-				<li>${dto.writedate }</li>
-				<li>${dto.star_rate}</li>
-			</c:forEach>
-		</ul>
+		<tr class="board-list">
+			<td><input type="checkbox" id="allCheck">전체선택</td>
+			<td>번호</td>
+			<td>리뷰</td>
+			<td>등록일</td>
+			<td>별점</td>
+		</tr>
+		<tr class="list" th:each="l :${searchmylist}">
+			<td><input type="checkbox" id="allCheck"></td>
+			<td th:text="${l.board_no}"></td>
+			<td th:text="${l.review}"></td>
+			<td th:text="${l.writedate}"></td>
+			<td th:text="${l.star_rate}"></td>
+		</tr>
 	</form>
 	<div>
-		<input type="button" value="선택삭제" id="choDel"/>
 	</div>
+	<input type="button" value="선택삭제" id="choDel"/>
+	</table>
 	</div>
+	
 	<footer th:replace="footer.html :: footer"></footer>
 	
 	<script src="js/jquery-1.11.1.min.js"></script>

@@ -72,12 +72,13 @@
 					alert("이미 팔로우 중입니다.");
 				}else{
 					alert(data+" 님을 팔로우 합니다.");
+					var url="/follower";
+					location.replace(url);
 				}
 				
 			}
 			,error:function(request, error){
-				alert("fail");
-				alert("code: "+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+				alert("잘못된 아이디입니다. 다시 입력해주세요.");
 			} 
 		});
     }
@@ -108,7 +109,7 @@
       	<br><br><br><br><br>
         <div class="login__field">
           <i class="login__icon fas fa-user"></i>
-          <input type="text" class="login__input" name="id" placeholder="User name / Nickname">
+          <input type="text" class="login__input" name="id" placeholder="User id">
         </div>       
         <span id="id_span" style="position:absolute; right:30px; top:340px; "></span>
 		<a href="#" id="addBtn" class="button login__submit">
