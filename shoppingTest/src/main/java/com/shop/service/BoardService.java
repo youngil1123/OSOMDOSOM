@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.shop.dto.Board;
+import com.shop.dto.BookInfo;
 import com.shop.frame.MyService;
 import com.shop.mapper.BoardMapper;
 
@@ -13,6 +14,8 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 @Service
 public class BoardService implements MyService<Integer, Board>{
+	
+
 	
 	@Autowired
 	BoardMapper mapper;
@@ -37,17 +40,41 @@ public class BoardService implements MyService<Integer, Board>{
 		return mapper.select(k);
 	}
 
-	public List<Board> searchmylist(String mem_id) throws Exception {
-		return mapper.searchmylist(mem_id);
+	public List<Board> searchmylist(Integer mem_no) throws Exception {
+		return mapper.searchmylist(mem_no);
 	}
 
 	@Override
 	public List<Board> get() throws Exception {
-		return null;
+		return mapper.selectall();
+	}
+
+	
+	public List<Board> list() throws Exception {
+		return mapper.list();
 	}
 
 
+	
+	/*@Transactional
+    public List<MovieInfo> getMovieInfoList() {
+		
+		 List<MovieInfo> movieList = movieRepository.findAll();
+	        List<MovieInfo> boardDtoList = new ArrayList<>();
 
+	        for(MovieInfo movieInfo : movieList) {
+	        	MovieInfo boardDto = MovieInfo.builder()
+	                    .id(board.getId())
+	                    .author(board.getAuthor())
+	                    .title(board.getTitle())
+	                    .content(board.getContent())
+	                    .createdDate(board.getCreatedDate())
+	                    .build();
+	            boardDtoList.add(boardDto);
+	        }
+	        return boardDtoList;
+	    }*/
+		
+		
+	}
 
-
-}	

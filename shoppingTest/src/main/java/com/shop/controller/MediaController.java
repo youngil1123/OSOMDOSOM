@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class MediaController {
 	
 
+
 	@RequestMapping("/mediamain")
     public String mediamain(Model model) {
 		
@@ -20,38 +21,16 @@ public class MediaController {
 		model.addAttribute("top", "moviedetail");
         return "/board/moviedetail";
 	}
-	@RequestMapping("/boardwrite")
-    public String boardwrite(Model model) {
-		
-		model.addAttribute("top", "boardwrite");
-        return "/board/boardwrite";
-	}
+
 	
-	@RequestMapping("/newboardwrite")
-    public String newboardwrite(Model model) {
-		
-		model.addAttribute("top", "newboardwrite");
-        return "/board/newboardwrite";
-	}
-	
-	@RequestMapping("/myboard")
-    public String myboard(Model model) {
-		
-		model.addAttribute("top", "myboard");
-        return "/board/myboard";
-	}
+
 	@RequestMapping("/movie")
     public String movie(Model model) {
 		
 		model.addAttribute("top", "movie");
         return "/board/movie";
     }
-	@RequestMapping("/drama")
-    public String drama(Model model) {
-		
-		model.addAttribute("top", "drama");
-        return "/board/drama";
-    }
+
 	@RequestMapping("/musical")
     public String musical(Model model) {
 		
@@ -70,6 +49,11 @@ public class MediaController {
 		model.addAttribute("top", "theater");
         return "/board/theater";
     }
+	
+
+	
+
+
 	
 	
 }

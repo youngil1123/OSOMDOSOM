@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.shop.dto.BookInfo;
 import com.shop.dto.TheaterInfo;
 import com.shop.frame.MyService;
 import com.shop.mapper.TheaterMapper;
@@ -48,4 +49,11 @@ public class TheaterService implements MyService<String, TheaterInfo>{
 	public void updateconno(TheaterInfo t) throws Exception{
 		theatermapper.updateconno(t);
 	}
+	public List<TheaterInfo> searchtheaterlist(String searchType,String keyword){
+		return theatermapper.searchtheaterlist(searchType, keyword);
+	}
+
+	
+
+
 }

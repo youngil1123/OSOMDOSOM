@@ -51,4 +51,19 @@ public class BookService implements MyService<Integer, BookInfo>{
 	public void updatebookcd(BookInfo b) throws Exception{
 		bookmapper.updatebookcd(b);
 	}
+
+	public List<BookInfo> searchbooklist(String keyword) throws Exception{
+		//키워드로 책 리스트 검색하기
+		return bookmapper.searchbooklist(keyword);
+	}
+
+
+
+	/*
+	 * @Override public List<BookInfo> getsearchCheck(BookInfo bookinfo) throws
+	 * Exception { // TODO Auto-generated method stub return null; }
+	 */
+
+
+
 }

@@ -12,4 +12,7 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 	<update id="updatebookcd" parameterType="BookInfo">
 		UPDATE bookinfo SET con_no = #{con_no} WHERE book_no = #{book_no}
 	</update>
+	<select id="searchbooklist" resultType="BookInfo" parameterType="String">
+		SELECT * FROM bookinfo WHERE bookname LIKE CONCAT('%',#{keyword},'%')
+	</select>
 </mapper>

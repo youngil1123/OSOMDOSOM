@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
+//github.com/youngil1123/OSOMDOSOM.git
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,25 +17,26 @@ import com.shop.service.BoardService;
 
 
 @Controller
-@RequestMapping("/board")
 public class BoardController {
 
 	@Autowired
 	BoardService boardservice;
 	
 	@RequestMapping("/myboard")
-	public String searchmylist(Model model, HttpSession session) throws Exception{
+	public String searchmylist(Model model,  HttpSession session) throws Exception{
 		List<Board> list = null;
 		Member_tbl member = new Member_tbl();
 		member = (Member_tbl)session.getAttribute("logincust");
-		
-		list = boardservice.searchmylist(member.getMem_id());
-		
+		System.out.println(member);
+
+		int mem_no = member.getMem_no();
+		list = boardservice.searchmylist(mem_no);
+
+		System.out.println(list);
 		model.addAttribute("searchmylist", list);
-		
-		return "/board/myboard";
-		
+		model.addAttribute("list", list);
+
+		return "board/myboard";	
 	}
 	
-
 }

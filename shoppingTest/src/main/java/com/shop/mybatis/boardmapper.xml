@@ -24,8 +24,8 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 	<select id="selectall" resultType="Board">
 		
 	</select>
-	<select id="searchmylist" resultType="Board" parameterType="String">
-	select (#{board_no},#{review},#{writedate},#{star_rate}) from board where mem_id=#{mem_id}
+	<select id="searchmylist" parameterType="Integer" resultType="Board"  >
+		select * from board where mem_no=#{mem_no}
 	</select>
 	
 	

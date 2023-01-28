@@ -1,6 +1,7 @@
 package com.shop.dto;
 
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -11,6 +12,7 @@ import lombok.ToString;
 @Setter
 @Getter
 @ToString
+@Data
 public class BookInfo {
 	private int book_no;
     private String bookname;
@@ -22,4 +24,8 @@ public class BookInfo {
     private String class_nm;
     private String bookImageURL;
     private int con_no;
+    
+   
+
+    
 }

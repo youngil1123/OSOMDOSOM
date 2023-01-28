@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.shop.dto.BookInfo;
 import com.shop.dto.Contents;
 import com.shop.frame.MyService;
 import com.shop.mapper.ContentsMapper;
@@ -44,6 +45,7 @@ public class ContentsService implements MyService<Integer, Contents>{
 	public int getconno(String con_cd) throws Exception{
 		return contentsmapper.getconno(con_cd);
 	}
+
 
 	
 }
