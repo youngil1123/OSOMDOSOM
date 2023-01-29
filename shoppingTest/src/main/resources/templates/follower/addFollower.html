@@ -70,6 +70,8 @@
 			success:function(data){
 				if(data=="false"){
 					alert("이미 팔로우 중입니다.");
+				}else if(data =="myself"){
+					alert("스스로는 팔로우 할 수 없습니다.");
 				}else{
 					alert(data+" 님을 팔로우 합니다.");
 					var url="/follower";
