@@ -15,7 +15,7 @@ public class DasomAjaxController {
 	
 	//아이디찾기
 	@RequestMapping("/findid")
-    public Object findid(String mem_name, String mem_email ) {
+	public Object findid(String mem_name, String mem_email) {
 		
         String mem_id = null;
         try {

@@ -33,8 +33,8 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 		SELECT mem_no FROM member_tbl WHERE mem_id=#{mem_id}
 	</select>
 	<!-- 아이디찾기 -->
-	<select id="findid" resultType="Member_tbl" parameterType="String">
-		SELECT * FROM member_tbl WHERE mem_name=#{mem_name} and mem_email=#{mem_email}
+	<select id="findid" resultType="String" parameterType="Member_tbl">
+		SELECT mem_id FROM member_tbl WHERE mem_name=#{mem_name} and mem_email=#{mem_email}
 	</select>
 	<!-- 비밀번호찾기 -->
 	<select id="findpwd" resultType="Member_tbl" parameterType="String">

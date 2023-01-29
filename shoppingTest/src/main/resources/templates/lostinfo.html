@@ -12,7 +12,7 @@ $(document).ready(function(){
 	$('#findidbtn').click(function(){
 		var mem_name = $('#mem_name').val();
 		var mem_email = $('#mem_email').val();
-		var tag="<hr style='width:606px'><li>";
+		var tag="<li style='text-align:center;'>";
 		if(mem_name==""){
 			alert("이름을 입력해주세요");
 			$('#mem_name').focus();
@@ -51,7 +51,7 @@ $(document).ready(function(){
 	$('#findpwdbtn').click(function(){
 		var mem_id=$('#mem_id').val();
 		var mem_email = $('#mem_email').val();
-		var tag="<hr style='width:357px'><li>";
+		var tag="<hr style='width:300px'><li>";
 		if(mem_id==""){
 			alert("ID를 입력해주세요");
 			$('#mem_id').focus();
@@ -85,7 +85,8 @@ $(document).ready(function(){
 	});
 });
 </script>
-
+		<br>
+		<br>
         <h1>DOIT BOOK</h1>
         <br>
 		<section class="page-section" id="lostinfo">
@@ -97,6 +98,7 @@ $(document).ready(function(){
                     <div class="btn2">
                     <button id="findidbtn" onclick="findid()">아이디 찾기</button>
                     </div>
+                      <br>
                       <div id="emailresult"></div>
                 </ul>
             </div>
