@@ -20,6 +20,7 @@ public class Board {
 	private int con_no;
 	private int mem_no;
 	private Date writedate;
+	private String title;
 	private String review;
 	private String partner;
 	private String secret_memo;
