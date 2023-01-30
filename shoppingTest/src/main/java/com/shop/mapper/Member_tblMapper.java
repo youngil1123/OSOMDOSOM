@@ -1,6 +1,8 @@
 package com.shop.mapper;
 
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
@@ -14,4 +16,6 @@ public interface Member_tblMapper extends MyMapper<String,Member_tbl>{
 	public String findid(String mem_name, String mem_email);
 	public String findpwd(String mem_id, String mem_email);
 	public Integer idCheck(String mem_id);
+
+	public List<Member_tbl> selectallfollower(Integer myNo) throws Exception;
 }

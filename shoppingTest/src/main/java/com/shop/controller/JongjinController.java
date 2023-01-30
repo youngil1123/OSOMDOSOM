@@ -33,26 +33,23 @@ public class JongjinController {
 		HttpSession session = request.getSession();
 		Member_tbl member = (Member_tbl) session.getAttribute("logincust");
 
-		// ArrayList heart = new ArrayList();
+		Friendship friendship = new Friendship();
 
 		String myid = member.getMem_id(); // 로그인한 아이디
-		// System.out.println(myid);
+		System.out.println(myid);
 		int myNo = mservice.findmem_no(myid); // 로그인 아이디의 회원번호
-		// System.out.println(myNo);
-
-		Friendship friendship = new Friendship();
-		int myid_no = mservice.findmem_no(member.getMem_id());
+		System.out.println(myNo);
 
 		try {
-			List<Member_tbl> list = mservice.getfollower(myNo); // 해당 회원번호가 팔로우중인 사람들의 정보를 리스트에 담음.
+			List<Member_tbl> list = mservice.getfollower(myNo);
 			System.out.println(list);
-			System.out.println(list.get(0).getMem_no());
+
 			for (int i = 0; i < list.size(); i++) {
 				int fwNo = list.get(i).getMem_no(); // 해당번째의 회원의 회원번호
 				friendship.setMem_no(fwNo);
 				friendship.setMem_no2(myNo);
 				Integer chk = fservice.get(friendship);
-				if(chk != null) {
+				if (chk != null) {
 					list.get(i).setHeart("heart.png");
 					// heart.add("heart.png");
 				} else {
@@ -60,10 +57,9 @@ public class JongjinController {
 					// heart.add("followok.png");
 				}
 			}
-			// System.out.println(heart);
+
 			mv.setViewName("/follower/follower");
 			mv.addObject("followerinfo", list);
-			// mv.addObject("heart", heart);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
