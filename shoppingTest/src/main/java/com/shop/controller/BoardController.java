@@ -27,16 +27,19 @@ public class BoardController {
 		List<Board> list = null;
 		Member_tbl member = new Member_tbl();
 		member = (Member_tbl)session.getAttribute("logincust");
-		System.out.println(member);
 
-		int mem_no = member.getMem_no();
-		list = boardservice.searchmylist(mem_no);
-
-		System.out.println(list);
+	
+		if(member != null) {
+				int mem_no = member.getMem_no();
+				list = boardservice.searchmylist(mem_no);
+		}
+		
 		model.addAttribute("searchmylist", list);
 		model.addAttribute("list", list);
 
 		return "board/myboard";	
 	}
+	
+	
 	
 }

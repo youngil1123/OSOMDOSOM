@@ -25,7 +25,7 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 		
 	</select>
 	<select id="searchmylist" parameterType="Integer" resultType="Board"  >
-		select * from board where mem_no=#{mem_no}
+		select * from board where mem_no=#{mem_no} order by board_no desc
 	</select>
 	
 	
