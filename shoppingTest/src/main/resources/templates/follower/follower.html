@@ -52,29 +52,7 @@
     		return true;
     };
     </script>
-    
-    <script>
-    
-    function fwHeart(){
-    	var fwid = $('input[name="thisid"]').val();
-    	alert(fwid);
-    	$.ajax({
-    		url:'[[@{/follower/FwHeart}]]',
-    		data:{"fwid":fwid} , 
-    		success:function(heart){
-    			if(heart==1){
-    				document.getElementById("heart").src="/img/jongjinimg/follower/heart.png";
-    			}
-    		}
-    	});
-    	
-    };
-    
-    $(document).ready(function(){
-    	function fwHeart();
-    }); 
-    
-    </script>
+
     
 </head>
 <body>
