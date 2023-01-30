@@ -9,5 +9,4 @@ public interface MyMapper<K,V> {
 	public V select (K k) throws Exception;
 	public List<V> selectall() throws Exception;
 
-	public List<V> selectallfollower(Integer myNo) throws Exception;
 }
