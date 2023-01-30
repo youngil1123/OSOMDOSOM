@@ -55,26 +55,6 @@ public class BoardService implements MyService<Integer, Board>{
 	}
 
 
-	
-	/*@Transactional
-    public List<MovieInfo> getMovieInfoList() {
-		
-		 List<MovieInfo> movieList = movieRepository.findAll();
-	        List<MovieInfo> boardDtoList = new ArrayList<>();
 
-	        for(MovieInfo movieInfo : movieList) {
-	        	MovieInfo boardDto = MovieInfo.builder()
-	                    .id(board.getId())
-	                    .author(board.getAuthor())
-	                    .title(board.getTitle())
-	                    .content(board.getContent())
-	                    .createdDate(board.getCreatedDate())
-	                    .build();
-	            boardDtoList.add(boardDto);
-	        }
-	        return boardDtoList;
-	    }*/
-		
-		
 	}
 

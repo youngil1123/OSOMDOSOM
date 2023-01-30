@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.shop.dto.BookInfo;
 import com.shop.dto.Member_tbl;
 import com.shop.frame.MyService;
 import com.shop.mapper.Member_tblMapper;
@@ -54,8 +53,6 @@ public class Member_tblService implements MyService<String, Member_tbl> {
 		return cnt;
 	}	
 
-
-	/* 아이디찾기 */
 	public String findid(String mem_name, String mem_email) {
 		return mapper.findid(mem_name, mem_email);
 	}
@@ -63,7 +60,7 @@ public class Member_tblService implements MyService<String, Member_tbl> {
 	public String findpwd(String mem_id, String mem_email) {
 		return mapper.findpwd(mem_id, mem_email);
 	}
-	
+
 	public Integer findmem_no(String mem_id) {
 		
 		return mapper.findmem_no(mem_id);

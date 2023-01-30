@@ -100,94 +100,83 @@
 		    document.querySelector(`.star span`).style.width = `${target.value * 10}%`;
 		  }
 	 
-	 
-	 function searchbooklist(){
-	  		$.ajax({
-	  			url:"[[@{${cpath}/searchbooklist}]]",
-	  			type:"get",
-	  			data : $("form[name=searchForm]").serialize(),
-	  			dataType:"json",
-	  			success: ajaxHtml,
-	  			error:function(request, status, error){
-	  				alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-	  			}
-	  		});
-	  	}
-	 
-	 function ajaxHtml(data){
-	  		var html="<table class='table'>";
-	  		html+="<tr>";
-	  		html+="<td>번호</td>";
-	  		html+="<td>제목</td>";
-	  		html+="<td>작가</td>";
-	  		html+="<td>출판사</td>";
-	  		html+="<td>ISBN</td>";
-	  		html+="<td>보유도서수</td>";  		
-	  		html+="</tr>";
-	  		
-	  		
-	  		
-	 $.each(data, function(BookInfo, obj){ 
-			html+="<tr>";
-	  		html+="<td>"+obj.bookno+"</td>";
-	  		html+="<td>"+obj.bookname+"</td>";
-	  		html+="<td>"+obj.author+"</td>";
-	  		html+="<td>"+obj.authors+"</td>";
-	  		html+="<td>"+obj.publication_year+"</td>";
-	  		html+="<td>"+obj.vol+"</td>";
-	  		html+="</tr>";
-		})
-		html+="</table>";
-		
-	 $("#ajaxBookList").html(html);
-	 }
-		</script>
+	 function searchCheck(){
+			
 
-<!-- 		
-		/* function searchbooklist(){
-			$.ajax({
-				type: 'GET',
-				url : "/searchbooklist",
-				data : $("form[name=searchForm]").serialize(),
-				success : function(result){
-					//테이블 초기화
-					$('#boardtable > tbody').empty();
-					if(result.length>=1){
-						result.forEach(function(item){
-							str='<tr>'
-							str += "<td>"+item.bookno+"</td>";
-							str += "<td>"+item.bookname+"</td>";
-							str+="<td>"+item.authors+"</td>";
-							str+="<td><a href = '/board/detail?idx=" + item.idx + "'>" + item.title + "</a></td>";
-							str+="<td>"+item.vol+"</td>";
-							str+="</tr>"
-							$('#boardtable').append(str);
-		        		})				 
-					}
-				}
-			})
-		} */ -->
+			//검색어 입력여부확인
+			if(document.getElementById("keyword").value==""){
+				alert("찾을 단어를 입력 후 검색하세요.");
+				return false;
+			}
+				return true;
+		}
+	 
+	 
+	 function searchlist(){
+		    var searchType = $("#searchType.val()");
+			if(searchType=="book"){
+				$("#booknav").show();
+			}else{
+				$("#movienav").hide();
+				$("#theaternav").hide();
+			}
+	    }
+	 
+	 //체크박스 안고르고 미디어 선택 누르면 나오는 alert
+	 function selectItem(){
+		 if($("#ajaxbooklist input[name='chk_res']:checked").length == 0){
+		 alert("체크할 리스트를 선택해주세요.");
+		 return false;
+		 }
+		 
+		 //미디어 버튼 누르면 값이 날라가야하는데 왜 안감?
+		 var chk = $(this).is(":checked");
+		 
+		 if(chk) $("#ajaxbooklist input[name='chk_res']").prop('checked', true);
+		 else  $("#ajaxbooklistb input[name='chk_res']").prop('checked', false); 
+		 };
+		 
+		 
+		 
+		 
+		 var resArr = new Array();
+		 $("#ajaxbooklist  input[name='chk_res']:checked").each(function(index) {
+		 var book_no = $(this).val();
+		 var resObj = new Object();
+		 $tr = $("#booknav"+book_no);
+		 resObj.book_no             = $booknav.find("input[name='book_no']").val();
+		 resObj.bookname            = $booknav.find("input[name='bookname']").val();
+		 resObj.authors           = $booknav.find("input[name='authors']").val();
+		 resObj.publisher         = $booknav.find("input[name='publisher']").val();
+		 resObj.publication_year     = $booknav.find("input[name='publication_year']").val();
+		 resObj.vol     			= $booknav.find("input[name='vol']").val();
+
+		 resArr.push(resObj);
+		 });
+	 
+	
+</script> 
+
+
 
 </head>
 
 <body>
 	<header th:replace="top.html :: navigation-bar"></header>
-
 	<div class="container" style="margin-top: 100px;">
-
+<h2>게시판 글쓰기</h2>
 		<div class="search_box">
-			<form id="searchForm" name="searchForm" autocomplete="off">
+			<form id="searchForm" name="searchForm" autocomplete="off" onsubmit="return searchCheck()">
 				<div class="sch_group fl">
 					<select id="searchType" name="searchType" title="검색 유형 선택">
 						<option value="">항목 선택</option>
-						<option value="movie">Movie</option>
-						<option value="drama">Drama</option>
 						<option value="book">Book</option>
-						<option value="musical">Musical</option>
+						<option value="movie">Movie</option>
 						<option value="theater">Theater</option>
-					</select> <input type="text" id="keyword" name="keyword" placeholder="필수 기입"
-						title="제목 입력" />
-					<button class="bt_search" onclick="searchbooklist()">
+					</select> 
+					
+					<input type="text" id="keyword" name="keyword" placeholder="필수 기입" title="제목 입력"/>
+					<button class="bt_search" onclick="searchlist()">
 						<i class="fas fa-search"></i><span class="skip_info">검색</span>
 					</button>
 				</div>
@@ -203,29 +192,84 @@
 					<col />
 					<col />
 				</colgroup>
-				<thead id="addTable">
-					<tr>
+				<thead id="addTable" >
+					<tr id="booknav">
 						<td>번호</td>
 						<td>도서명</td>
 						<td>작가명</td>
 						<td>출판사</td>
 						<td>연도</td>
 						<td>권수</td>
+						<td>선택</td>
 					</tr>
-					<tr th:each = "vo : ${objs}">
-						<td th:text="${vo.book_no}">${vo.bookno}</td>
-						<td th:text="${vo.bookname}">${vo.bookname}</td>
-						<td th:text="${vo.authors}">${vo.authors}</td>
-						<td th:text="${vo.publisher}">${vo.publisher}</td>
-						<td th:text="${vo.publication_year}">${vo.publication_year}</td>
-						<td th:text="${vo.vol}">${vo.vol}</td>
+					
+			 		<tr th:each = "vo : ${objsbooks}" >
+						<td th:text="${vo.book_no}"></td>
+						<td th:text="${vo.bookname}"></td>
+						<td th:text="${vo.authors}"></td>
+						<td th:text="${vo.publisher}"></td>
+						<td th:text="${vo.publication_year}"></td>
+						<td th:text="${vo.vol}"></td>
+						<td><input type="checkbox" name="chk_res" value="${vo.bookname}" style=width:35px; /></td>
+					</tr> 
+					
+					<caption></caption>
+				<colgroup>
+					<col />
+					<col />
+					<col />
+					<col />
+					<col />
+				</colgroup>
+				
+					<tr id="movienav" style=display:none;>
+						<td>영화코드</td>
+						<td>영화이름</td>
+						<td>감독명</td>
+						<td>장르</td>
+						<td>상영시간</td>
+					</tr>
+					<tr th:each = "vo : ${objsmovies}" >
+						<td th:text="${vo.movieCd}"></td>
+						<td th:text="${vo.movieNm}"></td>
+						<td th:text="${vo.peopleNm}"></td>
+						<td th:text="${vo.genreAlt}"></td>
+						<td th:text="${vo.showTm}"></td>
+					</tr>
+					
+					<caption></caption>
+				<colgroup>
+					<col />
+					<col />
+					<col />
+					<col />
+					<col />
+				</colgroup>
+					<tr id="theaternav" style=display:none;>
+						<td>공연코드</td>
+						<td>공연명</td>
+						<td>장르</td>
+						<td>장소</td>
+						<td>시간</td>
+					</tr>
+					
+					<tr th:each = "vo : ${objstheaters}" >
+						<td th:text="${vo.mt20id}">${vo.mt20id}</td>
+						<td th:text="${vo.prfnm}">${vo.prfnm}</td>
+						<td th:text="${vo.genrenm}">${vo.genrenm}</td>
+						<td th:text="${vo.fcltynm}">${vo.fcltynm}</td>
+						<td th:text="${vo.prfruntime}">${vo.prfruntime}</td>
+						
 					</tr>
 
 				</thead>
 			</table>
+			<a href="#" onclick="selectItem();return false;" class="btn btn-dark btn-lg">미디어 선택</a>
 		</div>
-		<h2>게시판 글쓰기</h2>
-		<form action="write.jsp" method="post">
+		
+		<input type="text" id="choicemedia" name="choicemedia" placeholder="선택된 항목 표시" title="제목 입력" value="" readonly style=width:200px;/>
+		
+		<form action="" method="post">
 			<div class="form-group">
 				<label for="title">제목</label>
 				<!-- placeholder 속성 입력한 데이터가 없는 경우 배경으로 나타난다.실제적으로 입력을 100자까지로 지정 -->

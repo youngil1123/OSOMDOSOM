@@ -46,43 +46,34 @@
     
     <script src="https://kit.fontawesome.com/def66b134a.js" crossorigin="anonymous"></script>
     
-    <!-- 팔로우 취소 기능 -->
-    <script>
-    
-  /*   function followerdelete(id){
-    	$.ajax({
-    		url:'[[@{/follower/DeleteFw}]]',
-    		data:{"dfwid":id},
-    		success:function(data){
-    			if(data==1){
-    				alert("팔로워 삭제 완료");
-    				var url="/follower";
-    				location.replace(url);
-    			}else if(data==0){
-    				alert("팔로워 삭제 실패");
-    			}
-    		}
-    	});
-    }
-    
-    $(document).ready(function(){
-    	$('.icon_delete').click(function(){
-    		var c = confirm("팔로우를 취소하시겠습니까?");
-    		if(c==true){
-    			var id = $('input[name="thisid"]').val();
-    			alert(id);
-        		// followerdelete(id);
-    		}
-    	})
-    }); */
-    
-    </script>
-    
     <script>
     function chkDelete(){
     		alert("팔로우를 취소하였습니다.");
     		return true;
     };
+    </script>
+    
+    <script>
+    
+    function fwHeart(){
+    	var fwid = $('input[name="thisid"]').val();
+    	alert(fwid);
+    	$.ajax({
+    		url:'[[@{/follower/FwHeart}]]',
+    		data:{"fwid":fwid} , 
+    		success:function(heart){
+    			if(heart==1){
+    				document.getElementById("heart").src="/img/jongjinimg/follower/heart.png";
+    			}
+    		}
+    	});
+    	
+    };
+    
+    $(document).ready(function(){
+    	function fwHeart();
+    }); 
+    
     </script>
     
 </head>
@@ -106,9 +97,9 @@
         
         <div class="row property__gallery">
         
-        
+        	
             <div th:each="fw : ${followerinfo}" class="col-lg-3 col-md-4 col-sm-6 mix women">
-                <div class="product__item">
+                <div class="product__item"  >
                 	<div class="product__item__pic set-bg" >
                     <img th:src="'/img/jongjinimg/follower/'+${fw.mem_img}" style="width:400px; height:370px;"> <!-- mem_img -->
                         <ul class="product__hover">
@@ -117,13 +108,13 @@
                             <li id=""><a th:href="@{/follower/DeleteFw(dfwid=${fw.mem_id})}" onClick='chkDelete();'><span class="icon_delete"></span></a></li>
                         </ul>
                     </div>
-                    <div class="product__item__text">
-                        <h6><input type="hidden" name="thisid" th:value="${fw.mem_id}"> [[${fw.mem_id}]]</h6>  <!-- mem_id -->
+                    <div class="product__item__text">   <!-- mem_id -->
+                        <h6><input type="hidden" name="thisid" th:value="${fw.mem_id}"> [[${fw.mem_id}]]
+                        <img th:src="'/img/jongjinimg/follower/'+${fw.heart}" style="height:12px; width:12px" ></h6>
                         <div class="product__price" th:text="${fw.mbti}"></div> <!-- mbti -->                
                     </div>
                 </div>
             </div>       
-                
            
         </div>
     </div>

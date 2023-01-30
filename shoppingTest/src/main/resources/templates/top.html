@@ -22,6 +22,12 @@
 		alert("로그인이 필요한 서비스입니다. 로그인 이후 이용해 주십시오.");
 	}
 	</script> 
+	
+	<script>
+	function logout(){
+		alert("로그아웃 되었습니다.");
+	}
+	</script>
 
 
 		<div
@@ -102,7 +108,7 @@
 					</div>
 					<div th:if="${session.logincust != null}">
 						<a th:href="@{/logout}">
-						<span th:text="${session.logincust.nickname} + '님 <로그아웃>' "></h2>
+						<span th:text="${session.logincust.nickname} + '님 <로그아웃>' " onClick='logout();'></h2>
 
 					</a>
 					</div>

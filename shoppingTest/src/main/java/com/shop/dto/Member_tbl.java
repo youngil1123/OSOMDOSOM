@@ -24,7 +24,7 @@ public class Member_tbl {
 	private String nickname;
 	private int mem_point;
 	private String mem_img;
-	
+	private String heart;
 
 
 // 이메일 찾기

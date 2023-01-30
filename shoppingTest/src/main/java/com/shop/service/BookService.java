@@ -59,11 +59,4 @@ public class BookService implements MyService<Integer, BookInfo>{
 
 
 
-	/*
-	 * @Override public List<BookInfo> getsearchCheck(BookInfo bookinfo) throws
-	 * Exception { // TODO Auto-generated method stub return null; }
-	 */
-
-
-
 }

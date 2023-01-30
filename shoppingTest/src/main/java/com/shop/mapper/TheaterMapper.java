@@ -12,5 +12,5 @@ import com.shop.frame.MyMapper;
 public interface TheaterMapper extends MyMapper<String, TheaterInfo> {
 	public List<String> getcd(String genrenm);
 	public void updateconno(TheaterInfo t);
-	public List<TheaterInfo> searchtheaterlist(String searchType,String keyword);
+	public List<TheaterInfo> searchtheaterlist(String keyword);
 }
