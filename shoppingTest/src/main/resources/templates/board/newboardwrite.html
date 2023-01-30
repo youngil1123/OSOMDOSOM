@@ -128,38 +128,81 @@
 		 alert("체크할 리스트를 선택해주세요.");
 		 return false;
 		 }
-		 
-		 //미디어 버튼 누르면 값이 날라가야하는데 왜 안감?
-		 var chk = $(this).is(":checked");
-		 
-		 if(chk) $("#ajaxbooklist input[name='chk_res']").prop('checked', true);
-		 else  $("#ajaxbooklistb input[name='chk_res']").prop('checked', false); 
-		 };
-		 
-		 
-		 
-		 
-		 var resArr = new Array();
-		 $("#ajaxbooklist  input[name='chk_res']:checked").each(function(index) {
-		 var book_no = $(this).val();
-		 var resObj = new Object();
-		 $tr = $("#booknav"+book_no);
-		 resObj.book_no             = $booknav.find("input[name='book_no']").val();
-		 resObj.bookname            = $booknav.find("input[name='bookname']").val();
-		 resObj.authors           = $booknav.find("input[name='authors']").val();
-		 resObj.publisher         = $booknav.find("input[name='publisher']").val();
-		 resObj.publication_year     = $booknav.find("input[name='publication_year']").val();
-		 resObj.vol     			= $booknav.find("input[name='vol']").val();
+	 }
 
-		 resArr.push(resObj);
-		 });
-	 
+		 
+		 
+		 //미디어 선택 버튼 눌렀을 떄 기능 싸악 싹싹
+		 function getCheckboxValue()  {
+			  // 선택된 목록 가져오기
+			  const query = 'input[name="bookname"]:checked';
+			  const query1 = 'input[name="moviename"]:checked';	 
+			  const query2 = 'input[name="theatername"]:checked';
+			  
+			  //체크박스 선택 함수
+			  const selectedEls = 
+			      document.querySelectorAll(query);
+			  
+			  const selectedEls1 = 
+			      document.querySelectorAll(query1);
+			  
+			  const selectedEls2 = 
+			      document.querySelectorAll(query2);
+			  
+			  // 선택된 목록에서 value 찾기
+			  let result = '';
+			  selectedEls.forEach((el) => {
+			    result += el.value + ' ';
+			  });
+			  
+			  selectedEls1.forEach((el) => {
+				    result += el.value + ' ';
+				  });
+			  
+			  selectedEls2.forEach((el) => {
+				    result += el.value + ' ';
+				  });
+			  
+			  // 출력
+			  document.getElementById('result').innerText
+			    = result;
+			}
+		 
+		 //체크박스 한개만 고르는 함수
+		 function checkOnlyOne(element) {
+			  
+			  const checkboxes 
+			      = document.getElementsByName("bookname");
+			  const checkboxes1 
+		      = document.getElementsByName("moviename");
+			  const checkboxes2 
+		      = document.getElementsByName("theatername");
+			  
+			  checkboxes.forEach((cb) => {
+			    cb.checked = false;
+			  })
+			  
+			  checkboxes1.forEach((cb) => {
+			    cb.checked = false;
+			  })
+			  
+			  checkboxes2.forEach((cb) => {
+			    cb.checked = false;
+			  })
+			  
+			  element.checked = true;
+			}
 	
 </script> 
 
 
 
 </head>
+
+
+
+<!-- 미디어 검색 폼  시작-->
+
 
 <body>
 	<header th:replace="top.html :: navigation-bar"></header>
@@ -210,7 +253,7 @@
 						<td th:text="${vo.publisher}"></td>
 						<td th:text="${vo.publication_year}"></td>
 						<td th:text="${vo.vol}"></td>
-						<td><input type="checkbox" name="chk_res" value="${vo.bookname}" style=width:35px; /></td>
+						<td><input type="checkbox" name="bookname" th:value="${vo.bookname}" style=width:35px; onclick='checkOnlyOne(this)' /></td>
 					</tr> 
 					
 					<caption></caption>
@@ -235,6 +278,7 @@
 						<td th:text="${vo.peopleNm}"></td>
 						<td th:text="${vo.genreAlt}"></td>
 						<td th:text="${vo.showTm}"></td>
+						<td><input type="checkbox" name="moviename" th:value="${vo.movieNm}" style=width:35px; onclick='checkOnlyOne(this)' /></td>
 					</tr>
 					
 					<caption></caption>
@@ -259,15 +303,30 @@
 						<td th:text="${vo.genrenm}">${vo.genrenm}</td>
 						<td th:text="${vo.fcltynm}">${vo.fcltynm}</td>
 						<td th:text="${vo.prfruntime}">${vo.prfruntime}</td>
-						
+						<td><input type="checkbox" name="theatername" th:value="${vo.prfnm}" style=width:35px; onclick='checkOnlyOne(this)' /></td>
 					</tr>
 
 				</thead>
 			</table>
-			<a href="#" onclick="selectItem();return false;" class="btn btn-dark btn-lg">미디어 선택</a>
+			<a href="#" onclick='getCheckboxValue()' class="btn btn-dark btn-lg">미디어 선택</a>
 		</div>
+		<div id='result'></div>
 		
-		<input type="text" id="choicemedia" name="choicemedia" placeholder="선택된 항목 표시" title="제목 입력" value="" readonly style=width:200px;/>
+	<!-- 미디어 검색 폼  끝-->	
+		
+		
+		
+		
+		
+	<!-- 여기서부터 게시글 작성 폼 시작 -->	
+		
+		
+		
+		
+		
+		
+		
+		
 		
 		<form action="" method="post">
 			<div class="form-group">
@@ -311,7 +370,7 @@
 				onclick="window.location='moviedetail'">등록</button>
 		</form>
 	</div>
-
+	<!-- 여기서부터 게시글 작성 폼 끝 -->	
 
 	<footer th:replace="footer.html :: footer"></footer>
 	</div>
