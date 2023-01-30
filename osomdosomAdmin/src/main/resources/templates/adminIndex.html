@@ -36,13 +36,14 @@ $(document).ready(function() {
 });
 </script>
 <body>
-	<h1>관리자 페이지입니다. <br>로그인 해주세요 mm</h1>
+	<h1>관리자 페이지입니다. <br>로그인 해주세요</h1>
+	<img th:src="@{/img/goodday.jpg}" style="height:500px;margin:auto;display:block;">
 	<div>
 	<h2 th:text="${login_fail_msg}" id="login_fail_msg"></h2>
 	</div>
 	<form id="adminlogin_form" method="post" th:action="@{/loginimpl}">
-		ID&nbsp;&nbsp;<input type="text" name="admin_id" id="admin_id" required/> <br>
-		PWD&nbsp;&nbsp;<input type="password" name="admin_pwd" id="admin_pwd" required/><br> 
+		관리자ID&nbsp;&nbsp;<input type="text" name="admin_id" id="admin_id" required/>
+		관리자PWD&nbsp;&nbsp;<input type="password" name="admin_pwd" id="admin_pwd" required/><br> 
 		<br>
 			<input type="submit" value="로그인" id="login_submit" />
 	</form>
