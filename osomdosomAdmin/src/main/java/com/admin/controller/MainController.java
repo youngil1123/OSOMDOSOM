@@ -1,5 +1,8 @@
 package com.admin.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,7 +11,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.admin.dto.Admin;
+import com.admin.dto.Member_tbl;
 import com.admin.service.AdminService;
+import com.admin.service.Member_tblService;
 
 @Controller
 public class MainController {
@@ -16,9 +21,24 @@ public class MainController {
 	@Autowired
 	AdminService aservice;
 
+	@Autowired
+	Member_tblService mservice;
+	
 	@RequestMapping("/")
 	public String main() {
 		return "adminIndex";
+	}
+	@RequestMapping("/membercontrol")
+	public String membercontrol(Model model) {
+		List<Member_tbl> members = new ArrayList<Member_tbl>();
+		try {
+			members = mservice.get();
+			model.addAttribute("members", members);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return "memberlist";
 	}
 
 	@RequestMapping("/loginimpl")
