@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.shop.dto.Board;
 import com.shop.dto.BookInfo;
 import com.shop.dto.MovieInfo;
 import com.shop.frame.MyService;
@@ -57,6 +58,7 @@ public class BookService implements MyService<Integer, BookInfo>{
 		return bookmapper.searchbooklist(keyword);
 	}
 
+	
 
 
 }
