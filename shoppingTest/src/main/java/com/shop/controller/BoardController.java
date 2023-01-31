@@ -52,7 +52,7 @@ public class BoardController {
 		
     	System.out.println(board);
     	boardservice.register(board);
-    	return "board/myboard";	//내 글 페이지로 이동
+    	return "redirect:/myboard";	//내 글 페이지로 이동
     }
 	
 }
