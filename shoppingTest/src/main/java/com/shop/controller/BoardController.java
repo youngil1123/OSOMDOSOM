@@ -55,4 +55,17 @@ public class BoardController {
     	return "redirect:/myboard";	//내 글 페이지로 이동
     }
 	
+	/*
+	 * @RequestMapping("/newboardwrite") public String newboardwrite(Model model,
+	 * HttpSession session) throws Exception{ List<Board> list = null; Member_tbl
+	 * member = new Member_tbl(); member =
+	 * (Member_tbl)session.getAttribute("logincust"); System.out.println(member);
+	 * 
+	 * 
+	 * model.addAttribute("list", list);
+	 * 
+	 * return "board/newboardwrite"; }
+	 */
+	
+	
 }
