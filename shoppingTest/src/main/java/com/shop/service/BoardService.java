@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.shop.dto.Board;
-import com.shop.dto.BookInfo;
 import com.shop.frame.MyService;
 import com.shop.mapper.BoardMapper;
 
@@ -21,8 +20,8 @@ public class BoardService implements MyService<Integer, Board>{
 	BoardMapper mapper;
 
 	@Override
-	public void register(Board v) throws Exception {
-		mapper.insert(v);
+	public void register(Board board) throws Exception {
+		mapper.insert(board);
 	}
 
 	@Override
@@ -53,7 +52,7 @@ public class BoardService implements MyService<Integer, Board>{
 	public List<Board> list() throws Exception {
 		return mapper.list();
 	}
-
+	
 
 
 	}
