@@ -5,7 +5,9 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 <mapper namespace="com.shop.mapper.BoardMapper">
 
 	<insert id="insert" parameterType="Board">
-		
+		insert into board values 
+		(#{board_no},#{con_no},#{mem_no},#{writedate},#{review},
+		#{partner},#{secret_memo},#{star_rate})
 	</insert>
 
 	<select id="select" parameterType="Integer" resultType="Board">
