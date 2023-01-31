@@ -40,6 +40,7 @@
 <!-- Template Main CSS Files -->
 <link href="/css/variables.css" rel="stylesheet">
 <link href="/css/main.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
 
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -89,6 +90,9 @@
 	overflow: hidden;
 	pointer-events: none;
 }
+th, td {
+	padding: 6px;
+    }
 </style>
 
 
@@ -108,17 +112,6 @@
 			}
 				return true;
 		}
-	 
-	 
-	 function searchlist(){
-		    var searchType = $("#searchType.val()");
-			if(searchType=="book"){
-				$("#booknav").show();
-			}else{
-				$("#movienav").hide();
-				$("#theaternav").hide();
-			}
-	    }
 	 
 	 //체크박스 안고르고 미디어 선택 누르면 나오는 alert
 	 function selectItem(){
@@ -209,13 +202,13 @@
 						<option value="theater">Theater</option>
 					</select> <input type="text" id="keyword" name="keyword" placeholder="필수 기입"
 						title="제목 입력" />
-					<button class="bt_search" onclick="searchlist()">
+					<button class="bt_search">
 						<i class="fas fa-search"></i><span class="skip_info">검색</span>
 					</button>
 				</div>
 			</form>
 		</div>
-		<div id="ajaxbooklist">
+		<div id="ajaxbooklist" >
 			<table class="list_1" width="100%" cellspacing="0" summary="">
 				<caption></caption>
 				<colgroup>
@@ -226,28 +219,16 @@
 					<col />
 				</colgroup>
 				<thead id="addTable">
-					<tr id="booknav">
-						<td>번호</td>
-						<td>도서명</td>
-						<td>작가명</td>
-						<td>출판사</td>
-						<td>연도</td>
-						<td>권수</td>
-						<td>선택</td>
-					</tr>
-
 					<tr th:each="vo : ${objsbooks}">
-						<td th:text="${vo.book_no}"></td>
-						<td th:text="${vo.bookname}"></td>
-						<td th:text="${vo.authors}"></td>
-						<td th:text="${vo.publisher}"></td>
-						<td th:text="${vo.publication_year}"></td>
-						<td th:text="${vo.vol}"></td>
-						
 						<td><input type="checkbox" name="medianame"
 							th:value="${vo.bookname}" style="width: 35px;"
 							onclick='checkOnlyOne(this)' /></td>
-							<td><input type="hidden" id="book_con_no" name="book_con_no" th:value="${vo.con_no}"></td>
+						<td><input type="hidden" id="book_con_no" name="book_con_no" th:value="${vo.con_no}"></td>
+						<td style="color:#3A3C68;font-family: 'Gowun Dodum', sans-serif;
+						">[[${vo.bookname}]][[${vo.vol}]]([[${vo.publication_year}]])</td>
+						<td th:text="${vo.authors}"></td>
+						<td>출판사:[[${vo.publisher}]]</td>
+						
 					</tr>
 				<caption></caption>
 				<colgroup>
@@ -257,25 +238,17 @@
 					<col />
 					<col />
 				</colgroup>
-
-				<tr id="movienav" style="display: none;">
-					<td>영화코드</td>
-					<td>영화이름</td>
-					<td>감독명</td>
-					<td>장르</td>
-					<td>상영시간</td>
-				</tr>
 				<tr th:each="vo : ${objsmovies}">
-					<td th:text="${vo.movieCd}"></td>
-					<td th:text="${vo.movieNm}"></td>
-					<td th:text="${vo.peopleNm}"></td>
-					<td th:text="${vo.genreAlt}"></td>
-					<td th:text="${vo.showTm}"></td>
-					
 					<td><input type="checkbox" name="medianame"
 						th:value="${vo.movieNm}" style="width: 35px;"
 						onclick='checkOnlyOne(this)' /></td>
-						<td><input type="hidden" id="movie_con_no" name="movie_con_no" th:value="${vo.con_no}"></td>
+					<td><input type="hidden" id="movie_con_no" name="movie_con_no" th:value="${vo.con_no}"></td>
+					<td style="color:#3A3C68;font-family: 'Gowun Dodum', sans-serif;
+					">[[${vo.movieNm}]]([[${vo.openDt}]])</td>
+					<td>감독:[[${vo.peopleNm}]]</td>
+					<td th:text="${vo.genreAlt}"></td>
+					<td>[[${vo.showTm}]]분</td>
+					
 				</tr>
 
 				<caption></caption>
@@ -286,34 +259,26 @@
 					<col />
 					<col />
 				</colgroup>
-				<tr id="theaternav" style="display: none;">
-					<td>공연코드</td>
-					<td>공연명</td>
-					<td>장르</td>
-					<td>장소</td>
-					<td>시간</td>
-				</tr>
-
 				<tr th:each="vo : ${objstheaters}">
-					<td th:text="${vo.mt20id}"></td>
-					<td th:text="${vo.prfnm}"></td>
-					<td th:text="${vo.genrenm}"></td>
-					<td th:text="${vo.fcltynm}"></td>
-					<td th:text="${vo.prfruntime}"></td>
-				
 					<td><input type="checkbox" name="medianame"
 						th:value="${vo.prfnm}" style="width: 35px;"
 						onclick='checkOnlyOne(this)' /></td>
-						<td><input type="hidden" id="theater_con_no" name="theater_con_no" th:value="${vo.con_no}"></td>
+					<td><input type="hidden" id="theater_con_no" name="theater_con_no" th:value="${vo.con_no}"></td>
+					<td th:text="${vo.prfnm}" style="color:#3A3C68;font-family: 'Gowun Dodum', sans-serif;
+					"></td>
+					<td th:text="${vo.genrenm}"></td>
+					<td th:text="${vo.fcltynm}"></td>
+					<td th:text="${vo.prfruntime}"></td>
 				</tr>
 
 				</thead>
 			</table>
+		</div>
 			<a href="#" onclick='getCheckboxValue()' class="btn btn-dark btn-lg">미디어
 				선택</a>
-		</div>
-			<label>선택 항목</label>
-				<div id='result' name="result"></div>
+			<br>
+			<label>선택 항목</label><br><span>ㄴ</span>
+			<span id='result' name="result"></span>
 	
 
 		<!-- 미디어 검색 폼  끝-->

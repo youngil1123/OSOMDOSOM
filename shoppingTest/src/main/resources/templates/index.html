@@ -56,7 +56,13 @@ margin-bottom:10px;
 
 
 </style>
+<script>		
+	function checklogin(){
+		alert("로그인하세욥");
+	}
 
+
+	</script> 
 </head>
 
 <body>
@@ -119,7 +125,12 @@ margin-bottom:10px;
     </section>
 
 	 <!-- Swiper -->
-	<button class="btn btn-secondary" id="newboard" onclick = "window.location='newboardwrite'">새 글 작성</button></br>
+	 <ul th:if="${session.logincust != null}">
+	<button class="btn btn-secondary" id="newboard" onclick = "window.location='newboardwrite'" >새 글 작성</button></br></ul>
+	<div th:if ="${session.logincust == null}"> 
+	<button  class="btn btn-secondary"  id="newboard"   onClick='checklogin();'>새 글 작성</a>
+			
+					</div>
     <button class="custom-btn btn-8" id="media_name" onclick = "window.location='movie'">MOVIE</button>
     <div class="swiper mySwiper">
     
