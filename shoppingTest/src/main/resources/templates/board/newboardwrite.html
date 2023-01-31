@@ -54,10 +54,6 @@
 <!-- Loading main css file -->
 <link rel="stylesheet" th:href="@{/css/style.css}">
 
-<!--[if lt IE 9]>
-		<script src="js/ie-support/html5.js"></script>
-		<script src="js/ie-support/respond.js"></script>
-		<![endif]-->
 
 <style>
 .btn {
@@ -95,7 +91,9 @@
 }
 </style>
 
+
 <script>		
+
 	 const drawStar = (target) => {
 		    document.querySelector(`.star span`).style.width = `${target.value * 10}%`;
 		  }
@@ -135,10 +133,11 @@
 		 //미디어 선택 버튼 눌렀을 떄 기능 싸악 싹싹
 		 function getCheckboxValue()  {
 			  // 선택된 목록 가져오기
-			  const query = 'input[name="bookname"]:checked';
-			  const query1 = 'input[name="moviename"]:checked';	 
-			  const query2 = 'input[name="theatername"]:checked';
-			  
+			  const query = 'input[name="medianame"]:checked';
+			  const query1 = 'input[name="con_no"]:checked';
+				  
+			
+
 			  //체크박스 선택 함수
 			  const selectedEls = 
 			      document.querySelectorAll(query);
@@ -146,56 +145,47 @@
 			  const selectedEls1 = 
 			      document.querySelectorAll(query1);
 			  
-			  const selectedEls2 = 
-			      document.querySelectorAll(query2);
-			  
 			  // 선택된 목록에서 value 찾기
 			  let result = '';
 			  selectedEls.forEach((el) => {
 			    result += el.value + ' ';
 			  });
 			  
+			 
 			  selectedEls1.forEach((el) => {
-				    result += el.value + ' ';
-				  });
+			    result += el.value + ' ';
+			  });
+	
 			  
-			  selectedEls2.forEach((el) => {
-				    result += el.value + ' ';
-				  });
-			  
-			  // 출력
+			// 출력
 			  document.getElementById('result').innerText
 			    = result;
+			
+			  console.log($('input[type="checkbox"]:checked').val());
+              console.log($('input[type="checkbox"]:checked').parent().next().children().val());
+              $('#con_no').val($('input[type="checkbox"]:checked').parent().next().children().val());
 			}
-		 
+		 	
 		 //체크박스 한개만 고르는 함수
 		 function checkOnlyOne(element) {
 			  
 			  const checkboxes 
-			      = document.getElementsByName("bookname");
-			  const checkboxes1 
-		      = document.getElementsByName("moviename");
-			  const checkboxes2 
-		      = document.getElementsByName("theatername");
+			      = document.getElementsByName("medianame");
+		
 			  
 			  checkboxes.forEach((cb) => {
 			    cb.checked = false;
 			  })
 			  
-			  checkboxes1.forEach((cb) => {
-			    cb.checked = false;
-			  })
-			  
-			  checkboxes2.forEach((cb) => {
-			    cb.checked = false;
-			  })
-			  
+	  
 			  element.checked = true;
 			}
+		 
+		
+		 
+		
 	
-</script> 
-
-
+</script>
 
 </head>
 
@@ -207,18 +197,18 @@
 <body>
 	<header th:replace="top.html :: navigation-bar"></header>
 	<div class="container" style="margin-top: 100px;">
-<h2>게시판 글쓰기</h2>
+		<h2>게시판 글쓰기</h2>
 		<div class="search_box">
-			<form id="searchForm" name="searchForm" autocomplete="off" onsubmit="return searchCheck()">
+			<form id="searchForm" name="searchForm" autocomplete="off"
+				onsubmit="return searchCheck()">
 				<div class="sch_group fl">
 					<select id="searchType" name="searchType" title="검색 유형 선택">
 						<option value="">항목 선택</option>
 						<option value="book">Book</option>
 						<option value="movie">Movie</option>
 						<option value="theater">Theater</option>
-					</select> 
-					
-					<input type="text" id="keyword" name="keyword" placeholder="필수 기입" title="제목 입력"/>
+					</select> <input type="text" id="keyword" name="keyword" placeholder="필수 기입"
+						title="제목 입력" />
 					<button class="bt_search" onclick="searchlist()">
 						<i class="fas fa-search"></i><span class="skip_info">검색</span>
 					</button>
@@ -235,7 +225,7 @@
 					<col />
 					<col />
 				</colgroup>
-				<thead id="addTable" >
+				<thead id="addTable">
 					<tr id="booknav">
 						<td>번호</td>
 						<td>도서명</td>
@@ -245,18 +235,21 @@
 						<td>권수</td>
 						<td>선택</td>
 					</tr>
-					
-			 		<tr th:each = "vo : ${objsbooks}" >
+
+					<tr th:each="vo : ${objsbooks}">
 						<td th:text="${vo.book_no}"></td>
 						<td th:text="${vo.bookname}"></td>
 						<td th:text="${vo.authors}"></td>
 						<td th:text="${vo.publisher}"></td>
 						<td th:text="${vo.publication_year}"></td>
 						<td th:text="${vo.vol}"></td>
-						<td><input type="checkbox" name="bookname" th:value="${vo.bookname}" style=width:35px; onclick='checkOnlyOne(this)' /></td>
-					</tr> 
-					
-					<caption></caption>
+						
+						<td><input type="checkbox" name="medianame"
+							th:value="${vo.bookname}" style="width: 35px;"
+							onclick='checkOnlyOne(this)' /></td>
+							<td><input type="hidden" id="book_con_no" name="book_con_no" th:value="${vo.con_no}"></td>
+					</tr>
+				<caption></caption>
 				<colgroup>
 					<col />
 					<col />
@@ -264,77 +257,91 @@
 					<col />
 					<col />
 				</colgroup>
+
+				<tr id="movienav" style="display: none;">
+					<td>영화코드</td>
+					<td>영화이름</td>
+					<td>감독명</td>
+					<td>장르</td>
+					<td>상영시간</td>
+				</tr>
+				<tr th:each="vo : ${objsmovies}">
+					<td th:text="${vo.movieCd}"></td>
+					<td th:text="${vo.movieNm}"></td>
+					<td th:text="${vo.peopleNm}"></td>
+					<td th:text="${vo.genreAlt}"></td>
+					<td th:text="${vo.showTm}"></td>
+					
+					<td><input type="checkbox" name="medianame"
+						th:value="${vo.movieNm}" style="width: 35px;"
+						onclick='checkOnlyOne(this)' /></td>
+						<td><input type="hidden" id="movie_con_no" name="movie_con_no" th:value="${vo.con_no}"></td>
+				</tr>
+
+				<caption></caption>
+				<colgroup>
+					<col />
+					<col />
+					<col />
+					<col />
+					<col />
+				</colgroup>
+				<tr id="theaternav" style="display: none;">
+					<td>공연코드</td>
+					<td>공연명</td>
+					<td>장르</td>
+					<td>장소</td>
+					<td>시간</td>
+				</tr>
+
+				<tr th:each="vo : ${objstheaters}">
+					<td th:text="${vo.mt20id}"></td>
+					<td th:text="${vo.prfnm}"></td>
+					<td th:text="${vo.genrenm}"></td>
+					<td th:text="${vo.fcltynm}"></td>
+					<td th:text="${vo.prfruntime}"></td>
 				
-					<tr id="movienav" style=display:none;>
-						<td>영화코드</td>
-						<td>영화이름</td>
-						<td>감독명</td>
-						<td>장르</td>
-						<td>상영시간</td>
-					</tr>
-					<tr th:each = "vo : ${objsmovies}" >
-						<td th:text="${vo.movieCd}"></td>
-						<td th:text="${vo.movieNm}"></td>
-						<td th:text="${vo.peopleNm}"></td>
-						<td th:text="${vo.genreAlt}"></td>
-						<td th:text="${vo.showTm}"></td>
-						<td><input type="checkbox" name="moviename" th:value="${vo.movieNm}" style=width:35px; onclick='checkOnlyOne(this)' /></td>
-					</tr>
-					
-					<caption></caption>
-				<colgroup>
-					<col />
-					<col />
-					<col />
-					<col />
-					<col />
-				</colgroup>
-					<tr id="theaternav" style=display:none;>
-						<td>공연코드</td>
-						<td>공연명</td>
-						<td>장르</td>
-						<td>장소</td>
-						<td>시간</td>
-					</tr>
-					
-					<tr th:each = "vo : ${objstheaters}" >
-						<td th:text="${vo.mt20id}">${vo.mt20id}</td>
-						<td th:text="${vo.prfnm}">${vo.prfnm}</td>
-						<td th:text="${vo.genrenm}">${vo.genrenm}</td>
-						<td th:text="${vo.fcltynm}">${vo.fcltynm}</td>
-						<td th:text="${vo.prfruntime}">${vo.prfruntime}</td>
-						<td><input type="checkbox" name="theatername" th:value="${vo.prfnm}" style=width:35px; onclick='checkOnlyOne(this)' /></td>
-					</tr>
+					<td><input type="checkbox" name="medianame"
+						th:value="${vo.prfnm}" style="width: 35px;"
+						onclick='checkOnlyOne(this)' /></td>
+						<td><input type="hidden" id="theater_con_no" name="theater_con_no" th:value="${vo.con_no}"></td>
+				</tr>
 
 				</thead>
 			</table>
-			<a href="#" onclick='getCheckboxValue()' class="btn btn-dark btn-lg">미디어 선택</a>
+			<a href="#" onclick='getCheckboxValue()' class="btn btn-dark btn-lg">미디어
+				선택</a>
 		</div>
-		<div id='result'></div>
-		
-	<!-- 미디어 검색 폼  끝-->	
-		
-		
-		
-		
-		
-	<!-- 여기서부터 게시글 작성 폼 시작 -->	
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		<form action="" method="post">
+			<label>선택 항목</label>
+				<div id='result' name="result"></div>
+	
+
+		<!-- 미디어 검색 폼  끝-->
+
+
+
+
+
+		<!-- 여기서부터 게시글 작성 폼 시작 -->
+
+
+
+
+
+
+
+
+		<form action="/board/create_action" method="POST" name="boardForm">
+
+				
+			
+			
 			<div class="form-group">
 				<label for="title">제목</label>
 				<!-- placeholder 속성 입력한 데이터가 없는 경우 배경으로 나타난다.실제적으로 입력을 100자까지로 지정 -->
 				<!-- required 속성을 설정하면 필수입력 사항이된다. -->
 				<!-- pattern 속성을 이용한 정규표현식으로 데이터의 유효성 검사를 할 수 있다. -->
-				<input type="text" class="form-control" id="title"
+				<input type="text" class="form-control" id="title" 
 					placeholder="제목 입력(4-100)" name="title" maxlength="100"
 					required="required" pattern=".{4,100}">
 			</div>
@@ -344,7 +351,7 @@
 				<label for="content">내용</label>
 				<!--  여러줄의 데이터를 입력하고 하고자 할때 textarea 태그를 사용한다. -->
 				<!--  textarea 안에 있는 모든 글자는 그대로 나타난다. 공백문자, tag, enter -->
-				<textarea class="form-control" rows="15" id="content" name="content"
+				<textarea class="form-control" rows="15" id="review" name="review"
 					placeholder="내용 작성"></textarea>
 			</div>
 
@@ -352,25 +359,26 @@
 				<label for="content">개인메모</label>
 				<!--  여러줄의 데이터를 입력하고 하고자 할때 textarea 태그를 사용한다. -->
 				<!--  textarea 안에 있는 모든 글자는 그대로 나타난다. 공백문자, tag, enter -->
-				<textarea class="form-control" rows="15" id="content" name="content"
+				<textarea class="form-control" rows="15" id="secret_memo" name="secret_memo"
 					placeholder="내용 작성"></textarea>
 			</div>
 			<div class="form-group">
 				<label for="writer">시청매체</label> <input type="text"
-					class="form-control" id="writer" placeholder="작성자(2자-10자)"
-					name="writer">
+					class="form-control" id="partner" placeholder="작성자(2자-10자)" 
+					name="partner">
 			</div>
 			<div class="form-group">
 				<label for="writer">별점</label> <span class="star"> ★★★★★ <span>★★★★★</span>
-					<input type="range" oninput="drawStar(this)" value="1" step="1"
+					<input type="range" oninput="drawStar(this)" value="1" step="1" name="star_rate"
 					min="0" max="10">
 				</span>
 			</div>
-			<button type="button" class="btn btn-secondary"
-				onclick="window.location='moviedetail'">등록</button>
+			<input type="hidden" id="con_no" name="con_no">
+			<button type="submit" class="btn btn-secondary" id="btn-save">등록</button>
+			
 		</form>
 	</div>
-	<!-- 여기서부터 게시글 작성 폼 끝 -->	
+	<!-- 여기서부터 게시글 작성 폼 끝 -->
 
 	<footer th:replace="footer.html :: footer"></footer>
 	</div>

@@ -24,8 +24,8 @@ class userpwdCrypto {
 		
 		String key = "osomdosompasswd0077";
 		
-		String enStr = CryptoUtil.encryptAES256(plainpwd, key);
-		System.out.println("AES 256 방식 암호화 : " + enStr);
+		String enStr = CryptoUtil.encryptAES256("pwd!1123", key);
+		System.out.println("AES 256 방식 암호화 :" + enStr);
 		
 		String deStr = CryptoUtil.decryptAES256(enStr, key);
 		System.out.println("AES 256 방식 복호화 :" + deStr);
