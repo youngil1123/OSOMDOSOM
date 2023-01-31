@@ -52,9 +52,21 @@
 		<script src="js/ie-support/respond.js"></script>
 		<![endif]-->
 <style>
-.review{
-
+.reviewlist > th{
+		width:15%;
+		height:40px;
+		line-height:40px;
+		border-bottom:1px solid #ddd;
+		text-align:center;
 }
+.review > td{
+		width:15%;
+		height:40px;
+		line-height:40px;
+		border-bottom:1px solid #ddd;
+		text-align:center;
+}
+
 </style>
 
 
@@ -133,32 +145,33 @@
 						<p>----------------------------------------------------------------------------------</p>
 						<table>
     <thead>
-    <tr>
-        <th class="one wide">번호</th>
-        <th class="ten wide">글제목</th>
-        <th class="two wide">작성자</th>
-        <th class="three wide">작성일</th>
+    <form method="post" action="">
+    <tr class="reviewlist">
+        <th>번호</th>
+        <th>글제목</th>
+        <th>작성자</th>
+        <th>작성일</th>
     </tr>
     </thead>
 
     <tbody>
     <!-- CONTENTS !-->
-    <tr th:each="board : ${boardList}">
-        <td>
-            <span th:text="${board.id}"></span>
+    <tr th:each="l: ${searchmylist}" class="review">
+        <td >
+            <span th:text="${l.board_no}"></span>
+        </td>
+        <td> <a href="#">
+             <span th:text="${l.review}"></span>
+             </a>
         </td>
         <td>
-            <a th:href="@{'/post/' + ${board.id}}">
-                <span th:text="${board.title}"></span>
-            </a>
+            <span th:text="${l.mem_no}"></span>
         </td>
         <td>
-            <span th:text="${board.writer}"></span>
-        </td>
-        <td>
-            <span th:text="${#temporals.format(board.createdDate, 'yyyy-MM-dd HH:mm')}"></span>
+            <span th:text="${l.writedate}"></span>
         </td>
     </tr>
+    </form>
     </tbody>
 </table>
 								<!-- .container -->

@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.shop.dto.Board;
 import com.shop.dto.Member_tbl;
@@ -40,6 +39,27 @@ public class BoardController {
 		return "board/myboard";	
 	}
 	
+
+	@RequestMapping("/moviedetail")
+  public String moviedetail(Model model, HttpSession session) {
+		List<Board> list = null;
+		Member_tbl member = new Member_tbl();
+		member = (Member_tbl)session.getAttribute("logincust");
+		if(member != null) {
+			int mem_no = member.getMem_no();
+			try {
+				list = boardservice.searchmylist(mem_no);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+	}
+	model.addAttribute("top", "moviedetail");
+	model.addAttribute("searchmylist", list);
+	model.addAttribute("list", list);
 	
+      return "/board/moviedetail";
+	}
 	
 }
+	
+

@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.shop.dto.Member_tbl;
+import com.shop.frame.CryptoUtil;
 import com.shop.service.Member_tblService;
 
 @Controller
@@ -34,7 +35,10 @@ public class MainController {
 		try {
 			member = mservice.get(mem_id);
 			if (member != null) {
-			if(member.getMem_pwd().equals(mem_pwd)) {
+				String key = "osomdosompasswd0077";
+				String decryptpwd = CryptoUtil.decryptAES256(member.getMem_pwd(), key);
+				
+			if(decryptpwd.equals(mem_pwd)) {
 					// 성공시에만 이걸로 바뀜. 디폴트는 로그인 fail.
 					session.setAttribute("logincust", member);
 				}

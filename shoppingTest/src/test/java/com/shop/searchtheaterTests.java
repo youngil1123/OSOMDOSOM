@@ -24,11 +24,11 @@ class searchtheaterTests {
     void contextLoads() {
     	List<TheaterInfo> objs = new ArrayList<TheaterInfo>();
     	try {
-			objs = service.searchtheaterlist("연극","수상한");
+			objs = service.searchtheaterlist("수상한");
 			for(TheaterInfo obj : objs) {
 				System.out.println(obj);
 			}
-			objs = service.searchtheaterlist("뮤지컬", "시카고");
+			objs = service.searchtheaterlist("시카고");
 			for(TheaterInfo obj : objs) {
 				System.out.println(obj);
 			}

@@ -160,7 +160,7 @@ cursor:pointer;
 		
 	});
 
-	function pagination(){
+/* 	function pagination(){
         var req_num_row=5;
         var $tr=jQuery('tbody tr');
         var total_num_row=$tr.length;
@@ -237,8 +237,16 @@ jQuery('document').ready(function(){
   
   jQuery('.pagination li:first-child').addClass("disabled");
   
-});
+}); */
 
+const contents = document.querySelector(".contents");
+const buttons = document.querySelector(".buttons");
+
+const numOfContent = 178;
+const showContent = 10;
+const showButton = 5;
+const maxPage = Math.ceil(numOfContent / maxContent);
+let page = 1;
 </script>
 
 </head>
@@ -278,10 +286,9 @@ jQuery('document').ready(function(){
 	</form>
 	<input type="button" value="선택삭제" id="choDel"/>
 	</tbody>
+	<div class="buttons"></div>
 	</table>
-	<ul class="pagination">
-    
-  </ul>
+	
 	</div>
 	
 	<footer th:replace="footer.html :: footer"></footer>
