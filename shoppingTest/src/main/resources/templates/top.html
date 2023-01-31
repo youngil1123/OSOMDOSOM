@@ -96,6 +96,11 @@
 					
 					<li><a href="about.html">포인트 상점</a></li>
 					<li><a th:href="@{/myboard}">내 글</a></li>
+					<div th:if ="${session.logincust == null}"> 			
+					</div>
+					<div th:if="${session.logincust != null}">
+						<li><a th:href="@{/mypage}">마이페이지</a></li>
+					</div>
 				</ul>
 			</nav>
 			<!-- .navbar -->

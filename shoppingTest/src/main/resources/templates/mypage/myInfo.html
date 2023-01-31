@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
+<script>
+function checkExPwd(){
+	
+	
+};
+
+</script>
+
+<!--checkExPwd()에서는 기존의 비밀번호, 아이디를 입력하게하고 일치할경우 업데이트가 진행되도록 하자. -->
+<form action="updateMyInfo" method="post" onsubmit="return checkExPwd()">
+
+	<table th:each="my : ${myinfo}">
+		<tr>
+			<th >아이디</th>
+			<td> [[${my.mem_id}]]</td>
+		</tr>
+		<tr>
+			<th>이름</th>
+			<td>[[${my.mem_name}]]</td>
+		</tr>
+		<tr>
+			<th>이메일</th>
+			<td>[[${my.mem_email}]]</td>
+		</tr>
+		<tr>
+		<!-- 비밀번호 유효성 검사 기능 넣어야함	1.변경할 비번 넣으면 유효성검사, 2.안넣으면 기존의 비밀번호로 그대로 수정  -->
+			<th>비밀번호 변경</th>
+			<td><input type="password" id="mem_pwd1" placeholder="변경할 비밀번호 입력"></td>
+		</tr>
+		<tr>
+		<!-- 위에서 입력한 번호와 일치하는지 과정이 필요함. -->
+			<th>비밀번호 재입력</th>
+			<td><input type="password" id="mem_pwd2" placeholder="변경할 비밀번호 재입력"></td>
+		</tr>
+		<tr>
+		<!-- 1.변경을 한다면 유효성검사(숫자11개인지,처음에 010으로 시작하는지) 2.안넣으면 기존의 비밀번호로 그대로 수정   -->
+			<th>휴대폰 번호</th>
+			<td><input type="text" id="mem_tel" th:placeholder="${my.mem_tel}"></td>
+		</tr>
+		<tr>
+		<!-- 안넣으면 기존의 mbti로 그대로 수정  -->
+			<th>MBTI</th>
+			<td><input type="text" id="mbti" th:placeholder="${my.mbti}"> </td>
+		</tr>
+		<tr>
+		<!-- 안넣으면 기존의 img로 그대로 수정 + 여기는 이미지 어캐넣는지 다시 공부하자. -->
+			<th>대표 이미지</th>
+			<td>여기는 이미지를 넣고 수정해야한느데 넣으면 어디로 보내지는지...어캐넣는지 등등 다시 공부하면서 해보자</td>
+		</tr>
+	</table>
+	
+	<button type="submit" id="updatebtn"> 회원정보 수정하기</button>
+	
+</form>
