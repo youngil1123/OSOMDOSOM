@@ -109,16 +109,24 @@
 				return true;
 		}
 	 
+	 //검색 버튼 
+ 	 function searchlist(){
+		    const getBtn = documnet.getElementById('getBtn');
+		    
+		    if(getBtn.style.visibility !=='hidden'){
+		    	
+		    }
+	    } 
 	 
-	 function searchlist(){
-		    var searchType = $("#searchType.val()");
-			if(searchType=="book"){
-				$("#booknav").show();
-			}else{
-				$("#movienav").hide();
-				$("#theaternav").hide();
-			}
-	    }
+	function getBtn(){
+		if(searchType=="book"){
+				$("booknav").show();
+				$("movienav").hide();
+				$("theaternav").hide();
+		};
+		
+	}
+	 
 	 
 	 //체크박스 안고르고 미디어 선택 누르면 나오는 alert
 	 function selectItem(){
@@ -209,7 +217,7 @@
 						<option value="theater">Theater</option>
 					</select> <input type="text" id="keyword" name="keyword" placeholder="필수 기입"
 						title="제목 입력" />
-					<button class="bt_search" onclick="searchlist()">
+					<button class="bt_search" onclick="searchlist()" id="getBtn">
 						<i class="fas fa-search"></i><span class="skip_info">검색</span>
 					</button>
 				</div>
@@ -226,18 +234,17 @@
 					<col />
 				</colgroup>
 				<thead id="addTable">
-					<tr id="booknav">
-						<td>번호</td>
+					<tr id="booknav" >
+						
 						<td>도서명</td>
 						<td>작가명</td>
 						<td>출판사</td>
 						<td>연도</td>
-						<td>권수</td>
+						<td>권</td>
 						<td>선택</td>
 					</tr>
 
 					<tr th:each="vo : ${objsbooks}">
-						<td th:text="${vo.book_no}"></td>
 						<td th:text="${vo.bookname}"></td>
 						<td th:text="${vo.authors}"></td>
 						<td th:text="${vo.publisher}"></td>
@@ -258,15 +265,16 @@
 					<col />
 				</colgroup>
 
-				<tr id="movienav" style="display: none;">
-					<td>영화코드</td>
+				<tr id="movienav" >
+					
 					<td>영화이름</td>
 					<td>감독명</td>
 					<td>장르</td>
 					<td>상영시간</td>
+					<td>선택</td>
 				</tr>
 				<tr th:each="vo : ${objsmovies}">
-					<td th:text="${vo.movieCd}"></td>
+					
 					<td th:text="${vo.movieNm}"></td>
 					<td th:text="${vo.peopleNm}"></td>
 					<td th:text="${vo.genreAlt}"></td>
@@ -286,16 +294,17 @@
 					<col />
 					<col />
 				</colgroup>
-				<tr id="theaternav" style="display: none;">
-					<td>공연코드</td>
+				<tr id="theaternav" >
+					
 					<td>공연명</td>
 					<td>장르</td>
 					<td>장소</td>
 					<td>시간</td>
+					<td>선택</td>
 				</tr>
 
 				<tr th:each="vo : ${objstheaters}">
-					<td th:text="${vo.mt20id}"></td>
+					
 					<td th:text="${vo.prfnm}"></td>
 					<td th:text="${vo.genrenm}"></td>
 					<td th:text="${vo.fcltynm}"></td>
