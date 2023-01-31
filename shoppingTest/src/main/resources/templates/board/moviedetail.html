@@ -124,8 +124,7 @@
 								<li><strong>Stars:</strong> Nicolas Cage, Ryan Reynolds,
 									Emma Stone</li>
 								</br>
-								<button type="button" class="btn btn-secondary"
-									onclick="window.location='boardwrite'">게시글 작성</button>
+								
 							</ul>
 						</div>
 					</div>
@@ -148,27 +147,37 @@
     <form method="post" action="">
     <tr class="reviewlist">
         <th>번호</th>
+        <th>작성자번호</th>
         <th>글제목</th>
-        <th>작성자</th>
-        <th>작성일</th>
+        <th>동행자</th>
+        <th>비밀메모</th>
+        <th>별점</th>
     </tr>
     </thead>
 
     <tbody>
     <!-- CONTENTS !-->
-    <tr th:each="l: ${searchmylist}" class="review">
+    <tr th:each="s: ${select}" class="review">
         <td >
-            <span th:text="${l.board_no}"></span>
+            <span th:text="${s.board_no}"></span>
         </td>
-        <td> <a href="#">
-             <span th:text="${l.review}"></span>
-             </a>
-        </td>
-        <td>
-            <span th:text="${l.mem_no}"></span>
+        <td> 
+             <span th:text="${s.mem_no}"></span>
+            
         </td>
         <td>
-            <span th:text="${l.writedate}"></span>
+       		 <a href="#">
+            <span th:text="${s.title}"></span>
+            </a>
+        </td>
+         <td>
+            <span th:text="${s.partner}"></span>
+        </td>
+        <td>
+            <span th:text="${s.secret_memo}"></span>
+        </td>
+        <td>
+            <span th:text="${s.star_rate}"></span>
         </td>
     </tr>
     </form>

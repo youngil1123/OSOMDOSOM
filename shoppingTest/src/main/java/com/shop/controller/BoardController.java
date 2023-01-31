@@ -42,25 +42,7 @@ public class BoardController {
 	}
 	
 
-	@RequestMapping("/moviedetail")
-  public String moviedetail(Model model, HttpSession session) {
-		List<Board> list = null;
-		Member_tbl member = new Member_tbl();
-		member = (Member_tbl)session.getAttribute("logincust");
-		if(member != null) {
-			int mem_no = member.getMem_no();
-			try {
-				list = boardservice.searchmylist(mem_no);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-	}
-	model.addAttribute("top", "moviedetail");
-	model.addAttribute("searchmylist", list);
-	model.addAttribute("list", list);
 	
-      return "/board/moviedetail";
-	}
 
 	@RequestMapping(value="/board/create_action",  method = RequestMethod.POST)		//작성된 게시글 등록 기능 메소드, html의 form 태그 action에서 입력한 주소
     public String insert(@ModelAttribute Board board, HttpSession session) throws Exception{
@@ -75,8 +57,11 @@ public class BoardController {
     	System.out.println(board);
     	boardservice.register(board);
     	return "board/myboard";	//내 글 페이지로 이동
+
     }
+
 	
-}
+
+    }
 	
 
