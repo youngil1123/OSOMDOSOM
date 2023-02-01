@@ -17,10 +17,9 @@ import com.shop.service.TheaterService;
 public class MediaController {
 	
 	@Autowired
-
 	TheaterService theaterService;
 
-
+	@Autowired
 	BookService service;
 
 
