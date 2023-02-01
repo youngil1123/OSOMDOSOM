@@ -1,5 +1,7 @@
 package com.shop.dto;
 
+import java.util.Date;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Getter;
@@ -25,7 +27,14 @@ public class BookInfo {
     private String bookImageURL;
     private int con_no;
     
-   
-
-    
+    //board
+    private int board_no;
+	private int mem_no;
+	private Date writedate;
+	private String title;
+	private String review;
+	private String partner;
+	private String secret_memo;
+	private int star_rate;
+	
 }

@@ -36,8 +36,8 @@ public class BookService implements MyService<Integer, BookInfo>{
 
 	@Override
 	public BookInfo get(Integer k) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		//책정보가져오기
+		return bookmapper.select(k);
 	}
 
 	@Override
@@ -58,7 +58,9 @@ public class BookService implements MyService<Integer, BookInfo>{
 		return bookmapper.searchbooklist(keyword);
 	}
 
-	
+	public List<BookInfo> getbookreview() throws Exception{
+		return bookmapper.getbookreview();
+	}
 
 
 }

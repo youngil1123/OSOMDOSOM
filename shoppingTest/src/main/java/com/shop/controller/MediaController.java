@@ -8,14 +8,20 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.shop.dto.TheaterInfo;
+import com.shop.dto.BookInfo;
+import com.shop.service.BookService;
 import com.shop.service.TheaterService;
+
 
 @Controller
 public class MediaController {
 	
 	@Autowired
+
 	TheaterService theaterService;
+
+
+	BookService service;
 
 
 	@RequestMapping("/mediamain")
@@ -48,10 +54,19 @@ public class MediaController {
     }
 	@RequestMapping("/book")
     public String book(Model model) {
-		
+		List<BookInfo> objs = new ArrayList<BookInfo>();
+		try {
+			objs = service.getbookreview();
+			model.addAttribute("reviews", objs);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		model.addAttribute("top", "book");
         return "/board/book";
     }
+	
+	
 	@RequestMapping("/theater")
     public String getposter(Model model, String poster) {
 		

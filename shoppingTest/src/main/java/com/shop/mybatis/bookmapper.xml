@@ -15,4 +15,10 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 	<select id="searchbooklist" resultType="BookInfo" parameterType="String">
 		SELECT * FROM bookinfo WHERE bookname LIKE CONCAT('%',#{keyword},'%')
 	</select>
+	<select id="getbookreview" resultType="BookInfo">
+		SELECT distinct(con_no),bookinfo.bookImageURL,bookinfo.bookname,bookinfo.book_no FROM bookinfo INNER JOIN board USING(con_no);
+	</select>
+	<select id="select" parameterType="Integer" resultType="BookInfo">
+		SELECT * FROM bookinfo WHERE book_no = #{book_no}
+	</select>
 </mapper>
