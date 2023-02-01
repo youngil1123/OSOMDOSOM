@@ -6,7 +6,7 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 	<insert id="insert" parameterType="TheaterInfo">
 		INSERT INTO theaterinfo VALUES (#{mt20id},#{prfnm},#{prfstate},#{genrenm},#{prfpdfrom},#{prfpdto},#{poster},#{fcltynm},#{prfruntime})
 	</insert>
-	<select id="getcd" parameterType="String" resultType="String">
+	<select id="get" parameterType="String" resultType="String">
 		SELECT mt20id FROM theaterinfo WHERE genrenm=#{genre}
 	</select>
 	<update id="updateconno" parameterType="TheaterInfo">
@@ -15,7 +15,7 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 	<select id="searchtheaterlist" parameterType="String" resultType="TheaterInfo">
 		SELECT * FROM theaterinfo WHERE prfnm LIKE CONCAT('%',#{keyword},'%')
 	</select>
-	<select id="getposter" parameterType="String" resultType="String">
-		SELECT * FROM theaterinfo WHERE poster=#{poster}
+	<select id="gettheaterreviews" resultType="TheaterInfo" parameterType="String">
+		SELECT distinct(con_no),theaterinfo.poster,theaterinfo.prfnm,theaterinfo.mt20id FROM theaterinfo INNER JOIN board USING(con_no);
 	</select>
 </mapper>
