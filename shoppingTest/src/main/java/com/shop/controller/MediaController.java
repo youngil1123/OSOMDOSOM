@@ -1,12 +1,21 @@
 package com.shop.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.shop.dto.TheaterInfo;
+import com.shop.service.TheaterService;
+
 @Controller
 public class MediaController {
 	
+	@Autowired
+	TheaterService theaterService;
 
 
 	@RequestMapping("/mediamain")
@@ -44,7 +53,17 @@ public class MediaController {
         return "/board/book";
     }
 	@RequestMapping("/theater")
-    public String theater(Model model) {
+    public String getposter(Model model, String poster) {
+		
+		List<String> theater = new ArrayList<String>();
+		
+		try {
+			theater = theaterService.getposter(poster);
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+		}
+		model.addAttribute("objstheaters", theater);
 		
 		model.addAttribute("top", "theater");
         return "/board/theater";

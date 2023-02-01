@@ -15,4 +15,7 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 	<select id="searchtheaterlist" parameterType="String" resultType="TheaterInfo">
 		SELECT * FROM theaterinfo WHERE prfnm LIKE CONCAT('%',#{keyword},'%')
 	</select>
+	<select id="getposter" parameterType="String" resultType="String">
+		SELECT * FROM theaterinfo WHERE poster=#{poster}
+	</select>
 </mapper>
