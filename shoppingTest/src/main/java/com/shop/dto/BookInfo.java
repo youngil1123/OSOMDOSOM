@@ -39,4 +39,5 @@ public class BookInfo {
 	
 	//member_tbl
 	private String nickname;
+	//
 }

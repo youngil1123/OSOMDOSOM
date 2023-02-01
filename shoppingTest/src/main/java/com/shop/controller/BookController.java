@@ -23,6 +23,7 @@ public class BookController {
 	@RequestMapping("/review/bookreview")
 	public String bookreview(int book_no,Model model) {
 		//책 하나 리뷰 보는 페이지로 이동(책 정보 + 리뷰정보를 가지고)
+		//
 		BookInfo book= null;
 		List<BookInfo> bookreview= new ArrayList<BookInfo>();
 		try {
