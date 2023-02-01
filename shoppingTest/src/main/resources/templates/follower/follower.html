@@ -87,7 +87,7 @@
                         </ul>
                     </div>
                     <div class="product__item__text">   <!-- mem_id -->
-                        <h6><input type="hidden" name="thisid" th:value="${fw.mem_id}"> [[${fw.mem_id}]]
+                        <h6><input type="hidden" name="thisid" th:value="${fw.mem_id}"> [[${fw.mem_id}]] <span>([[${fw.nickname}]])</span>
                         <img th:src="'/img/jongjinimg/follower/'+${fw.heart}" style="height:12px; width:12px" ></h6>
                         <div class="product__price" th:text="${fw.mbti}"></div> <!-- mbti -->                
                     </div>
