@@ -37,4 +37,7 @@ public class BookInfo {
 	private String secret_memo;
 	private int star_rate;
 	
+	//member_tbl
+	private String nickname;
+	//
 }

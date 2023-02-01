@@ -61,6 +61,10 @@ public class BookService implements MyService<Integer, BookInfo>{
 	public List<BookInfo> getbookreview() throws Exception{
 		return bookmapper.getbookreview();
 	}
+	public List<BookInfo> getonebookreview(int book_no) throws Exception{
+		//
+		return bookmapper.getonebookreview(book_no);
+	}
 
 
 }
