@@ -61,6 +61,7 @@ public class MemberController {
 	 public String lostinfo(){
 		 return "lostinfo";
 	 }
+
+	}
 	 
 
-}
