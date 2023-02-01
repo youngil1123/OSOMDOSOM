@@ -54,8 +54,10 @@
 		              success:function(cnt){ //컨트롤러에서 넘어온 cnt값을 받는다 
 		                  if(cnt == 0){ //cnt가 1이 아니면(=0일 경우) -> 사용 가능한 아이디 
 		                  	alert("이 아이디는 사용 가능합니다.");
+		                    document.getElementById('idchk').value="yes"
 		                  } else { // cnt가 1일 경우 -> 이미 존재하는 아이디
 		                  	alert("이 아이디는 사용  불가능합니다.");
+		                    document.getElementById('idchk').value="no"
 		                  }
 		              },
 		              error:function(request, error){
@@ -79,11 +81,15 @@
 		var joinForm=document.mem_form;
 		var pwd=joinForm.mem_pwd.value;
 		var nickname=joinForm.nickname.value; 
+		var pwchk=document.getElementById('pwchk').value;
+		var idchk=document.getElementById('idchk').value;
+	
+		
 
+		
 		if (!checkUserId($("#mem_id").val())) {
       	   	 return false;
   		} 
-		
 		  else if (!checkName($("#mem_name").val())) {
      	  	  return false;
      	  	  
@@ -91,14 +97,23 @@
   			  alert("비밀번호를 입력해주세요");
   			  return false;   			 
   		
- 		
   		} else if (!checkMail($("#mem_email").val())) {
-     			return false;
+  			  alert("이메일을 다시 입력해주세요");
+     		  return false;
 	
 	    } else if (nickname.length==0|| nickname==""){
 	    	  alert("닉네임을 입력해주세요");
 	    	  return false; 
-	    }
+	    	  
+	    } else if(pwchk=="no"){
+	    	  alert("비밀번호를 확인해주세요")
+	    	  return false;
+	    	  
+	    } else if(idchk=="no"){
+	    	  alert("아이디중복체크를 해주세요")
+	    	  return false;
+	    } 
+		
 			alert("회원가입이 완료되었습니다.");
  			return true;
 	}
@@ -162,51 +177,13 @@
  
   </script>
 
-  
-<!--   <script>
-  	function checkbtn(){
-		var data=document.checkid;
-		if(!data.button.value){
-			alert('check plaease');
-			return false;
-		}
-		}
-  </script>
- -->
-<!-- <script>
-
-//회원가입의 유효성검사         
-	$("#mem_form").submit(function(){             
-		//아이디 첫번째문자 영어여야 한다.             
-		//      영대소문자, 숫자, 만 가능하다.             
-		//      길이는 8자리에서 15자리까지 허용한다.                          
-		//정규표현식                
-		//  ^ : 처음부터 문자를 검색         
-		//$ : 끝까지 검색            
-		//var reg = /^[A-Za-z]{1}[A-Za-z0-9]{7,14}$/                
-		var reg = /^[A-Za-z]{1}\w{7,14}$/    
-		// \w  : 영대소문자,숫자,            
-		if( !reg.test($("#mem_id").val())){// 맞으면 true, 틀리면 false                 
-			alert("아이디를 잘못입력하였습니다.\n아이디는 첫번째 영어, 영대소문자, 숫자, 가능, 길이는 8~15글자 가능");                
-		return false;
-		}                          
-		                        
-	     //이름은 한글로 2~7글자까지 허용한다.             
-	     reg = /^[가-힣]{2,7}$/;             
-	     if(!reg.test($("#mem_name").val())){                 
-	     alert("이름은 한글 2-7자까지 허용합니다."); 
-			}
-		}
-	
-	
-</script>
-	 -->
 <script>
 	function check_pw(){
 	 
     var pw = document.getElementById('member_pwd1').value;
     var SC = ["!","@","#","$","%","?","^","*","."];
     var check_SC = 0;
+    
     if(pw.length < 6 || pw.length>16){
         window.alert('비밀번호는 6글자 이상, 16글자 이하만 이용 가능합니다.');
         document.getElementById('member_pwd1').value='';
@@ -224,14 +201,45 @@
         if(document.getElementById('member_pwd1').value==document.getElementById('member_pwd2').value){
             document.getElementById('check').innerHTML='비밀번호가 일치합니다.'
             document.getElementById('check').style.color='blue';
+            document.getElementById('pwchk').value="yes"
         }
         else{
             document.getElementById('check').innerHTML='비밀번호가 일치하지 않습니다.';
             document.getElementById('check').style.color='red';
+            document.getElementById('pwchk').value="no"
         }
     }
 }
 
+</script>
+<script>
+
+	function check_mbti(){
+	var mb = document.getElementById('mbti').value;
+	alert(mb);
+	var mbti = mb.toUpperCase();
+	alert(mbti);
+	var SC = ["INFP","INTJ","INFP","INFJ","ISFP","ISTJ","ISFP","ISFJ","ENFP","ENTJ","ENFP","ENFJ","ESFP","ESTJ","ESFP","ESFJ"];
+	var check_SC = 0;
+	if(mbti.length!=4){
+    window.alert('MBTI는 네글자로 이루어져있습니당');
+    document.getElementById('mbti').value='';
+    document.getElementById('mbtichk').value="no";
+	}
+	for(var i=0;i<SC.length;i++){
+	       if(mbti.indexOf(SC[i]) != -1){
+	            check_SC = 1;
+	        }
+	} 
+	if(check_SC == 0){
+	 window.alert('존재하는 MBTI 타입이 아닙니다.')
+	 document.getElementById('mbti').value='';
+	 document.getElementById('mbtichk').value="no";
+	} else if(check_SC == 1){
+		 document.getElementById('mbtichk').value="yes";
+	 }
+	}
+	
 </script>
 
 </head>
@@ -257,9 +265,11 @@
 	 <span id="check"></span>
 	 </div>
 	 <input type="text" placeholder="E-Mail" name="mem_email" id="mem_email" />
-	 <input type="text" placeholder="MBTI(선택)" name="mbti" />	
+	 <input type="text" placeholder="MBTI(선택)" name="mbti" id="mbti" onchange="check_mbti()">	
 	 <input type="text" placeholder="Nickname" name="nickname" />
-	 
+	 <input type="hidden" id="pwchk" value="no">
+	 <input type="hidden" id="idchk" value="no">
+	 <input type="hidden" id="mbtichk" value="no">
         <button type="submit" id="joinbtn" >Sign Up</button> 
    
     </form>  
