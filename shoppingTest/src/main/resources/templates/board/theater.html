@@ -138,27 +138,23 @@
   <header th:replace="top.html :: navigation-bar"></header>
     <!-- Swiper -->
     <button class="custom-btn btn-8" id="media_name" onclick = "window.location='theater'">THEATER</button>
-    <div class="swiper mySwiper">
-    <div class="swiper-wrapper" th:each="vo.{objstheater}">
- <div class="swiper-slide"> <a th:href="@{/moviedetail}" style="width:100%; height:100%;"><img src="vo.{poster}"></a></div>
- <div class="swiper-slide"> <a th:href="@{/moviedetail}" style="width:100%; height:100%;"><img src="/img/movie/movie.jpg"></a></div>
- <div class="swiper-slide"> <a th:href="@{/moviedetail}" style="width:100%; height:100%;"><img src="/img/movie/movie.jpg"></a></div>
- <div class="swiper-slide"> <a th:href="@{/moviedetail}" style="width:100%; height:100%;"><img src="/img/movie/movie.jpg"></a></div>
+    <span id="reviewlist" th:each="theaterreviews:${theaterreviews}">
+      	<a th:href="@{/review/theaterreview(mt20id=${theaterreviews.mt20id})}"><img th:src="${theaterreviews.poster}" style="height:300px" id="reviewimg" ></a>
+      	<!-- <span><a th:text="${review.bookname}"></a></span> -->
+    </span>
 	
-	
-	
-      </div>
+<!--       </div>
       <div class="swiper-button-next"></div>
       <div class="swiper-button-prev"></div>
       <div class="swiper-pagination"></div>
-    </div>
+    </div> -->
      
 
     <!-- Swiper JS -->
     <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
 
     <!-- Initialize Swiper -->
-    <script>
+<!--     <script>
       var swiper = new Swiper(".mySwiper", {
         slidesPerView: 5,
         spaceBetween: 30,
@@ -174,7 +170,7 @@
           prevEl: ".swiper-button-prev",
         },
       });
-    </script>
+    </script> -->
     <footer th:replace="footer.html :: footer"></footer>
   </body>
 </html>

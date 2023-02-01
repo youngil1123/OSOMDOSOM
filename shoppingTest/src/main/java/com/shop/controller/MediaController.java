@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.shop.dto.BookInfo;
+import com.shop.dto.TheaterInfo;
 import com.shop.service.BookService;
 import com.shop.service.TheaterService;
 
@@ -21,6 +22,8 @@ public class MediaController {
 
 	@Autowired
 	BookService service;
+	
+	
 
 
 	@RequestMapping("/mediamain")
@@ -56,7 +59,7 @@ public class MediaController {
 		List<BookInfo> objs = new ArrayList<BookInfo>();
 		try {
 			objs = service.getbookreview();
-			model.addAttribute("reviews", objs);
+			model.addAttribute("bookreviews", objs);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -67,17 +70,16 @@ public class MediaController {
 	
 	
 	@RequestMapping("/theater")
-    public String getposter(Model model, String poster) {
+    public String getposter(Model model) {
 		
-		List<String> theater = new ArrayList<String>();
+		List<TheaterInfo> theater = new ArrayList<TheaterInfo>();
 		
 		try {
-			theater = theaterService.getposter(poster);
+			theater = theaterService.gettheaterreview();
+			model.addAttribute("theaterreviews", theater);
 		} catch (Exception e) {
-			
 			e.printStackTrace();
 		}
-		model.addAttribute("objstheaters", theater);
 		
 		model.addAttribute("top", "theater");
         return "/board/theater";

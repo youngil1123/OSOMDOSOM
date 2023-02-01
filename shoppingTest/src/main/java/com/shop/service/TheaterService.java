@@ -34,14 +34,15 @@ public class TheaterService implements MyService<String, TheaterInfo>{
 	@Override
 	public TheaterInfo get(String k) throws Exception {
 		// TODO Auto-generated method stub
-		return null;
+		return theatermapper.select(k);
 	}
-
+	
 	@Override
 	public List<TheaterInfo> get() throws Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
 	public List<String> getcd(String genrenm) throws Exception{
 		return theatermapper.getcd(genrenm);
 	}
@@ -51,9 +52,13 @@ public class TheaterService implements MyService<String, TheaterInfo>{
 	public List<TheaterInfo> searchtheaterlist(String keyword){
 		return theatermapper.searchtheaterlist(keyword);
 	}
-	public List<String> getposter(String poster) throws Exception{
-		return theatermapper.getposter(poster);
+	public List<TheaterInfo> gettheaterreview() throws Exception{
+		return theatermapper.gettheaterreviews();
 	}
+
+	
+
+
 	
 
 
