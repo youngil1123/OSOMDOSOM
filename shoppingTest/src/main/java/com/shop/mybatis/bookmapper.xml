@@ -21,4 +21,7 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 	<select id="select" parameterType="Integer" resultType="BookInfo">
 		SELECT * FROM bookinfo WHERE book_no = #{book_no}
 	</select>
+	<select id="getonebookreview" resultType="BookInfo" parameterType="Integer">
+		select * from board inner join bookinfo using(con_no) inner join member_tbl using(mem_no) WHERE book_no=#{book_no};
+	</select>
 </mapper>

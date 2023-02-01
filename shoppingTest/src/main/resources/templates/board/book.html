@@ -92,8 +92,7 @@
         object-fit: cover;
       }
       #media_name{
-    margin-left:80px;
-	margin-top:80px;
+    margin:0 auto;
 	font-size: 25px;
       }
       
@@ -134,15 +133,18 @@
 .reviewimg{
 margin:10px;
 }
+.medai_name{
+	margin:10px;
+}
     </style>
   </head>
 
-  <body>
+  <body style="margin:10px 50px 20px;">
   <header th:replace="top.html :: navigation-bar"></header>
     <!-- Swiper -->
-    <button class="custom-btn btn-8" id="media_name" onclick = "window.location='book'">BOOK</button><br>
+    <button class="custom-btn btn-8" id="media_name" onclick = "window.location='book'">BOOK</button><br><br><br>
     <span id="reviewlist" th:each="bookreview:${bookreviews}">
-      	<a th:href="@{/review/bookreview(book_no=${bookreview.book_no})}"><img th:src="${bookreview.bookImageURL}" style="height:300px" id="reviewimg" ></a>
+      	<a th:href="@{/review/bookreview(book_no=${bookreview.book_no})}"><img th:src="${bookreview.bookImageURL}" style="width:22%;height:370px" id="reviewimg" ></a>
       	<!-- <span><a th:text="${review.bookname}"></a></span> -->
     </span>
      <!--  <div class="swiper-button-next"></div>

@@ -24,15 +24,17 @@ public class BookController {
 	public String bookreview(int book_no,Model model) {
 		//책 하나 리뷰 보는 페이지로 이동(책 정보 + 리뷰정보를 가지고)
 		BookInfo book= null;
-		List<Board> reviews = new ArrayList<Board>();
+		List<BookInfo> bookreview= new ArrayList<BookInfo>();
 		try {
 			book = bookservice.get(book_no);
 			System.out.println(book);
+			bookreview = bookservice.getonebookreview(book_no);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		model.addAttribute("book", book);
+		model.addAttribute("bookreview", bookreview);
 		
 		
 		return "review/bookreview";
