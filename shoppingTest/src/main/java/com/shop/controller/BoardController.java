@@ -36,8 +36,6 @@ public class BoardController {
 		}
 		
 		model.addAttribute("searchmylist", list);
-		model.addAttribute("list", list);
-
 		return "board/myboard";	
 	}
 
