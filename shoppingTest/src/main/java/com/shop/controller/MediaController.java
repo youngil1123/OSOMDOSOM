@@ -1,13 +1,21 @@
 package com.shop.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.shop.dto.BookInfo;
+import com.shop.service.BookService;
+
 @Controller
 public class MediaController {
 	
-
+	@Autowired
+	BookService service;
 
 	@RequestMapping("/mediamain")
     public String mediamain(Model model) {
@@ -39,7 +47,14 @@ public class MediaController {
     }
 	@RequestMapping("/book")
     public String book(Model model) {
-		
+		List<BookInfo> objs = new ArrayList<BookInfo>();
+		try {
+			objs = service.getbookreview();
+			model.addAttribute("reviews", objs);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		model.addAttribute("top", "book");
         return "/board/book";
     }

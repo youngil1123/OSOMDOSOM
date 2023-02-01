@@ -14,6 +14,6 @@ public interface BookMapper extends MyMapper<Integer, BookInfo> {
 	public List<Integer> getbookno();
 	public void updatebookcd(BookInfo b);
 	public List<BookInfo> searchbooklist(String keyword);
-	
+	public List<BookInfo> getbookreview();
 	
 }
