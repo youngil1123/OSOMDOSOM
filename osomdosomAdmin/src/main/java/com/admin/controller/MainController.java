@@ -11,9 +11,17 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.admin.dto.Admin;
+import com.admin.dto.Board;
+import com.admin.dto.BookInfo;
 import com.admin.dto.Member_tbl;
+import com.admin.dto.MovieInfo;
+import com.admin.dto.TheaterInfo;
 import com.admin.service.AdminService;
+import com.admin.service.BoardService;
+import com.admin.service.BookService;
 import com.admin.service.Member_tblService;
+import com.admin.service.MovieService;
+import com.admin.service.TheaterService;
 
 @Controller
 public class MainController {
@@ -24,6 +32,17 @@ public class MainController {
 	@Autowired
 	Member_tblService mservice;
 	
+	@Autowired
+	BoardService bservice;
+	
+	@Autowired
+	MovieService movieservice;
+	
+	@Autowired
+	BookService bookservice;
+	
+	@Autowired
+	TheaterService theaterservice;
 	@RequestMapping("/")
 	public String main() {
 		return "adminIndex";
@@ -41,6 +60,19 @@ public class MainController {
 		return "memberlist";
 	}
 
+	@RequestMapping("/main")
+	public String mainpage(HttpSession session,Model model) {
+		
+		if(session.getAttribute("admin")!=null) {
+			
+		}
+		else {
+			model.addAttribute("login_need_msg", "로그인이 필요한 서비스입니다.");
+			return "adminIndex";
+		}
+		//세션에 로그인 되어있으면 메인으로 이동
+		return "adminDashBoard";
+	}
 	@RequestMapping("/loginimpl")
 	public String login(Model model,HttpSession session,String admin_id,String admin_pwd) {
 		Admin adm = new Admin();
@@ -62,5 +94,44 @@ public class MainController {
 		//로그인 실패시
 		model.addAttribute("login_fail_msg", "로그인 실패! 다시시도해주세요");
 		return "adminIndex";
-}
+	}
+	@RequestMapping("/reviewlist")
+	public String reviewlist(Model model) {
+		//모든 게시글 불러오기.
+		List<Board> boards = new ArrayList<Board>();
+		try {
+			boards = bservice.list();
+			model.addAttribute("boards", boards);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return "reviewlist";
+	}
+	@RequestMapping("/contentslist")
+	public String contentslist(Model model) throws Exception{
+		//콘텐츠리스트 넘겨주기 
+		//1.영화리스트
+		List<MovieInfo> movies = new ArrayList<MovieInfo>();
+		movies = movieservice.get();
+		model.addAttribute("moviecon_num", movieservice.countcon());
+		model.addAttribute("movies", movies);
+		//2.책리스트
+		List<BookInfo> books = new ArrayList<BookInfo>();
+		books = bookservice.get();
+		model.addAttribute("bookcon_num", bookservice.countcon());
+		model.addAttribute("books", books);
+		//3.연극리스트
+		List<TheaterInfo> theaters = new ArrayList<TheaterInfo>();
+		theaters= theaterservice.getcontents("연극");
+		model.addAttribute("theaters", theaters);
+		model.addAttribute("theatercon_num", theaterservice.countcon("연극"));
+		//4.뮤지컬리스트
+		List<TheaterInfo> musicals = new ArrayList<TheaterInfo>();
+		musicals= theaterservice.getcontents("뮤지컬");
+		model.addAttribute("musicals", musicals);
+		model.addAttribute("musicalcon_num", theaterservice.countcon("뮤지컬"));
+		return "contentslist";
+	}
 }
