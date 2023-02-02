@@ -25,27 +25,28 @@ public class BoardController {
 
 	@Autowired
 	BoardService boardservice;
+
 	
 	@Autowired
 	Member_tblService mservice;
-	
-	@RequestMapping("/myboard")
-	public String searchmylist(Model model,  HttpSession session) throws Exception{
-		List<Board> list = null;
-		Member_tbl member = new Member_tbl();
-		member = (Member_tbl)session.getAttribute("logincust");
 
-	
-		if(member != null) {
-				int mem_no = member.getMem_no();
-				list = boardservice.searchmylist(mem_no);
+
+		@RequestMapping("/myboard")
+		public String searchmylist(Model model,  HttpSession session) throws Exception{
+			List<Board> list = null;
+			Member_tbl member = new Member_tbl();
+			member = (Member_tbl)session.getAttribute("logincust");
+
+
+			if(member != null) {
+					int mem_no = member.getMem_no();
+					list = boardservice.searchmylist(mem_no);
+			}
+			
+			model.addAttribute("searchmylist", list);
+
+			return "board/myboard";	
 		}
-		
-		model.addAttribute("searchmylist", list);
-		model.addAttribute("list", list);
-
-		return "board/myboard";	
-	}
 
 
 	@RequestMapping(value="/board/create_action",  method = RequestMethod.POST)		//작성된 게시글 등록 기능 메소드, html의 form 태그 action에서 입력한 주소
