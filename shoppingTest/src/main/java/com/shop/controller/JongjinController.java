@@ -51,10 +51,8 @@ public class JongjinController {
 				Integer chk = fservice.get(friendship);
 				if (chk != null) {
 					list.get(i).setHeart("heart.png");
-					// heart.add("heart.png");
 				} else {
 					list.get(i).setHeart("followok.png");
-					// heart.add("followok.png");
 				}
 			}
 
@@ -66,14 +64,7 @@ public class JongjinController {
 
 		return mv;
 	}
-	 
-	
-//	@RequestMapping("")
-//	public String Follower() {
-//		return "follower/follower";
-//	}
-	
-	
+
 	@RequestMapping("/addFollower")
     public String addFollower() {
         return "follower/addFollower";

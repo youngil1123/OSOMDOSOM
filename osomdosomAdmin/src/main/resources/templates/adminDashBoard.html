@@ -2,35 +2,51 @@
 <html lang="ko" xmlns:th="http://www.thymeleaf.org/">
 <head>
 <meta charset="UTF-8">
+<!-- Vendor CSS Files -->
+<link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="/vendor/bootstrap-icons/bootstrap-icons.css"
+    rel="stylesheet">
+<link href="/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+<link href="/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+<link href="/vendor/aos/aos.css" rel="stylesheet">
+<!-- Template Main CSS Files -->
+<link href="/css/variables.css" rel="stylesheet">
+<link href="/css/main.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
 <title>어드민 관리 페이지</title>
 </head>
 <style>
-ul {
-	float: left;
-	width: 500px;
+a {
+	margin:5px;
+	text-decoration: none;
 }
-
-li {
-	list-style: none;
-	width: 50%;
+.container{
+	width:800px;
+	height:800px;
+	 margin:0 auto;
+	 border :1px solid red;
+	 display : flex;
+  	 justify-content: center;
+  	 align-items : center;
 }
-
-li:nth-child(2n) {
-	width: 50%;
-}
-a{
-text-decoration: none;
-
+.inner-div{
+	width:600px;
+	height:600px;
+	border:1px solid blue;
+	text-align:center;
 }
 </style>
 <body>
-	<ul>
-		<li><a th:href="@{/membercontrol}">회원관리</a></li><br>
-		<li><a th:href="@{/reviewlist}">게시글관리</li><br>
-		<li><a th:href="@{/contentslist}">콘텐츠목록(현재 콘텐츠 목록 - 콘텐츠별 리뷰 개수 보여주기, 가장 많은 리뷰 순으로 정렬!)</li><br>
-		<li><a th:href="@{/contentsupdate}">콘텐츠업데이트(배치쓸건지? 아니면 버튼눌러서 그때마다 업데이트 할건지)</li><br>
-		<li>콘텐츠업데이트 요청..게시판? 만들어야 하나..음 ㅇㅅㅇ?</li><br>
-		<li><a th:href="@{/pointshop}">포인트상점(현재재고,아이템업데이트,아이템삭제)</li><br>
-	</ul>
+<div class="container">
+	<div class="inner-div">
+		<span>관리자 페이지입니다.</span><br/>
+		<a class="btn btn-lg btn-outline-success" th:href="@{/membercontrol}" style="color:black;font-family: 'Gowun Dodum', sans-serif;font-size:1.5em">회원관리</a> 
+		<a class="btn btn-lg btn-outline-success" th:href="@{/reviewlist}" style="color:black;font-family: 'Gowun Dodum', sans-serif;font-size:1.5em">게시글관리</a><br>
+		<a class="btn btn-lg btn-outline-success" th:href="@{/contentslist}" style="color:black;font-family: 'Gowun Dodum', sans-serif;font-size:1.5em">콘텐츠목록</a> 
+		<a class="btn btn-lg btn-outline-success" th:href="@{/contentsupdate}" style="color:black;font-family: 'Gowun Dodum', sans-serif;font-size:1.5em">콘텐츠업데이트</a><br> 
+		<a class="btn btn-lg btn-outline-success" style="color:black;font-family: 'Gowun Dodum', sans-serif;font-size:1.5em">콘텐츠업데이트 요청</a> 
+		<a class="btn btn-lg btn-outline-success" th:href="@{/pointshop}" style="color:black;font-family: 'Gowun Dodum', sans-serif;font-size:1.5em">포인트상점</a><br>
+	</div>
+	</div>
 </body>
 </html>

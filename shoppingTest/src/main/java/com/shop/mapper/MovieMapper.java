@@ -14,4 +14,6 @@ public interface MovieMapper extends MyMapper<String, MovieInfo> {
 	public List<String> getmoviecd();
 	public void updateconno(MovieInfo m);
 	public List<MovieInfo> searchmovielist(String keyword);
+	public List<MovieInfo> getmoviereview();
+	public List<MovieInfo> getonemoviereview(String movieCd);
 }

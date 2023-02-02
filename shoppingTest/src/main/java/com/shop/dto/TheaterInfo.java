@@ -1,5 +1,7 @@
 package com.shop.dto;
 
+import java.util.Date;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -22,4 +24,18 @@ public class TheaterInfo {
 	private String fcltynm;//공연장명
 	private String prfruntime; //런타임
 	private int con_no;
+	
+	
+	//board
+    private int board_no;
+	private int mem_no;
+	private Date writedate;
+	private String title;
+	private String review;
+	private String partner;
+	private String secret_memo;
+	private int star_rate;
+	
+	//member_tbl
+		private String nickname;
 }

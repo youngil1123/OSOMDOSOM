@@ -1,6 +1,8 @@
 package com.shop.dto;
 
 
+import org.springframework.web.multipart.MultipartFile;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -26,6 +28,8 @@ public class Member_tbl {
 	private String mem_img;
 	private String heart;
 
+	private MultipartFile img;
+
 
 // 이메일 찾기
 
@@ -49,12 +53,24 @@ public class Member_tbl {
 		this.mem_name=mem_name;
 		this.mem_email=mem_email;
 	}
+
+
+	
+	
 	/*
 	 * // 비밀번호 찾기 Member_tbl(String mem_id,String mem_email) { super();
 	 * this.mem_email=mem_email;
 	 * 
 	 * }
 	 */
+
+	public Member_tbl(Integer mem_no, String mem_pwd, String nickname, String mbti) {
+		super();
+		this.mem_no = mem_no;
+		this.mem_pwd = mem_pwd;
+		this.nickname = nickname;
+		this.mbti = mbti;
+	}
 
 	
 

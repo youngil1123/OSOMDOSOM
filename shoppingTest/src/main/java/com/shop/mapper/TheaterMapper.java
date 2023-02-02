@@ -13,5 +13,6 @@ public interface TheaterMapper extends MyMapper<String, TheaterInfo> {
 	public List<String> getcd(String genrenm);
 	public void updateconno(TheaterInfo t);
 	public List<TheaterInfo> searchtheaterlist(String keyword);
-	public List<TheaterInfo> gettheaterreviews();
+	public List<TheaterInfo> gettheaterreview(String genrenm);
+	public List<TheaterInfo> getonetheaterreview(String mt20id);
 }
