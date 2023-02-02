@@ -7,14 +7,17 @@ import org.springframework.stereotype.Service;
 
 import com.shop.dto.Member_tbl;
 import com.shop.frame.MyService;
+import com.shop.mapper.BoardMapper;
 import com.shop.mapper.Member_tblMapper;
 
 @Service
 public class Member_tblService implements MyService<String, Member_tbl> {
 
 	@Autowired
-	
 	Member_tblMapper mapper;
+	
+	@Autowired
+	BoardMapper bmapper;
 	
 	//회원가입
 	@Override
@@ -72,6 +75,9 @@ public class Member_tblService implements MyService<String, Member_tbl> {
 
 	
 
+	public void updatePoint(int mem_no) throws Exception {
+		 mapper.updatePoint(mem_no);
+	    }
 
 
 

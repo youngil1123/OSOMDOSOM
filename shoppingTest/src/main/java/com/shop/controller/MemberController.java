@@ -7,15 +7,18 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.shop.dto.Board;
 import com.shop.dto.Member_tbl;
 import com.shop.frame.CryptoUtil;
+import com.shop.service.BoardService;
 import com.shop.service.Member_tblService;
 
 @Controller
 @RequestMapping("/member")
 public class MemberController {
 	
-	
+	@Autowired
+	BoardService bservice;
 	
 	@Autowired
 	Member_tblService mservice;
