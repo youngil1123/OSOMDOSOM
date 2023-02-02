@@ -1,12 +1,18 @@
 package com.shop.controller;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 
+import com.shop.dto.Member_tbl;
 import com.shop.service.Member_tblService;
 
 @RestController
+/*@RequestMapping("/go")*/
 public class DasomAjaxController {
 	@Autowired
 	Member_tblService mservice;
@@ -49,4 +55,28 @@ public class DasomAjaxController {
   			
   		}
 
+    
+    
+	// 로그인이 되어있어야 팔로워 페이지로 이동, 아닐경우 로그인 페이지로 이동
+	@RequestMapping("/pointshop")
+	public ModelAndView pointshop(HttpServletRequest request) {
+
+		ModelAndView mv = new ModelAndView();
+
+		HttpSession session = request.getSession();
+		Member_tbl member = (Member_tbl) session.getAttribute("logincust");
+
+		String myid = "";
+
+		if (member != null) { // 로그인이 되어있는 경우
+			myid = member.getMem_id();
+//			System.out.println(myid);
+
+			mv.setViewName("/pointshop");
+		} else {
+			mv.setViewName("/login");
+		}
+
+		return mv;
+	}
 }
