@@ -16,6 +16,8 @@ public interface BoardMapper extends MyMapper<Integer,Board>{
 	public List<Board> searchmylist(String mem_id);
 	public List<Board> list();
 	
+	
+	
 }
 	
 	

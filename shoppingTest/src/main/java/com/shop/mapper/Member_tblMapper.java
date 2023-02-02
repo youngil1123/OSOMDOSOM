@@ -18,4 +18,5 @@ public interface Member_tblMapper extends MyMapper<String,Member_tbl>{
 	public Integer idCheck(String mem_id);
 
 	public List<Member_tbl> selectallfollower(Integer myNo) throws Exception;
+	public void updatePoint(int mem_no) throws Exception;
 }

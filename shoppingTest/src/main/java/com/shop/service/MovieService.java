@@ -35,7 +35,7 @@ public class MovieService implements MyService<String, MovieInfo>{
 	@Override
 	public MovieInfo get(String k) throws Exception {
 		// TODO Auto-generated method stub
-		return null;
+		return moviemapper.select(k);
 	}
 
 	@Override
@@ -43,14 +43,26 @@ public class MovieService implements MyService<String, MovieInfo>{
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
 	public List<String> getmoviecd() throws Exception{
 		return moviemapper.getmoviecd();
 	}
+	
 	public void updateconno(MovieInfo m) throws Exception{
 		moviemapper.updateconno(m);
 	}
+	
 	public List<MovieInfo> searchmovielist(String keyword) throws Exception{
 		return moviemapper.searchmovielist(keyword);
+	}
+	
+	public List<MovieInfo> getmoviereview() throws Exception{
+		return moviemapper.getmoviereview();
+	}
+	
+	public List<MovieInfo> getonemoviereview(String movieCd) throws Exception{
+		//
+		return moviemapper.getonemoviereview(movieCd);
 	}
 
 

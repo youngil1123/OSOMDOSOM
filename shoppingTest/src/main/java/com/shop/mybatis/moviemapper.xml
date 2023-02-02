@@ -15,4 +15,14 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 	<select id ="searchmovielist" parameterType="String" resultType="MovieInfo">
 		SELECT * FROM movieinfo WHERE movieNm LIKE CONCAT('%',#{keyword},'%')
 	</select>
+	<select id="getmoviereview" resultType="MovieInfo">
+		SELECT distinct(con_no),movieinfo.movieposter,movieinfo.movieNm,movieinfo.movieCd FROM movieinfo INNER JOIN board USING(con_no);
+	</select>
+	
+	<select id="select" parameterType="String" resultType="MovieInfo">
+		SELECT * FROM movieinfo WHERE movieCd = #{movieCd}
+	</select>
+	<select id="getonemoviereview" resultType="MovieInfo" parameterType="String">
+		select * from board inner join movieinfo using(con_no) inner join member_tbl using(mem_no) WHERE movieCd=#{movieCd};
+	</select>
 </mapper>

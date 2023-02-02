@@ -8,7 +8,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.shop.dto.Board;
 import com.shop.dto.BookInfo;
 import com.shop.service.BoardService;
 import com.shop.service.BookService;

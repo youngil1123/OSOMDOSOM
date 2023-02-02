@@ -44,6 +44,9 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 	<select id="idCheck" parameterType="String" resultType="Integer">
 		SELECT COUNT(mem_id) FROM member_tbl WHERE mem_id= #{mem_id}
 	</select>
-	
+	<!-- 포인트 적립 -->
+	<update id="updatePoint" parameterType="Integer">
+		update member_tbl set mem_point = mem_point+10 where mem_no = #{mem_no}
+	</update>
 	
 </mapper>
