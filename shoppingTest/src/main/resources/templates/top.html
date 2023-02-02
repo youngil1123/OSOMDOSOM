@@ -79,7 +79,7 @@
 									<li><a href="#">ISFJ</a></li>
 									<li><a href="#">ISTP</a></li>
 									<li><a href="#">ISTJ</a></li>
-								</ul></li>z
+								</ul></li>
 						</ul></li>
 					
 					
@@ -93,8 +93,17 @@
 					</div>
 					
 					
+					<div th:if ="${session.logincust == null}"> 
+						<li><a th:href="@{/pointshop}" onClick='chklogin();'>포인트상점</a></li>
+			
+					</div>
+					<div th:if="${session.logincust != null}">
+						<li><a th:href="@{/pointshop}">포인트상점</a></li>
+
+					</div>
 					
-					<li><a href="about.html">포인트 상점</a></li>
+					
+				
 					<li><a th:href="@{/myboard}">내 글</a></li>
 					<div th:if ="${session.logincust == null}"> 			
 					</div>
