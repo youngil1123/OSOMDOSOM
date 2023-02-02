@@ -19,12 +19,12 @@ class userpwdCrypto {
 
 	@Test
 	void contextLoads() throws NoSuchAlgorithmException, UnsupportedEncodingException, InvalidKeyException, NoSuchPaddingException, InvalidAlgorithmParameterException, IllegalBlockSizeException, BadPaddingException {
-		String plainpwd="11111111111111";
+		String plainpwd = "저으니도와줘~";
 		System.out.println("회원가입시 작성한 비밀번호 : "+plainpwd);
 		
 		String key = "osomdosompasswd0077";
 		
-		String enStr = CryptoUtil.encryptAES256("pwd!1123", key);
+		String enStr = CryptoUtil.encryptAES256(plainpwd, key);
 		System.out.println("AES 256 방식 암호화 :" + enStr);
 		
 		String deStr = CryptoUtil.decryptAES256(enStr, key);

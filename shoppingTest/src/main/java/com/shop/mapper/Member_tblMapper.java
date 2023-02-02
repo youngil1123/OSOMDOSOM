@@ -18,4 +18,6 @@ public interface Member_tblMapper extends MyMapper<String,Member_tbl>{
 	public Integer idCheck(String mem_id);
 
 	public List<Member_tbl> selectallfollower(Integer myNo) throws Exception;
+
+	public void updateMyInfo(int mem_no, String mem_pwd, String nickname, String mbti);
 }
