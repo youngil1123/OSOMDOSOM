@@ -56,4 +56,6 @@ public class MyPageAjaxController {
 
 		return result;
 	}
+	
+
 }
