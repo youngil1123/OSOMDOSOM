@@ -18,7 +18,7 @@ public class DasomAjaxController {
 	Member_tblService mservice;
 	
 	
-	
+
 	//아이디찾기
 	@RequestMapping("/findid")
 	public Object findid(String mem_name, String mem_email) {
@@ -79,4 +79,5 @@ public class DasomAjaxController {
 
 		return mv;
 	}
+	
 }

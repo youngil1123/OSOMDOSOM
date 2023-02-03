@@ -3,11 +3,13 @@ package com.shop.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
-import com.shop.dto.Board;
+import com.shop.dto.Mail;
 import com.shop.dto.Member_tbl;
 import com.shop.frame.CryptoUtil;
 import com.shop.service.BoardService;
@@ -24,7 +26,7 @@ public class MemberController {
 	Member_tblService mservice;
 	
 	
-	
+
 	//회원가입완료 클릭 후 넘어가는 페이지
 	@GetMapping("/btn") 
 	public String loginForm() {
@@ -65,6 +67,14 @@ public class MemberController {
 		 return "lostinfo";
 	 }
 
-	}
-	 
+		// 이메일 보내기
+		@Transactional
+		@PostMapping("/sendEmail")
+		public String sendEmail(@RequestParam("mem_email") String mem_email) {
+			Mail dto = mservice.createMailAndChangePassword(mem_email);
+			mservice.mailSend(dto);
 
+			return "/login";
+	}
+
+	}
