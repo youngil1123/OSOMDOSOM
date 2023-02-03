@@ -83,6 +83,7 @@
 	list-style: none;
 	font-size:2em;
 }
+
 </style>
 
 
@@ -111,7 +112,7 @@
 						<div class="col-md-8">
 							<h2 class="book-title">[[${book.bookname}]]<span th:if="${book.vol!=null}">[[${book.vol}]]권</span></h2>
 							<ul class="book-meata">
-								<li>작가 : [[${book.authors}]]</li>
+								<li>[[${book.authors}]]</li>
 								<li>출판사 : [[${book.publisher}]]</li>
 								<li>출판년도 :[[${book.publication_year}]]</li>
 								<li>isbn13 :[[${book.isbn13}]]</li>
@@ -124,10 +125,9 @@
 					<div class="entry-content">
 						<table>
 							<thead>
-								<form method="post" action="">
 									<tr class="reviewlist">
 										<th>제목</th>
-										<th>리뷰</th>
+										<th class="jb-th-1" style="width:40%;">리뷰</th>
 										<th>작성자(닉네임)</th>
 										<th>등록일</th>
 										<th>평점</th>
@@ -138,19 +138,17 @@
 								<!-- CONTENTS !-->
 								<tr th:each="s: ${bookreview}" class="review">
 									<td><span th:text="${s.title}"></span></td>
-									<td><a href="#"> <span th:text="${s.review}"></span>
+									<td><a href="#"> <span th:text="${s.review}" style="font-size:0.8em;"></span>
 									</a></td>
 									<td><span th:text="${s.nickname}"></span></td>
-									<td><span th:text="${s.writedate}"></span></td>
+									<td><span th:text="${#dates.format(s.writedate,'yyyy-MM-dd')}"></span></td>
 									<td><span th:text="${s.star_rate}"></span></td>
 								</tr>
-								</form>
 							</tbody>
-						</table>
-						<!-- .container -->
+						</table></div></div>
+						<!-- .container --></div></div>
 	</main>
 	<footer th:replace="footer.html :: footer"></footer>
-	</div>
 	<!-- Default snippet for navigation -->
 
 
