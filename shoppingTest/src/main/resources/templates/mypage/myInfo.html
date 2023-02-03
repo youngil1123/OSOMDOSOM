@@ -150,21 +150,21 @@ $(document).ready(function(){
 		<tr>
 		<!-- 1.안넣으면 기존의 닉네임으로 그대로 수정   -->
 			<th>닉네임</th>
-			<td><input type="text" id="nickname" th:placeholder="${my.nickname}"></td>
+			<td><input type="text" id="nickname" name="nickname" th:placeholder="${my.nickname}"></td>
 		</tr>
 		<tr>
 		<!-- 안넣으면 기존의 mbti로 그대로 수정  -->
 			<th>MBTI</th>
-			<td><input type="text" id="mbti" th:placeholder="${my.mbti}" onchange="check_mbti()"> </td>
+			<td><input type="text" id="mbti" name="mbti" th:placeholder="${my.mbti}" onchange="check_mbti()"> </td>
 		</tr>
 		<tr>
 		<!-- 안넣으면 기존의 img로 그대로 수정 + 여기는 이미지 어캐넣는지 다시 공부하자. -->
 			<th>대표 이미지</th>
-			<td><img id="myimg" th:src="@{/img/jongjinimg/}+${my.mem_img}"></td>
+			<td><img id="myimg" th:src="@{/img/jongjinimg/follower/}+${my.mem_img}" style="width:130px; height:170px;"></td>
 		</tr>
 		<tr>
 			<th>대표 이미지 수정</th>
-			<td><td><input type="file" name="newimg"></td></td>
+			<td><input type="file" name="img" accept="image/*"></td>
 		</tr>
 	</table>
 	<input type="hidden" id="pwdok" value="yes">
