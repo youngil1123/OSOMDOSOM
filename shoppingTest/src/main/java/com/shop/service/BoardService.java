@@ -14,7 +14,7 @@ import lombok.AllArgsConstructor;
 @Service
 public class BoardService implements MyService<Integer, Board>{
 	
-
+	
 	
 	@Autowired
 	BoardMapper mapper;

@@ -32,7 +32,6 @@ public class JongjinAjaxController {
 			member = mservice.get(cid);
 			if (member != null) {
 				String imgname = member.getMem_img();
-				// System.out.println(imgname);
 				result = imgname;
 				if (result == null || result == "") {
 					result = "follow.png";
@@ -47,9 +46,6 @@ public class JongjinAjaxController {
 		return result;
 	}
 
-	// 팔로워 아이디를 통해 회원번호를 받아와서 Friendship table에 넣는다.
-	// 이때 자기의 회원번호는 session을 통해서 받아온다.
-
 	@RequestMapping("/AddFwTbl")
 	public Object addFollower(String fwid, HttpServletRequest request) throws Exception {
 
@@ -57,17 +53,14 @@ public class JongjinAjaxController {
 
 		HttpSession session = request.getSession();
 		Member_tbl member = (Member_tbl) session.getAttribute("logincust");
-		// System.out.println(member);
 
 		int myid_no = mservice.findmem_no(member.getMem_id());
 		int fwid_no = mservice.findmem_no(fwid);
-		// System.out.println(myid_no + " " + fwid_no);
 
 		friendship.setMem_no(myid_no);
 		friendship.setMem_no2(fwid_no);
 
 		Integer chk = fservice.get(friendship);
-		// System.out.println("해당 팔로워가 있는 컬럼숫자: " + chk);
 		if (chk == null) {
 			if (myid_no == fwid_no) {
 				return "myself";
@@ -91,17 +84,14 @@ public class JongjinAjaxController {
 
 		HttpSession session = request.getSession();
 		Member_tbl member = (Member_tbl) session.getAttribute("logincust"); // 로그인한 아이디의 정보
-		// System.out.println(member);
 
 		int myid_no = mservice.findmem_no(member.getMem_id());
 		int dfwid_no = mservice.findmem_no(dfwid);
-		// System.out.println(myid_no + " " + dfwid_no);
 
 		friendship.setMem_no(myid_no);
 		friendship.setMem_no2(dfwid_no);
 
 		Integer chk = fservice.get(friendship);
-		// System.out.println("해당 팔로워가 있는 컬럼숫자: " + chk);
 
 		if (chk != null) {
 			fservice.remove(friendship);
@@ -112,39 +102,6 @@ public class JongjinAjaxController {
 		return mv;
 	}
 
-//	@RequssssestMapping("/FwHeart")
-//	public ModelAndView FwHeart(String fwid, HttpServletRequest request) throws Exception {
-//
-//		ModelAndView mv = new ModelAndView();
-//
-//		Friendship friendship = new Friendship();
-//
-//		int heart = 0;
-//
-//		HttpSession session = request.getSession();
-//		Member_tbl member = (Member_tbl) session.getAttribute("logincust"); // 로그인한 아이디의 정보
-//		System.out.println(member);
-//
-//		int myid_no = mservice.findmem_no(member.getMem_id());
-//		int fwid_no = mservice.findmem_no(fwid);
-//		System.out.println(myid_no + " " + fwid_no);
-//
-//		friendship.setMem_no(fwid_no);
-//		friendship.setMem_no2(myid_no);
-//
-//		Integer chk = fservice.get(friendship);
-//		System.out.println("해당 팔로워가 있는 컬럼숫자: " + chk);
-//
-//		if (chk != null) {
-//			heart = 1;
-//
-//			mv.setViewName("/follower/deleteFollower");
-//			mv.addObject("heart", heart);
-//		}
-//		return mv;
-//	}
-
-	// 로그인이 되어있어야 팔로워 페이지로 이동, 아닐경우 로그인 페이지로 이동
 	@RequestMapping("/FollowerPage")
 	public ModelAndView FollowerPage(HttpServletRequest request) {
 
@@ -157,7 +114,6 @@ public class JongjinAjaxController {
 
 		if (member != null) { // 로그인이 되어있는 경우
 			myid = member.getMem_id();
-//			System.out.println(myid);
 
 			mv.setViewName("/follower/deleteFollower");
 		} else {

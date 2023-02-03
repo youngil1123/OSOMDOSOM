@@ -1,6 +1,8 @@
 package com.shop.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.shop.dto.Board;
 import com.shop.dto.Member_tbl;
 import com.shop.service.BoardService;
+import com.shop.service.Member_tblService;
 
 
 @Controller
@@ -22,24 +25,28 @@ public class BoardController {
 
 	@Autowired
 	BoardService boardservice;
-	
-	@RequestMapping("/myboard")
-	public String searchmylist(Model model,  HttpSession session) throws Exception{
-		List<Board> list = null;
-		Member_tbl member = new Member_tbl();
-		member = (Member_tbl)session.getAttribute("logincust");
 
 	
-		if(member != null) {
-				int mem_no = member.getMem_no();
-				list = boardservice.searchmylist(mem_no);
+	@Autowired
+	Member_tblService mservice;
+
+
+		@RequestMapping("/myboard")
+		public String searchmylist(Model model,  HttpSession session) throws Exception{
+			List<Board> list = null;
+			Member_tbl member = new Member_tbl();
+			member = (Member_tbl)session.getAttribute("logincust");
+
+
+			if(member != null) {
+					int mem_no = member.getMem_no();
+					list = boardservice.searchmylist(mem_no);
+			}
+			
+			model.addAttribute("searchmylist", list);
+
+			return "board/myboard";	
 		}
-		
-		model.addAttribute("searchmylist", list);
-		model.addAttribute("list", list);
-
-		return "board/myboard";	
-	}
 
 
 	@RequestMapping(value="/board/create_action",  method = RequestMethod.POST)		//작성된 게시글 등록 기능 메소드, html의 form 태그 action에서 입력한 주소
@@ -54,20 +61,9 @@ public class BoardController {
 		
     	System.out.println(board);
     	boardservice.register(board);
+    	mservice.updatePoint(mem_no);
     	return "redirect:/myboard";	//내 글 페이지로 이동
     }
-	
-	/*
-	 * @RequestMapping("/newboardwrite") public String newboardwrite(Model model,
-	 * HttpSession session) throws Exception{ List<Board> list = null; Member_tbl
-	 * member = new Member_tbl(); member =
-	 * (Member_tbl)session.getAttribute("logincust"); System.out.println(member);
-	 * 
-	 * 
-	 * model.addAttribute("list", list);
-	 * 
-	 * return "board/newboardwrite"; }
-	 */
 	
 
     }

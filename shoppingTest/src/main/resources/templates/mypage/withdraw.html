@@ -1,1 +1,64 @@
-<h2> 여긴 회원탈퇴 가 들어올 자리</h2>
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
+<script>
+
+	function Dconfirm(){
+		var thisid = document.getElementById('thisid').value;	
+		var thispwd = document.getElementById('thispwd').value;	
+		var thisemail = document.getElementById('thisemail').value;
+		
+		
+		var myid = document.getElementById('myid').value;	
+		var mypwd = document.getElementById('mypwd').value;
+		alert(mypwd);
+		var myemail = document.getElementById('myemail').value;
+		
+		if(thisid != myid){
+			alert("아이디를 다시 입력해주십시오.");
+			return false;
+		}
+		if(thisemail != myemail){
+			alert("이메일를 다시 입력해주십시오.");
+			return false;
+		}
+		var c = confirm("정말 회원을 탈퇴하시겠습니까?");
+		if(!c){
+			alert("회원탈퇴를 취소하였습니다.")
+			return false;
+		}
+		if(c){
+			alert("회원탈퇴 하였습니다.")
+		}
+	}
+	
+</script>
+
+<form action = "/mypage/deleteMyInfo" method="post" onsubmit="return Dconfirm()">
+	<div>
+		<h2 >여기는 <span style="color:red;">회원 탈퇴</span> 창입니다.</h2>
+	</div>
+	
+	<h6>Doit Book 과 함께한 모든 추억을 지우시겠습니까? 정말루요? 진짜루요? 나중에 궁금할수도있는데요?</h6>
+	
+	<table>
+		<tr>
+			<th>아이디  </th>
+			<td> <input type="text" id="thisid" placeholder="아이디"></td>
+		</tr>
+		<tr>
+			<th>비밀번호  </th>
+			<td><input type="password" id="thispwd" placeholder="비밀번호"></td>
+		</tr>
+		<tr>
+			<th>이메일  </th>
+			<td> <input type="text" id="thisemail" placeholder="email"></td>
+		</tr>
+	</table>
+	<br>
+	<input type="hidden" id="myid" th:value="${myinfo.mem_id}">
+	<input type="hidden" id="mypwd" th:value="${myinfo.mem_pwd}">
+	<input type="hidden" id="myemail" th:value="${myinfo.mem_email}">
+	<input type="submit" id="withdrawbtn" value="회원 탈퇴">
+
+</form>

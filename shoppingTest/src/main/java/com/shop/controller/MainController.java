@@ -32,6 +32,7 @@ public class MainController {
 	public String loginimpl(HttpSession session, String mem_id, String mem_pwd, Model model) {
 		Member_tbl member = null;
 		String result = "loginfail";
+
 		try {
 			member = mservice.get(mem_id);
 			if (member != null) {

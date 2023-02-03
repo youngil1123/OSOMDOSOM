@@ -51,23 +51,10 @@
   <header th:replace="top.html :: navigation-bar"></header>
     <!-- Swiper -->
     <button class="custom-btn btn-8" id="media_name" onclick = "window.location='movie'">MOVIE</button>
-    <div class="swiper mySwiper">
-      <div class="swiper-wrapper">
-        <div class="swiper-slide"> <a th:href="@{/moviedetail}" style="width:100%; height:100%;"><img src="/img/movie/movie.jpg"></a></div>
-        <div class="swiper-slide"> <a th:href="@{/}" style="width:100%; height:100%;"><img src="/img/movie/movie2.jpg"></a></div>
-        <div class="swiper-slide"> <a th:href="@{/}" style="width:100%; height:100%;"><img src="/img/movie/movie3.jpg"></a></div>
-        <div class="swiper-slide"> <a th:href="@{/}" style="width:100%; height:100%;"><img src="/img/movie/movie4.jpg"></a></div>
-        <div class="swiper-slide"> <a th:href="@{/}" style="width:100%; height:100%;"><img src="/img/movie/movie5.jpg"></a></div>
-        <div class="swiper-slide"> <a href="#">Slide 6</a></div>
-        <div class="swiper-slide"> <a href="#">Slide 7</a></div>
-        <div class="swiper-slide"> <a href="#">Slide 8</a></div>
-        <div class="swiper-slide"> <a href="#">Slide 9</a></div>
-        <div class="swiper-slide"> <a href="#">Slide 10</a></div>
-        <div class="swiper-slide"> <a href="#">Slide 11</a></div>
-        <div class="swiper-slide"> <a href="#">Slide 12</a></div>
-        <div class="swiper-slide"> <a href="#">Slide 13</a></div>
-        <div class="swiper-slide"> <a href="#">Slide 14</a></div>
-        <div class="swiper-slide"> <a href="#">Slide 15</a></div>
+ 		<span id="reviewlist" th:each="moviereviews:${moviereviews}">
+      	<a th:href="@{/review/moviereview(movieCd=${moviereviews.movieCd})}"><img th:src="${moviereviews.movieposter}" style="height:300px" id="reviewimg" ></a>
+      	<!-- <span><a th:text="${review.bookname}"></a></span> -->
+    </span>
       </div>
       <div class="swiper-button-next"></div>
       <div class="swiper-button-prev"></div>

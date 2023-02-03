@@ -15,7 +15,14 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 	<select id="searchtheaterlist" parameterType="String" resultType="TheaterInfo">
 		SELECT * FROM theaterinfo WHERE prfnm LIKE CONCAT('%',#{keyword},'%')
 	</select>
-	<select id="gettheaterreviews" resultType="TheaterInfo" parameterType="String">
-		SELECT distinct(con_no),theaterinfo.poster,theaterinfo.prfnm,theaterinfo.mt20id FROM theaterinfo INNER JOIN board USING(con_no);
+	<select id="gettheaterreview" resultType="TheaterInfo">
+		SELECT distinct(con_no),theaterinfo.poster,theaterinfo.prfnm,theaterinfo.mt20id,theaterinfo.genrenm FROM theaterinfo INNER JOIN board USING(con_no);
+	</select>
+	
+	<select id="select" parameterType="String" resultType="TheaterInfo">
+		SELECT * FROM theaterinfo WHERE mt20id = #{mt20id}
+	</select>
+	<select id="getonetheaterreview" resultType="TheaterInfo" parameterType="String">
+		select * from board inner join theaterinfo using(con_no) inner join member_tbl using(mem_no) WHERE mt20id=#{mt20id};
 	</select>
 </mapper>
