@@ -82,7 +82,7 @@ public class MyPageController {
 		} else {
 			try {
 				chimg = member.getImg().getOriginalFilename(); // DTO의 MultipartFile 를사용함(화면에서 이미지파일올릴때 이미지파일이름을 가져옴)
-				System.out.println("내가입력한 이미지2: " + chimg);
+				System.out.println("내가입력한 이미지2: " + chimg); 
 				ImgUtil.saveFile(member.getImg(), memimgdir);
 			} catch (Exception e) {
 				e.printStackTrace();
