@@ -3,38 +3,26 @@
 
 <script>
 
-	function Dconfirm(){
-		var thisid = document.getElementById('thisid').value;	
-		var thispwd = document.getElementById('thispwd').value;	
-		var thisemail = document.getElementById('thisemail').value;
-		
-		
-		var myid = document.getElementById('myid').value;	
-		var mypwd = document.getElementById('mypwd').value;
-		alert(mypwd);
-		var myemail = document.getElementById('myemail').value;
-		
-		if(thisid != myid){
-			alert("아이디를 다시 입력해주십시오.");
-			return false;
+$(document).ready(function(){
+	$('#withdrawbtn').click(function(){
+		var c = confirm("삭제하시겠습니까?");
+		if(c==true){
+			$('#delete_form').attr({
+				'method':'post',
+				'action':'[[@{/mypage/deleteChk}]]'
+			});
+			$('#delete_form').submit();
 		}
-		if(thisemail != myemail){
-			alert("이메일를 다시 입력해주십시오.");
-			return false;
-		}
-		var c = confirm("정말 회원을 탈퇴하시겠습니까?");
-		if(!c){
-			alert("회원탈퇴를 취소하였습니다.")
-			return false;
-		}
-		if(c){
-			alert("회원탈퇴 하였습니다.")
-		}
-	}
+	});
+});
+	
+	//myinfo 처럼 데이터를 보내고. delete 완료 창으로 보내주면?
+	//비교가 실패시 회원삭제 실패창으로 보내고 알라트로 뭐가 실패햇는지 띄워주고 history.back? 쓰면?
+	
 	
 </script>
 
-<form action = "/mypage/deleteMyInfo" method="post" onsubmit="return Dconfirm()">
+<form id="delete_form">
 	<div>
 		<h2 >여기는 <span style="color:red;">회원 탈퇴</span> 창입니다.</h2>
 	</div>
@@ -44,21 +32,18 @@
 	<table>
 		<tr>
 			<th>아이디  </th>
-			<td> <input type="text" id="thisid" placeholder="아이디"></td>
+			<td> <input type="text" id="thisid" name="mem_id" placeholder="아이디"></td>
 		</tr>
 		<tr>
 			<th>비밀번호  </th>
-			<td><input type="password" id="thispwd" placeholder="비밀번호"></td>
+			<td><input type="password" id="thispwd" name="mem_pwd" placeholder="비밀번호"></td>
 		</tr>
 		<tr>
 			<th>이메일  </th>
-			<td> <input type="text" id="thisemail" placeholder="email"></td>
+			<td> <input type="text" id="thisemail" name="mem_email" placeholder="email"></td>
 		</tr>
 	</table>
 	<br>
-	<input type="hidden" id="myid" th:value="${myinfo.mem_id}">
-	<input type="hidden" id="mypwd" th:value="${myinfo.mem_pwd}">
-	<input type="hidden" id="myemail" th:value="${myinfo.mem_email}">
 	<input type="submit" id="withdrawbtn" value="회원 탈퇴">
 
 </form>

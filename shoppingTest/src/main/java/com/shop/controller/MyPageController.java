@@ -14,6 +14,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -82,7 +83,7 @@ public class MyPageController {
 		} else {
 			try {
 				chimg = member.getImg().getOriginalFilename(); // DTO의 MultipartFile 를사용함(화면에서 이미지파일올릴때 이미지파일이름을 가져옴)
-				System.out.println("내가입력한 이미지2: " + chimg);
+				System.out.println("내가입력한 이미지2: " + chimg); 
 				ImgUtil.saveFile(member.getImg(), memimgdir);
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -115,6 +116,50 @@ public class MyPageController {
 		}
 
 		return "redirect:/";
+	}
+	
+	// 받아온정보랑 세션의 정보랑 일치하는지 확인해봐야함  (비번은 암호화를 하든 복호화를 하든 해서 비교하자)
+
+	// 만약에 틀린게 있다면 if문으로 하나씩 내려가면서 확인. 그리고 발견할때 deleteFail.html로 보내주자. 
+	//alert창은 가능하면 (틀린정보)가 잘못입력되었습니다. 안되면 입력하신 정보가 틀렸습니다. 확인 바랍니다. 
+	//뜨고 다시 회원삭제페이지로 history.back 해버리자.
+	
+	// 만약에 전부 일치한다면 deleteOk.html로 이동시켜주자. (거기에서는 alert로 회원삭제가 완료되었습니다...
+	// 뜨게끔하고 th:location.href("@{/}");로 메인페이지로 이동
+	
+	//그리고 삭제해야할 테이블들 :
+	// 1. 회원정보,  2.팔로워테이블에 팔로우,팔로워에 이사람회원번호있느거 
+	//3.게시물테이블중에 이사람이 쓴거(이거는 남길지 말지 고민고민)
+	// 4. 구매내역테이블.. 5. 찜목록테이블...
+	
+	@RequestMapping("/deleteChk")
+	public Object deleteChk(Model model, Member_tbl inputinfo, HttpServletRequest request) {
+		
+		//return 값.
+		String result ="";
+		
+		//세션의 정보들 
+		HttpSession session = request.getSession();
+		Member_tbl myinfo = (Member_tbl)session.getAttribute("logincust");
+		String myid = myinfo.getMem_id();
+		String mypwd = myinfo.getMem_pwd(); //이건 암호화되어있다.
+		String myemail = myinfo.getMem_email();
+		
+		//내가 입력한 정보들
+		String inputid = inputinfo.getMem_id();
+		String inputpwd = inputinfo.getMem_pwd(); //이건 암호화안되있음
+		String inputemail = inputinfo.getMem_email();
+		
+		if(!myid.equals(inputid)) {
+			result="입력하신 아이디 정보가 틀렸습니다. 확인 바랍니다.";
+			model.addAttribute("result", result);
+			return "/mypage/deleteFail";
+		}
+		
+		
+		
+		
+		return result ;
 	}
 
 
