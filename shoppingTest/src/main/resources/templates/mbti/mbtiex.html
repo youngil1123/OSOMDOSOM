@@ -1,23 +1,8 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
-<head>
-<link th:href="@{/css/main.css}" rel="stylesheet">
-<link th:href="@{/css/team.css}" rel="stylesheet">
-<link th:href="@{/css/variables.css}" rel="stylesheet">
-<meta charset="utf-8">
-<meta content="width=device-width, initial-scale=1.0" name="viewport">
-
-
-  <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
-<title>ZenBlog Bootstrap Template - Index</title>
-<meta content="" name="description">
-<meta content="" name="keywords">
-
-<!-- Favicons -->
-<link href="/img/favicon.png" rel="icon">
+  <head>
+    <meta charset="utf-8" />
+    <link href="/img/favicon.png" rel="icon">
 <link href="/img/apple-touch-icon.png" rel="apple-touch-icon">
 
 <!-- Google Fonts -->
@@ -34,67 +19,156 @@
 <link href="/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 <link href="/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
 <link href="/vendor/aos/aos.css" rel="stylesheet">
+
 <!-- Template Main CSS Files -->
 <link href="/css/variables.css" rel="stylesheet">
 <link href="/css/main.css" rel="stylesheet">
+<link href="/css/team.css" rel="stylesheet">
+<link href="/css/slider.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500&display=swap" rel="stylesheet">
 
-<meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1.0,maximum-scale=1">
+<script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <title>Media Main</title>
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1"
+    />
+    <!-- Link Swiper's CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css"
+    />
 
-<title>Movie Review | Single</title>
 
-<!-- Loading third party fonts -->
-<link href="http://fonts.googleapis.com/css?family=Roboto:300,400,700|"
-	rel="stylesheet" type="text/css">
-<link href="fonts/font-awesome.min.css" rel="stylesheet" type="text/css">
-<!-- Loading main css file -->
-<link rel="stylesheet" th:href="@{/css/style.css}">
+  </head>
 
-<!--[if lt IE 9]>
-		<script src="js/ie-support/html5.js"></script>
-		<script src="js/ie-support/respond.js"></script>
-		<![endif]-->
-<style>
-.btn{
---bs-btn-font-size: 2rem;
-margin-bottom:10px;
-}
-.star {
-    position: relative;
-    font-size: 2rem;
-    color: #ddd;
-  }
+  <body>
+  <header th:replace="top.html :: navigation-bar"></header>
   
-  .star input {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    left: 0;
-    opacity: 0;
-    cursor: pointer;
-  }
-  
-  .star span {
-    width: 0;
-    position: absolute; 
-    left: 0;
-    color: red;
-    overflow: hidden;
-    pointer-events: none;
-  }
+  <button class="custom-btn btn-8" id="mbti" onclick = "window.location='mbtiex'" >MBTI</button>
+   </br></br></br></br></br>
+    <!-- Swiper -->
+    <button class="custom-btn btn-8" id="media_name" onclick = "window.location='movie'">MOVIE</button>
+    <div class="swiper mySwiper">
+      <div class="swiper-wrapper">
+       <div class="swiper-slide"> <a th:href="@{/moviedetail}" style="width:100%; height:100%;"><img src="/img/movie/movie.jpg"></a></div>
+        <div class="swiper-slide"> <a th:href="@{/}" style="width:100%; height:100%;"><img src="/img/movie/movie2.jpg"></a></div>
+        <div class="swiper-slide"> <a th:href="@{/}" style="width:100%; height:100%;"><img src="/img/movie/movie3.jpg"></a></div>
+        <div class="swiper-slide"> <a th:href="@{/}" style="width:100%; height:100%;"><img src="/img/movie/movie4.jpg"></a></div>
+        <div class="swiper-slide"> <a th:href="@{/}" style="width:100%; height:100%;"><img src="/img/movie/movie5.jpg"></a></div>
+        <div class="swiper-slide"> <a href="#">Slide 6</a></div>
+        <div class="swiper-slide"> <a href="#">Slide 7</a></div>
+        <div class="swiper-slide"> <a href="#">Slide 8</a></div>
+        <div class="swiper-slide"> <a href="#">Slide 9</a></div>
+        <div class="swiper-slide"> <a href="#">Slide 10</a></div>
+        <div class="swiper-slide"> <a href="#">Slide 11</a></div>
+        <div class="swiper-slide"> <a href="#">Slide 12</a></div>
+        <div class="swiper-slide"> <a href="#">Slide 13</a></div>
+        <div class="swiper-slide"> <a href="#">Slide 14</a></div>
+        <div class="swiper-slide"> <a href="#">Slide 15</a></div>
+      </div>
+      <div class="swiper-button-next"></div>
+      <div class="swiper-button-prev"></div>
+      <div class="swiper-pagination"></div>
+    </div>
+     </br>
+    
+    <button class="custom-btn btn-8" id="media_name" onclick = "window.location='book'">Book</button>
+    <div class="swiper mySwiper">
+      <div class="swiper-wrapper">
+         <div class="swiper-slide"> <a href="#">Slide 1</a></div>
+        <div class="swiper-slide"> <a href="#">Slide 2</a></div>
+        <div class="swiper-slide"> <a href="#">Slide 3</a></div>
+        <div class="swiper-slide"> <a href="#">Slide 4</a></div>
+        <div class="swiper-slide"> <a href="#">Slide 5</a></div>
+        <div class="swiper-slide"> <a href="#">Slide 6</a></div>
+        <div class="swiper-slide"> <a href="#">Slide 7</a></div>
+        <div class="swiper-slide"> <a href="#">Slide 8</a></div>
+        <div class="swiper-slide"> <a href="#">Slide 9</a></div>
+        <div class="swiper-slide"> <a href="#">Slide 10</a></div>
+        <div class="swiper-slide"> <a href="#">Slide 11</a></div>
+        <div class="swiper-slide"> <a href="#">Slide 12</a></div>
+        <div class="swiper-slide"> <a href="#">Slide 13</a></div>
+        <div class="swiper-slide"> <a href="#">Slide 14</a></div>
+        <div class="swiper-slide"> <a href="#">Slide 15</a></div>
+      </div>
+      <div class="swiper-button-next"></div>
+      <div class="swiper-button-prev"></div>
+      <div class="swiper-pagination"></div>
+    </div>
+    
+    </br>
+    <button class="custom-btn btn-8" id="media_name" onclick = "window.location='musical'">Musical</button>
+    <div class="swiper mySwiper">
+      <div class="swiper-wrapper">
+         <div class="swiper-slide"> <a href="#">Slide 1</a></div>
+        <div class="swiper-slide"> <a href="#">Slide 2</a></div>
+        <div class="swiper-slide"> <a href="#">Slide 3</a></div>
+        <div class="swiper-slide"> <a href="#">Slide 4</a></div>
+        <div class="swiper-slide"> <a href="#">Slide 5</a></div>
+        <div class="swiper-slide"> <a href="#">Slide 6</a></div>
+        <div class="swiper-slide"> <a href="#">Slide 7</a></div>
+        <div class="swiper-slide"> <a href="#">Slide 8</a></div>
+        <div class="swiper-slide"> <a href="#">Slide 9</a></div>
+        <div class="swiper-slide"> <a href="#">Slide 10</a></div>
+        <div class="swiper-slide"> <a href="#">Slide 11</a></div>
+        <div class="swiper-slide"> <a href="#">Slide 12</a></div>
+        <div class="swiper-slide"> <a href="#">Slide 13</a></div>
+        <div class="swiper-slide"> <a href="#">Slide 14</a></div>
+        <div class="swiper-slide"> <a href="#">Slide 15</a></div>
+      </div>
+      <div class="swiper-button-next"></div>
+      <div class="swiper-button-prev"></div>
+      <div class="swiper-pagination"></div>
+    </div>
+    
+    </br>
+   <button class="custom-btn btn-8" id="media_name" onclick = "window.location='theater'">Theater</button>
+    <div class="swiper mySwiper">
+      <div class="swiper-wrapper">
+         <div class="swiper-slide"> <a href="#">Slide 1</a></div>
+        <div class="swiper-slide"> <a href="#">Slide 2</a></div>
+        <div class="swiper-slide"> <a href="#">Slide 3</a></div>
+        <div class="swiper-slide"> <a href="#">Slide 4</a></div>
+        <div class="swiper-slide"> <a href="#">Slide 5</a></div>
+        <div class="swiper-slide"> <a href="#">Slide 6</a></div>
+        <div class="swiper-slide"> <a href="#">Slide 7</a></div>
+        <div class="swiper-slide"> <a href="#">Slide 8</a></div>
+        <div class="swiper-slide"> <a href="#">Slide 9</a></div>
+        <div class="swiper-slide"> <a href="#">Slide 10</a></div>
+        <div class="swiper-slide"> <a href="#">Slide 11</a></div>
+        <div class="swiper-slide"> <a href="#">Slide 12</a></div>
+        <div class="swiper-slide"> <a href="#">Slide 13</a></div>
+        <div class="swiper-slide"> <a href="#">Slide 14</a></div>
+        <div class="swiper-slide"> <a href="#">Slide 15</a></div>
+      </div>
+      <div class="swiper-button-next"></div>
+      <div class="swiper-button-prev"></div>
+      <div class="swiper-pagination"></div>
+    </div>
 
-</style>
-</head>
+    <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
 
-
-<body>
-	<header th:replace="top.html :: navigation-bar"></header>
-
-<div class="container" style="margin-top:100px;">
-</div>
-
-<footer th:replace="footer.html :: footer"></footer>
-</body>
+    <!-- Initialize Swiper -->
+    <script>
+      var swiper = new Swiper(".mySwiper", {
+        slidesPerView: 5,
+        spaceBetween: 30,
+        slidesPerGroup: 5,
+        loop: true,
+        loopFillGroupWithBlank: true,
+        pagination: {
+          el: ".swiper-pagination",
+          clickable: true,
+        },
+        navigation: {
+          nextEl: ".swiper-button-next",
+          prevEl: ".swiper-button-prev",
+        },
+      });
+    </script>
+    <footer th:replace="footer.html :: footer"></footer>
+  </body>
 </html>

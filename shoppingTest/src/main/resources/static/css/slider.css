@@ -54,6 +54,15 @@
 	margin-top:10px;
 	font-size: 25px;
       }
+      #mbti{
+      position: absolute;
+        top: 6px;
+        right: 80px;
+	margin-top:10px;
+	font-size: 50px;
+	width:200px;
+	height:80px;
+      }
       
 .btn-8 {
    line-height: 40px;
